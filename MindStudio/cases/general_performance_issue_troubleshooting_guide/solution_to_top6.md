@@ -13,7 +13,7 @@ MindIE推理性能可以从纯模型和服务化两个角度进行优化。
 
 **图1** 服务化性能瓶颈定位流程图<a name="ZH-CN_TOPIC_0000002535807067__fig294108141612"></a>
 
-![img](../figures/zh-cn_image_0000002535887233.png)
+![img](../../figures/zh-cn_image_0000002535887233.png)
 
 ## 纯模型性能调优
 
@@ -42,7 +42,7 @@ MindIE推理性能可以从纯模型和服务化两个角度进行优化。
    | 不限时延基线吞吐                               | 调大decode_batchsize至OOM。（或选取增速放缓的decode_batchsize） |
    | 限制TPOT，不限制TTFT                           | 调整decode_batchsize至decode_token_time刚好满足TPOT限制。    |
    | 限制TPOT和TTFT；爬坡测试（限制Request Rate）   | 调整decode_batchsize至decode_token_time刚好满足TPOT限制，调整prefill_batchsize令prefill_time接近TTFT限制。 |
-   | 限制TPOT和TTFT；固定并发（不限制Request Rate） | 调整decode_batchsize至decode_token_time刚好满足TPOT限制，设置prefill_batchsize=dp, 调小decode_batchsize直至![img](../figures/zh-cn_formulaimage_0000002535807121.png)接近平均TTFT限制。 |
+   | 限制TPOT和TTFT；固定并发（不限制Request Rate） | 调整decode_batchsize至decode_token_time刚好满足TPOT限制，设置prefill_batchsize=dp, 调小decode_batchsize直至![img](../../figures/zh-cn_formulaimage_0000002535807121.png)接近平均TTFT限制。 |
 
 4. 如需纯模型性能调优（并行策略，环境变量等），对不同的配置重复步骤1直到选取最优配置。
 
@@ -73,7 +73,7 @@ MindIE推理性能可以从纯模型和服务化两个角度进行优化。
 - 大并发下平均首Token时延。
 
   - Prefill阶段推理是算力密集型场景，Prefill Batchsize增大后会触发算力瓶颈；触发瓶颈后，Prefill时延会随Batchsize增加接近线性增长。
-  - 使用纯模型测试找到达到算力瓶颈的Prefill Batchsize，以这个Prefill Batchsize划分服务化的并发请求数，即基于纯模型结果计算首Token时延上限；假设纯模型测试找到瓶颈处Prefill Batchsize为![img](../figures/zh-cn_formulaimage_0000002535887175.png)，此时单个Prefill Batch的纯模型计算时间为![img](../figures/zh-cn_formulaimage_0000002504087186.png)，要估计的服务化实际并发为![img](../figures/zh-cn_formulaimage_0000002503927360.png)，则服务化此轮并发请求的Prefill总时间估计为![img](../figures/zh-cn_formulaimage_0000002535807147.png)，在先来先服务（FCFS）调度策略下，平均首Token时延约为![img](../figures/zh-cn_formulaimage_0000002535887181.png)。
+  - 使用纯模型测试找到达到算力瓶颈的Prefill Batchsize，以这个Prefill Batchsize划分服务化的并发请求数，即基于纯模型结果计算首Token时延上限；假设纯模型测试找到瓶颈处Prefill Batchsize为![img](../../figures/zh-cn_formulaimage_0000002535887175.png)，此时单个Prefill Batch的纯模型计算时间为![img](../../figures/zh-cn_formulaimage_0000002504087186.png)，要估计的服务化实际并发为![img](../../figures/zh-cn_formulaimage_0000002503927360.png)，则服务化此轮并发请求的Prefill总时间估计为![img](../../figures/zh-cn_formulaimage_0000002535807147.png)，在先来先服务（FCFS）调度策略下，平均首Token时延约为![img](../../figures/zh-cn_formulaimage_0000002535887181.png)。
 
 - 大并发下吞吐、非首Token时延。
 
@@ -95,7 +95,7 @@ MindIE推理性能可以从纯模型和服务化两个角度进行优化。
 
       **图1** 获取MindIE服务端NPU上KV Cache Block总可用数量示例<a name="ZH-CN_TOPIC_0000002535887093__fig19500185613447"></a>
 
-      ![img](../figures/zh-cn_image_0000002535807145.png)
+      ![img](../../figures/zh-cn_image_0000002535807145.png)
 
   - 为保持最佳性能，maxBatchSize一般不宜超过Floor[Total Block Num/最大Block数量]；若请求之间的上下文长度差距较大，则上限可适当提高至Floor[Total Block Num/平均Block数量]。
 
@@ -150,13 +150,13 @@ MindIE推理性能可以从纯模型和服务化两个角度进行优化。
 
 **图1** MindIE 2.0.T3性能测试结果<a name="ZH-CN_TOPIC_0000002504087096__fig31731419193712"></a>
 
-![img](../figures/zh-cn_image_0000002504087208.png)
+![img](../../figures/zh-cn_image_0000002504087208.png)
 
 如[图2](#ZH-CN_TOPIC_0000002504087096__fig145925476375)所示，上半部分截图为纯模型测试结果，300并发下纯模型Decode阶段平均时延为35.44ms，与2.0.T3性能非常接近；下半部分为服务化测试结果，300并发下Decode阶段平均时延约为95ms，较2.0.T3版本性能劣化50%。
 
 **图2** MindIE 2.0.RC1性能测试结果<a name="ZH-CN_TOPIC_0000002504087096__fig145925476375"></a>
 
-![img](../figures/zh-cn_image_0000002503927380.png)
+![img](../../figures/zh-cn_image_0000002503927380.png)
 
 **解决方案**
 
@@ -164,19 +164,19 @@ MindIE推理性能可以从纯模型和服务化两个角度进行优化。
 
    **图3** 对比配置<a name="ZH-CN_TOPIC_0000002504087096__fig2425144244017"></a>
 
-   ![img](../figures/zh-cn_image_0000002535887201.png)
+   ![img](../../figures/zh-cn_image_0000002535887201.png)
 
 2. 采集MindIE 2.0.RC1的服务化性能数据进行对比，发现MindIE 2.0.RC1的Decode阶段forward之间的间隙过大，说明CPU侧的前后处理耗时长，如[图4](#ZH-CN_TOPIC_0000002504087096__fig8393010422)所示。
 
    **图4** 查看forward<a name="ZH-CN_TOPIC_0000002504087096__fig8393010422"></a>
 
-   ![img](../figures/zh-cn_image_0000002503927378.png)
+   ![img](../../figures/zh-cn_image_0000002503927378.png)
 
 3. 开启异步调度，缩短forward间隙后，MindIE 2.0.RC1版本E2E输出吞吐2900->4500，较T3提升500token/s。异步调度的开启方式请参见《MindIE LLM开发指南》的异步调度章节。
 
    **图5** 开启异步调度
 
-   ![img](../figures/zh-cn_image_0000002535887199.png)
+   ![img](../../figures/zh-cn_image_0000002535887199.png)
 
 ### 模型执行耗时优化案例
 
@@ -192,11 +192,11 @@ DeepSeek PD分离大规模专家并行方案场景下，模型性能显著劣化
 
    **图1** 快卡性能数据截图<a name="ZH-CN_TOPIC_0000002535807061__fig193870541031"></a>
 
-   ![img](../figures/zh-cn_image_0000002504087240.png)
+   ![img](../../figures/zh-cn_image_0000002504087240.png)
 
    **图2** 慢卡性能数据截图<a name="ZH-CN_TOPIC_0000002535807061__fig179374817410"></a>
 
-   ![img](../figures/zh-cn_image_0000002535887231.png)
+   ![img](../../figures/zh-cn_image_0000002535887231.png)
 
 3. 从CANN CPU侧泳道（[图1](#ZH-CN_TOPIC_0000002535807061__fig193870541031)、[图2](#ZH-CN_TOPIC_0000002535807061__fig179374817410)中折叠为灰色）可以看出，每张卡启动任务的时间有差异，导致forward的第一个通算融合算子（moedispatch）时间不同，可以观察到90ms+的同步等待；去除第一个moedispatch后，剩余140ms左右的计算时间，两张卡算子性能接近——结合以上两点可以断定快慢卡是模型下发而非算子下发的时间差异导致的。
 
@@ -216,19 +216,19 @@ DeepSeek双机服务化推理时，实际Batchsize无法达到192。
 
    **图1** 查看数据
 
-   ![img](../figures/zh-cn_image_0000002535807137.png)
+   ![img](../../figures/zh-cn_image_0000002535807137.png)
 
 3. 从实际的执行来看，Batchsize=150的情况下，可以执行到Decode接近1000。
 
    **图2** 实际执行
 
-   ![img](../figures/zh-cn_image_0000002504087176.png)
+   ![img](../../figures/zh-cn_image_0000002504087176.png)
 
 4. 估算显存瓶颈下的并发上限，Profiling显示可用的KV Cache block数量是1747，默认配置下每个Block大小是128个Token，根据1024输入2048输出的上下文要求，平均上下文为1536，KV Cache平均可容纳1747/[(1024+2048)/2/128]≈145。
 
    **图3** Block数量
 
-   ![img](../figures/zh-cn_image_0000002535807139.png)
+   ![img](../../figures/zh-cn_image_0000002535807139.png)
 
 5. 调整服务化参数，export NPU_MEMORY_FRACTION=0.96，maxSeqLen降低到3K，达到最优效果。
 
@@ -244,19 +244,19 @@ Qwen3-32B 单机4卡服务化部署，用户使用场景中并发较小且请求
 
    **图1** 性能测试初步结果<a name="ZH-CN_TOPIC_0000002504087058__fig57131966516"></a>
 
-   ![img](../figures/zh-cn_image_0000002503927324.png)
+   ![img](../../figures/zh-cn_image_0000002503927324.png)
 
 2. 在此场景下，可以开启SupportSelectBatch，通过设置prefillTimeMsPerReq和decodeTimeMsPerReq调整Prefill和Decode的优先级，使调度器允许在一定情况下Decode优先。此策略可以减少“新请求Prefill打断推理中请求的Decode“的情况，进而提高连续Decode的占比，降低非首Token时延，如[图2](#ZH-CN_TOPIC_0000002504087058__fig99048387485)所示；虽然此策略会导致部分请求Prefill等待，但此案例场景中模型Prefill性能已经足够好，即使首Token时延略有增加，仍可通过调整优先级参数，将首Token时延控制在用户可以接受的范围内。
 
    **图2** 非首Token时延劣化现象原理示意图<a name="ZH-CN_TOPIC_0000002504087058__fig99048387485"></a>
 
-   ![img](../figures/zh-cn_image_0000002504087152.png)
+   ![img](../../figures/zh-cn_image_0000002504087152.png)
 
 3. 调整优先级参数，prefillTimeMsPerReq越高，decodeTimeMsPerReq越低，则Decode优先级越高，反之则Prefill优先级越高；设置supportSelectBatch为true，prefillTimeMsPerReq为1000，decodeTimeMsPerReq为1，性能测试结果如[图3](#ZH-CN_TOPIC_0000002504087058__fig17560946184820)，此时首Token时延增加至1562ms，平均非首Token降低至31.7ms，P99非首Token时延降低至36ms，整体流式输出流畅，满足用户需求。
 
    **图3** 调优后性能测试结果<a name="ZH-CN_TOPIC_0000002504087058__fig17560946184820"></a>
 
-   ![img](../figures/zh-cn_image_0000002535807113.png)
+   ![img](../../figures/zh-cn_image_0000002535807113.png)
 
 ## DeepSeek进阶调优
 

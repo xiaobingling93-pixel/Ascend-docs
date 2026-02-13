@@ -8,9 +8,9 @@
 >
 > 性能优化的前提是不造成精度劣化，特殊情况下，需要对齐精度劣化是否能接受。
 
-1. **问题明确：**请参考[问题信息收集](#问题信息收集)章节，收集必要信息。
-2. **性能问题排查：**排查思路请参见[排查思路介绍](#排查思路介绍)。
-3. **实验验证：**在进行多次实验时，应严格控制变量，确保除了改变的策略外，其他参数和数据保持一致。
+1. 问题明确：请参考[问题信息收集](#问题信息收集)章节，收集必要信息。
+2. 性能问题排查：排查思路请参见[排查思路介绍](#排查思路介绍)。
+3. 实验验证：在进行多次实验时，应严格控制变量，确保除了改变的策略外，其他参数和数据保持一致。
 
 ## 问题信息收集
 
@@ -60,7 +60,7 @@
 
 **图1** 详细排查流程图
 
-![img](../figures/zh-cn_image_0000002535807191.jpg)
+![img](../../figures/zh-cn_image_0000002535807191.jpg)
 
 #### 下发问题
 
@@ -72,19 +72,19 @@
 
   **图2** 查看Free
 
-  ![img](../figures/zh-cn_image_0000002535807195.png)
+  ![img](../../figures/zh-cn_image_0000002535807195.png)
 
 - 红框中的HostToDevice连线接近垂直，且蓝框中的Device上相对空闲。
 
   **图3** 查看连线
 
-  ![img](../figures/zh-cn_image_0000002535887225.png)
+  ![img](../../figures/zh-cn_image_0000002535887225.png)
 
 - HostToDevice频繁拷贝打断异步流水，造成下发瓶颈。
 
   **图4** 寻找下发瓶颈
 
-  ![img](../figures/zh-cn_image_0000002504087238.png)
+  ![img](../../figures/zh-cn_image_0000002504087238.png)
 
 #### 通信问题
 
@@ -98,19 +98,19 @@
 
   **图5** 利用MindStudio Insight的通信耗时分析查找慢卡
 
-  ![img](../figures/zh-cn_image_0000002503927402.png)
+  ![img](../../figures/zh-cn_image_0000002503927402.png)
 
 - 在Timeline中可以看到明显的卡间等待，如**图6**中红框所示，快卡Rank6已经计算完毕，在等待慢卡Rank5完成计算。
 
   **图6** Timeline对比快慢卡Profiling（Ascend Hardware层）
 
-  ![img](../figures/zh-cn_image_0000002504087236.png)
+  ![img](../../figures/zh-cn_image_0000002504087236.png)
 
 - 如**图7**所示，Communication泳道可观察到，快卡Rank6的hcom_allGather通信算子时长远大于慢卡Rank5的通信算子，且主要时长来源于同步等待。
 
   **图7** Timeline对比快慢卡Profiling（Communication泳道）
 
-  ![img](../figures/zh-cn_image_0000002503927400.png)
+  ![img](../../figures/zh-cn_image_0000002503927400.png)
 
 #### 计算问题
 
@@ -118,4 +118,4 @@
 
 **图8** 算子性能问题定位
 
-![img](../figures/zh-cn_image_0000002535887227.png)
+![img](../../figures/zh-cn_image_0000002535887227.png)

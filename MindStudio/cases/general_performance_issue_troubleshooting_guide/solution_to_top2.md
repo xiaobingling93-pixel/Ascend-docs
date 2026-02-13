@@ -6,7 +6,7 @@
 
 **图1** 算子性能问题定位
 
-![img](../figures/zh-cn_image_0000002535807171.png)
+![img](../../figures/zh-cn_image_0000002535807171.png)
 
 **表1** 算子性能问题定位方法
 
@@ -31,11 +31,11 @@
 
    **图1** 覆盖分析表
 
-   ![img](../figures/zh-cn_image_0000002503927394.png)
+   ![img](../../figures/zh-cn_image_0000002503927394.png)
 
    **图2** 查看计算算子
 
-   ![img](../figures/zh-cn_image_0000002535807183.png)
+   ![img](../../figures/zh-cn_image_0000002535807183.png)
 
 2. 查看算子耗时，发现IndexPutV2算子计算占了总耗时的75%，因此需要对该算子优化，具体优化方法请参考[表2](#ZH-CN_TOPIC_0000002503927292__table20724033121415)。
 
@@ -78,7 +78,7 @@
 
 **图1** 模型代码优化流程<a name="ZH-CN_TOPIC_0000002535807025__fig74933811561"></a>
 
-![img](../figures/zh-cn_image_0000002535887167.png)
+![img](../../figures/zh-cn_image_0000002535887167.png)
 
 1. 获取模型pr性能数据。
 2. 定位到模型性能问题，此处一般是指单点CPU操作或算子执行的耗时过长，超出预期。
@@ -98,8 +98,8 @@
 
 **图2** TransData算子耗时占比高<a name="ZH-CN_TOPIC_0000002535807025__fig1623417201456"></a>
 
-![img](../figures/zh-cn_image_0000002535887169.png)
+![img](../../figures/zh-cn_image_0000002535887169.png)
 
 **图3** SelectV2算子在极端shape下的性能劣化<a name="ZH-CN_TOPIC_0000002535807025__fig2078518402537"></a>
 
-![img](../figures/zh-cn_image_0000002503927346.png)
+![img](../../figures/zh-cn_image_0000002503927346.png)
