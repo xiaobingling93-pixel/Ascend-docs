@@ -6,7 +6,7 @@
 
 训练精度问题是多种因素共同作用的结果。主要表现为训练收敛不及预期，如loss跑飞、毛刺、NaN、下游任务评测效果变差等。
 
-**训练精度场景**
+__训练精度场景__
 
 - 有标杆对应迁移场景，即用户将原本在标杆（如GPU、其他训练框架）上训练的大语言模型或者其他类型深度神经网络的训练迁移到NPU上进行训练。
 - 无标杆对应原生开发场景，即用户直接在NPU上进行模型搭建及训练。
@@ -17,25 +17,25 @@
 
   即step 0或前几个step的loss就已与标杆相比出现差异，平均误差大于1%，如下图所示。
 
-  **图1** 首step差异
+  __图1__ 首step差异
 
-  ![img](figures/zh-cn_image_0000002503925530.png)
+  ![img](../figures/zh-cn_image_0000002503925530.png)
 
 - 长稳loss差异
 
   即前期loss拟合但后期与标杆差异变大，平均误差大于1%，如下图所示。
 
-  **图2** 长稳loss差异
+  __图2__ 长稳loss差异
 
-  ![img](figures/zh-cn_image_0000002535805337.png)
+  ![img](../figures/zh-cn_image_0000002535805337.png)
 
 - 溢出或NaN
 
   即迁移后相较于标杆出现更频繁的溢出、NaN或毛刺，如下图所示。
 
-  **图3** 溢出或NaN
+  __图3__ 溢出或NaN
 
-  ![img](figures/zh-cn_image_0000002535885371.png)
+  ![img](../figures/zh-cn_image_0000002535885371.png)
 
 - 训练中loss与标杆相比差异较小但下游指标差异大
 
@@ -53,9 +53,9 @@
 
 训练精度问题整体定位流程如图所示。
 
-**图1** 训练精度问题整体定位流程
+__图1__ 训练精度问题整体定位流程
 
-![img](figures/zh-cn_image_0000002535805351.png)
+![img](../figures/zh-cn_image_0000002535805351.png)
 
 在主流的迁移场景中，需优先统一进行训练前置定位步骤，提前校验checklist以排除基础配置、数据集、模型结构等基础问题，并保证精度问题可复现。
 
@@ -155,7 +155,7 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
   一般来说溢出表现相较于标杆出现了更频繁的loss NaN或梯度溢出，一般还伴随着loss scale的持续降低。
 
-  ![img](figures/zh-cn_image_0000002535805377.png)
+  ![img](../figures/zh-cn_image_0000002535805377.png)
 
   进一步可分为如下两类：
 
@@ -180,9 +180,9 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
   export ASCEND_LAUNCH_BLOCKING=1
   ```
 
-- 关闭npu_fusion_attention，该算子功能复杂全面，使用时易出现传参规范错误的问题，对于一些NaN问题若存在npu_fusion_attention可以先关闭该算子，定界是否为npu_fusion_attention导致，使用规范参照[npu_fusion_attention](https://www.hiascend.com/document/detail/zh/Pytorch/60RC3/apiref/apilist/ptaoplist_000762.html)。如在MindSpeed LLM中关闭npu_fusion_attention的操作具体为：删除**--use_fused_attn**参数。
+- 关闭npu_fusion_attention，该算子功能复杂全面，使用时易出现传参规范错误的问题，对于一些NaN问题若存在npu_fusion_attention可以先关闭该算子，定界是否为npu_fusion_attention导致，使用规范参照[npu_fusion_attention](https://www.hiascend.com/document/detail/zh/Pytorch/60RC3/apiref/apilist/ptaoplist_000762.html)。如在MindSpeed LLM中关闭npu_fusion_attention的操作具体为：删除`--use_fused_attn`参数。
 
-- 在Megatron模型中，overlap类参数存在较高风险，可优先排除，具体操作为：删除 **--overlap-param-gather**、**--overlap-grad-reduce**等超参。
+- 在Megatron模型中，overlap类参数存在较高风险，可优先排除，具体操作为：删除`--overlap-param-gather`、`--overlap-grad-reduce`等超参。
 
 - 排查Matmul错峰策略，当定位到可疑的Matmul算子但无法通过单算子验证排除时，可以尝试关闭错峰策略，具体操作为配置如下环境变量：
 
@@ -198,7 +198,7 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 对于一些大集群任务，需优先采用硬件压测，排除精度异常节点，压测按如下步骤进行：
 
-1. **模型压测：**使用分组的单机或多机任务训练找到与其他大部分卡或机器精度不一致的机组。
+1. **模型压测**：使用分组的单机或多机任务训练找到与其他大部分卡或机器精度不一致的机组。
 
 2. **命令压测**：使用ascend-dmi命令进行压测，命令如下：
 
@@ -212,77 +212,77 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 #### 配置项不一致
 
-**案例**：某语音识别模型，从GPU迁移到NPU训练后，下游指标WER差异较大。
+__案例__：某语音识别模型，从GPU迁移到NPU训练后，下游指标WER差异较大。
 
-**定位方法**：根据启动脚本或训练日志对比NPU和标杆的训练配置。
+__定位方法__：根据启动脚本或训练日志对比NPU和标杆的训练配置。
 
 比对发现NPU采用FSDP配置，GPU采用DDP配置。训练loss差异不大但下游指标差异大，如下图。
 
-**图1** NPU GPU配置对比
+__图1__ NPU GPU配置对比
 
-![img](figures/zh-cn_image_0000002503925604.png)
+![img](../figures/zh-cn_image_0000002503925604.png)
 
-**解决方案：**同步GPU配置。
+**解决方案**：同步GPU配置。
 
-**结果：**修复后WER下降，与GPU对齐。
+**结果**：修复后WER下降，与GPU对齐。
 
 #### 读取数据不一致
 
-**案例：**某大语言模型，从llamafactory NPU（标杆）迁移到MindSpeed LLM NPU训练，loss对不齐，如下图。
+**案例**：某大语言模型，从llamafactory NPU（标杆）迁移到MindSpeed LLM NPU训练，loss对不齐，如下图。
 
-**图1** loss对不齐
+__图1__ loss对不齐
 
-![img](figures/zh-cn_image_0000002535805371.png)
+![img](../figures/zh-cn_image_0000002535805371.png)
 
-**定位方法：**打印输入的tokens等信息进行比对，具体位置需结合训练代码（如MindSpeed LLM可直接在MindSpeed-LLM/pretrain_gpt.py的forward_step函数中添加打印），如下图。
+**定位方法**：打印输入的tokens等信息进行比对，具体位置需结合训练代码（如MindSpeed LLM可直接在MindSpeed-LLM/pretrain_gpt.py的forward_step函数中添加打印），如下图。
 
-**图2** forward_step函数中加打印
+__图2__ forward_step函数中加打印
 
-![img](figures/zh-cn_image_0000002504085412.png)
+![img](../figures/zh-cn_image_0000002504085412.png)
 
 可以看到读取的token_id的末尾存在数据不一致的问题，如下图。
 
-**图3** 读取token_id的末尾数据不一致
+__图3__ 读取token_id的末尾数据不一致
 
-![img](figures/zh-cn_image_0000002535885397.png)
+![img](../figures/zh-cn_image_0000002535885397.png)
 
-**解决方案：**修复数据预处理代码，使其输入一致。
+**解决方案**：修复数据预处理代码，使其输入一致。
 
-**结果：**修复后loss对齐。
+**结果**：修复后loss对齐。
 
-**图4** loss对齐
+__图4__ loss对齐
 
-![img](figures/zh-cn_image_0000002503925564.png)
+![img](../figures/zh-cn_image_0000002503925564.png)
 
 #### 模型结构不一致
 
-**案例：**某MOE模型，从GPU迁移到NPU后，loss对不齐。
+**案例**：某MOE模型，从GPU迁移到NPU后，loss对不齐。
 
-**图1** loss对不齐
+__图1__ loss对不齐
 
-![img](figures/zh-cn_image_0000002504085446.png)
+![img](../figures/zh-cn_image_0000002504085446.png)
 
-**定位方法：**可以通过查看具体代码实现或打印模型结构比较。
+**定位方法**：可以通过查看具体代码实现或打印模型结构比较。
 
 查看代码发现，NPU中residual是input_layernorm后的，GPU上是input_layernorm前的，两者模型顺序结构不一致。
 
-**图2** 模型结构比较
+__图2__ 模型结构比较
 
-![img](figures/zh-cn_image_0000002504085436.png)
+![img](../figures/zh-cn_image_0000002504085436.png)
 
-**解决方案**：将NPU中的input_layernorm也放到residual后面。
+__解决方案__：将NPU中的input_layernorm也放到residual后面。
 
-**结果**：对齐模型结构后loss对齐。
+__结果__：对齐模型结构后loss对齐。
 
-**图3** loss对齐
+__图3__ loss对齐
 
-![img](figures/zh-cn_image_0000002535805407.png)
+![img](../figures/zh-cn_image_0000002535805407.png)
 
 ### 确定性计算案例
 
-**案例**：某视觉模型存在确定性计算问题，重复训练loss不一致。
+__案例__：某视觉模型存在确定性计算问题，重复训练loss不一致。
 
-**定位方法：**
+__定位方法：__
 
 1. 打开确定性计算（算子确定性计算+确定性通信）、设置随机种子、关闭Dropout并保证数据集读取顺序一致。
 
@@ -318,33 +318,33 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
    比对前后两次采集的数据，最先出现异常的是masked_fill.23的输入。
 
-   **图1** 比对前后两次采集的数据结果
+   __图1__ 比对前后两次采集的数据结果
 
-   ![img](figures/zh-cn_image_0000002535805321.png)
+   ![img](../figures/zh-cn_image_0000002535805321.png)
 
    根据dump结果中的stack.json调用栈和代码查找输入来源，代码中为mmcv的MSDA。
 
-   **图2** masked_fill.23的调用栈
+   __图2__ masked_fill.23的调用栈
 
-   ![img](figures/zh-cn_image_0000002503925536.png)
+   ![img](../figures/zh-cn_image_0000002503925536.png)
 
-   **图3** masked_fill.23的代码
+   __图3__ masked_fill.23的代码
 
-   ![img](figures/zh-cn_image_0000002504085350.png)
+   ![img](../figures/zh-cn_image_0000002504085350.png)
 
    与MSDA算子支撑人员确认该算子暂不支持确定性计算，建议可用小算子组合进行代替。
 
    小算子代替后masked_fill.23输入一致，但发现grid_sample仍有差异。
 
-   **图4** 比对前后两次采集的数据结果
+   __图4__ 比对前后两次采集的数据结果
 
-   ![img](figures/zh-cn_image_0000002535805325.png)
+   ![img](../figures/zh-cn_image_0000002535805325.png)
 
    与grid_sample算子支撑人员确认该算子也暂不支持确定性计算。
 
-**解决方案：**MSDA算子转小算子拼接，grid_sample算子转CPU。
+**解决方案**：MSDA算子转小算子拼接，grid_sample算子转CPU。
 
-**结果：**随机性固定，重复训练结果完全一致。
+**结果**：随机性固定，重复训练结果完全一致。
 
 ### msprobe工具定位案例
 
@@ -354,13 +354,13 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 >
 > 在进行工具定位前，请优先排除[环境检查](#环境检查)中的配置项问题和[问题复现](#问题复现)中的随机性问题。
 
-**案例：**某语音模型首step的loss已不齐。
+**案例**：某语音模型首step的loss已不齐。
 
-**图1** loss不齐
+__图1__ loss不齐
 
-![img](figures/zh-cn_image_0000002535885377.png)
+![img](../figures/zh-cn_image_0000002535885377.png)
 
-**定位方法：**使用msprobe的dump工具采集step 0 mix级别数据，config.json配置如下：
+**定位方法**：使用msprobe的dump工具采集step 0 mix级别数据，config.json配置如下：
 
 ```
 {
@@ -381,9 +381,9 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 1. dump工具在代码中插入方法可参考如下方式：
 
-   **图2** dump工具插入代码的方式
+   __图2__ dump工具插入代码的方式
 
-   ![img](figures/zh-cn_image_0000002504085358.png)
+   ![img](../figures/zh-cn_image_0000002504085358.png)
 
 2. 通过分级可视化工具分析差异。
 
@@ -405,9 +405,9 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
    在输出目录中可以看到生成的vis后缀文件，用tensorboard打开可视化界面：
 
-   **图3** 可视化比对结果
+   __图3__ 可视化比对结果
 
-   ![img](figures/zh-cn_image_0000002504085370.png)
+   ![img](../figures/zh-cn_image_0000002504085370.png)
 
    可以看到gelu算子标红，算子精度可能存在一定问题。
 
@@ -432,17 +432,17 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
    分析表格发现gelu算子输入差异较小，输出差异较大。
 
-   **图4** 精度比对结果
+   __图4__ 精度比对结果
 
-   ![img](figures/zh-cn_image_0000002504085364.png)
+   ![img](../figures/zh-cn_image_0000002504085364.png)
 
-**解决方案：**
+**解决方案**：
 
 将gelu算子计算转CPU，精度问题解决，明确该问题为gelu算子导致，但转CPU会影响性能。
 
 后续联系算子支撑人员提供了PyTorch的gelu修复包。
 
-**结果：**用修复包后不转CPU也精度达标。
+**结果**：用修复包后不转CPU也精度达标。
 
 #### 长稳训练loss不一致，前期对齐，后期差异变大
 
@@ -450,13 +450,13 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 >
 > 在进行工具定位前，请优先排除[环境检查](#环境检查)中的配置项问题和[问题复现](#问题复现)中的随机性问题。
 
-**案例**：某搜索模型从fp32转bf16之后，前期loss差异不大，后期loss跑飞。
+__案例__：某搜索模型从fp32转bf16之后，前期loss差异不大，后期loss跑飞。
 
-**图1** loss跑飞
+__图1__ loss跑飞
 
-![img](figures/zh-cn_image_0000002535885417.png)
+![img](../figures/zh-cn_image_0000002535885417.png)
 
-**定位方法：**由于前期对齐后期跑飞，且跑飞时步数已较大，全程dump数据量多且步数不确定，因此优先采用monitor状态监控工具进行采集。
+**定位方法**：由于前期对齐后期跑飞，且跑飞时步数已较大，全程dump数据量多且步数不确定，因此优先采用monitor状态监控工具进行采集。
 
 1. 查看grad_norm，与loss趋势一致。
 
@@ -478,29 +478,29 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
    代码中插入方式如下：
 
-   **图2** monitor工具代码插入方式
+   __图2__ monitor工具代码插入方式
 
-   ![img](figures/zh-cn_image_0000002535885405.png)
+   ![img](../figures/zh-cn_image_0000002535885405.png)
 
 2. 采集后可得到每张卡上grad_unreduced-xx-xx.csv和grad_reduced-xx-xx.csv，其中xx为步数。
 
    查看在360步之后的开始上扬位置的reduce前各层梯度数据，结果如下：
 
-   **图3** 异常训练用monitor采集的梯度数据
+   __图3__ 异常训练用monitor采集的梯度数据
 
-   ![img](figures/zh-cn_image_0000002503925574.png)
+   ![img](../figures/zh-cn_image_0000002503925574.png)
 
    其中横坐标为反向的层顺序，左边为output，右边为embedding，可看到梯度norm大值在embedding附近，而对比fp32的梯度数据在embedding层上也相对稳定。
 
-   **图4** 正常训练用monitor采集的梯度数据
+   __图4__ 正常训练用monitor采集的梯度数据
 
-   ![img](figures/zh-cn_image_0000002503925582.png)
+   ![img](../figures/zh-cn_image_0000002503925582.png)
 
    因此重点怀疑embedding层梯度在bf16上相较于fp32存在数值不稳定现象。
 
-**解决方案：**对embedding的梯度做梯度裁剪。
+**解决方案**：对embedding的梯度做梯度裁剪。
 
-**结果：**loss收敛正常无跑飞。
+**结果**：loss收敛正常无跑飞。
 
 #### 溢出或NaN问题
 
@@ -512,13 +512,13 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 某视觉模型从GPU迁移到NPU MindSpeed LLM训练，从一开始就梯度溢出。
 
-**图1** 梯度溢出打印的日志
+__图1__ 梯度溢出打印的日志
 
-![img](figures/zh-cn_image_0000002535805363.png)
+![img](../figures/zh-cn_image_0000002535805363.png)
 
 从用户共享的训练截图中可以看到step 0梯度反向时逐层变大直至溢出。
 
-**定位方法：**
+__定位方法：__
 
 1. 使用dump工具采集step 0（溢出步）的mix级别数据，config.json配置如下：
 
@@ -541,13 +541,13 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
    从训练截图中可看到每次self_attn反向之后梯度逐层变大，查看self_attn代码发现使用了npu_fusion_attention算子，该算子因使用规范引起的精度问题较多，优先查看dump中对应的反向数据，发现每次经过npu_fusion_attention层反向后，norm值量级明显增大。
 
-   **图2** dump采集的npu_fusion_attention结果
+   __图2__ dump采集的npu_fusion_attention结果
 
-   ![img](figures/zh-cn_image_0000002503925524.png)
+   ![img](../figures/zh-cn_image_0000002503925524.png)
 
 2. 快速验证，先在MindSpeed LLM的训练配置中规避npu_fusion_attention融合算子。
 
-   删除超参：**-use_fused_attn**
+   删除超参：__-use_fused_attn__
 
    溢出消失，明确该问题为npu_fusion_attention分支引入，但性能下降明显，需进一步明确npu_fusion_attention精度原因。
 
@@ -557,29 +557,29 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
    在进npu_fusion_attention计算前，会将batch size和seq len做flatten，此时shape=[7154, 32, 128]，下一步去除其中的pad，因此Q和KV的输入长度变成了[5079, 32, 128]。
 
-   **atten_mask字段要求**：
+   __atten_mask字段要求__：
 
    atten_mask：Device侧的Tensor，可选参数，取值为1代表该位不参与计算（不生效），为0代表该位参与计算，数据类型支持BOOL、UINT8，数据格式支持ND格式，输入shape类型支持BNSS格式、B1SS格式、11SS格式、SS格式。varlen场景只支持SS格式，SS分别是maxSq和maxSkv。
 
    按照官网说明，此时attention mask按照规则本该为[maxSq, maxSkv]，即[3577, 3577]，但实际客户代码中使用[query.shape[0], key.shape[0]]，即[5079, 5079]，使用规范错误，导致算子底层执行计算时会按行读取，导致出现0、1的数值错位，最终导致梯度溢出。
 
-**解决方案：**修正npu_fusion_attention训练时传入的attention_mask。
+**解决方案**：修正npu_fusion_attention训练时传入的attention_mask。
 
-**结果：**训练梯度溢出消失，loss正常收敛。
+**结果**：训练梯度溢出消失，loss正常收敛。
 
 ##### 案例2
 
 某多模态模型从GPU迁移到NPU后做微调，使用框架为FSDP，训练step1的loss出现NaN。
 
-**图3** NPU上运行结果
+__图3__ NPU上运行结果
 
-![img](figures/zh-cn_image_0000002503925556.png)
+![img](../figures/zh-cn_image_0000002503925556.png)
 
-**图4** GPU上运行结果
+__图4__ GPU上运行结果
 
-![img](figures/zh-cn_image_0000002535885363.png)
+![img](../figures/zh-cn_image_0000002535885363.png)
 
-**定位方法：**
+__定位方法：__
 
 1. 缩小规模。
 
@@ -609,15 +609,15 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
    发现step1 loss的NaN不是第一个出现的NaN，先出现NaN的是step0 post_attention_layernorm的反向梯度。
 
-   **图5** post_attention_layernorm的反向梯度
+   __图5__ post_attention_layernorm的反向梯度
 
-   ![img](figures/zh-cn_image_0000002535885355.png)
+   ![img](../figures/zh-cn_image_0000002535885355.png)
 
    与打开流同步的无NaN的梯度数据进行对比，除了input_layernorm和post_attention_layernorm层的weight和bias，其余的参数都能对上。
 
-   **图6** 有无NaN的梯度比对
+   __图6__ 有无NaN的梯度比对
 
-   ![img](figures/zh-cn_image_0000002535805331.png)
+   ![img](../figures/zh-cn_image_0000002535805331.png)
 
    对应的dump中的接口为Functional.layer_norm.10和Functional.layer_norm.11。
 
@@ -625,9 +625,9 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
    post_attention_layernorm对于图像和文本连续下发了两次。
 
-   **图7** post_attention_layernorm代码
+   __图7__ post_attention_layernorm代码
 
-   ![img](figures/zh-cn_image_0000002504085404.png)
+   ![img](../figures/zh-cn_image_0000002504085404.png)
 
    将其次数改为1次时，NaN消失，明确该问题出现在该算子重复调用时。
 
@@ -647,59 +647,59 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
    参考无loss NaN的dump.json文件，torch.split.192.backward的输入应为Functional.layer_norm.11的输出，而不开流同步时，对比本该相等的两组数据，异步dump的torch.split.192.backward的输入，与Functional.layer_norm.11的输出不一致。
 
-   **图8** 特征分析代码
+   __图8__ 特征分析代码
 
-   ![img](figures/zh-cn_image_0000002503925544.png)
+   ![img](../figures/zh-cn_image_0000002503925544.png)
 
    发现刚好踩了size=2048（0-2047不等，2048-3071相等），满足内存踩踏特征。
 
-   **图9** 踩踏前后的数据差异
+   __图9__ 踩踏前后的数据差异
 
-   ![img](figures/zh-cn_image_0000002535885389.png)
+   ![img](../figures/zh-cn_image_0000002535885389.png)
 
 8. 算子内存地址打印。
 
    尝试通过修改torch_npu源码对算子的输入输出tensor对应的ptr地址和shape进行打印。
 
-   **图10** ptr内存地址打印结果
+   __图10__ ptr内存地址打印结果
 
-   ![img](figures/zh-cn_image_0000002504085392.png)
+   ![img](../figures/zh-cn_image_0000002504085392.png)
 
    从日志发现两个连续layernorm中，存在cast算子输出对concat算子输入的踩踏（两者地址一致）。
 
    踩踏现场确认如下：
 
-   **图11** 踩踏发生的逻辑图
+   __图11__ 踩踏发生的逻辑图
 
-   ![img](figures/zh-cn_image_0000002504085378.png)
+   ![img](../figures/zh-cn_image_0000002504085378.png)
 
    总结根因：缺失record的backend +多流并行的FSDP +连续下发的layernorm导致了内存踩踏。
 
-**解决方案：**在torch_npu2.3的FSDP unshard流上添加record，确保流上的当前算子执行完成之前，tensor内存不会被下一个算子申请。
+**解决方案**：在torch_npu2.3的FSDP unshard流上添加record，确保流上的当前算子执行完成之前，tensor内存不会被下一个算子申请。
 
-**结果：**loss NaN消失，正常收敛。
+**结果**：loss NaN消失，正常收敛。
 
 ### 特殊情况排查案例
 
-**案例1**：某多模态模型。
+__案例1__：某多模态模型。
 
 开启流同步前训练出现NaN，而开启流同步后无NaN正常收敛，最终定位为并发计算时的内存踩踏。
 
-**案例2**：某MOE模型出现NaN问题。
+__案例2__：某MOE模型出现NaN问题。
 
 去掉overlap-param-gather超参之后，问题规避。
 
 ### 硬件压测案例
 
-**案例**：某近5k卡大集群模型loss不对齐，grad_norm存在大量尖刺。
+__案例__：某近5k卡大集群模型loss不对齐，grad_norm存在大量尖刺。
 
-**图1** loss不对齐尖刺
+__图1__ loss不对齐尖刺
 
-![img](figures/zh-cn_image_0000002535805395.png)
+![img](../figures/zh-cn_image_0000002535805395.png)
 
-**图2** loss grad_norm尖刺
+__图2__ loss grad_norm尖刺
 
-![img](figures/zh-cn_image_0000002535885443.png)
+![img](../figures/zh-cn_image_0000002535885443.png)
 
 由于集群较大，优先进行硬件压测，排查坏节点。
 
@@ -707,7 +707,7 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 使用ascend-dmi -dg -i aicore -s -sc 60 -q命令进行机器压测，查看故障检测结果。
 
-**表1** 故障检测结果含义
+__表1__ 故障检测结果含义
 
 | 回显状态       | 含义                                                     |
 | -------------- | -------------------------------------------------------- |
@@ -720,15 +720,15 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 - 排除硬件故障后loss不再有尖刺。
 
-  **图3** loss不对齐尖刺消失
+  __图3__ loss不对齐尖刺消失
 
-  ![img](figures/zh-cn_image_0000002535885435.png)
+  ![img](../figures/zh-cn_image_0000002535885435.png)
 
 - 排除硬件故障后grad_norm尖刺明显改善。
 
-  **图4** loss grad_norm尖刺减少
+  __图4__ loss grad_norm尖刺减少
 
-  ![img](figures/zh-cn_image_0000002503925612.png)
+  ![img](../figures/zh-cn_image_0000002503925612.png)
 
 由于集群较大，优先进行硬件压测，排查坏节点。
 
@@ -736,7 +736,7 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 使用ascend-dmi -dg -i aicore -s -sc 60 -q命令进行机器压测，查看故障检测结果。
 
-**表2** 故障检测结果含义
+__表2__ 故障检测结果含义
 
 | 回显状态       | 含义                                                     |
 | -------------- | -------------------------------------------------------- |
@@ -749,12 +749,12 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 - 排除硬件故障后loss不再有尖刺。
 
-  **图5** loss不对齐尖刺消失
+  __图5__ loss不对齐尖刺消失
 
-  ![img](figures/zh-cn_image_0000002504085428.png)
+  ![img](../figures/zh-cn_image_0000002504085428.png)
 
 - 排除硬件故障后grad_norm尖刺明显改善。
 
-  **图6** loss grad_norm尖刺减少
+  __图6__ loss grad_norm尖刺减少
 
-  ![img](figures/zh-cn_image_0000002503925620.png)
+  ![img](../figures/zh-cn_image_0000002503925620.png)

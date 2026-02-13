@@ -14,7 +14,7 @@
 
    **图1** 典型Host Bound场景性能数据
 
-   ![img](../figures/zh-cn_image_0000002503927358.png)
+   ![img](../../figures/zh-cn_image_0000002503927358.png)
 
 ### Host Bound问题优化方法
 
@@ -137,7 +137,7 @@ Python编译优化以及torch、torch_npu的编译优化均需预先安装毕昇
 
    **图1** 毕昇编译器配置成功打印信息
 
-   ![img](../figures/zh-cn_image_0000002504087140.png)
+   ![img](../../figures/zh-cn_image_0000002504087140.png)
 
 ### Python编译优化
 
@@ -241,7 +241,7 @@ append_cxx_flag_if_supported("-Werror=cast-function-type" CMAKE_CXX_FLAGS)
 
 **图1** 代码注释示意
 
-![img](../figures/zh-cn_image_0000002504087174.png)
+![img](../../figures/zh-cn_image_0000002504087174.png)
 
 **首次编译（插桩编译）**
 
@@ -316,13 +316,13 @@ bash ci/build.sh --python=3.8 --enable_lto --enable_pgo=2
 
   **图1** 单函数耗时异常增加
 
-  ![img](../figures/zh-cn_image_0000002504087182.png)
+  ![img](../../figures/zh-cn_image_0000002504087182.png)
 
 - 整体下发耗时延长，如[图2](#ZH-CN_TOPIC_0000002503927256__fig1918315395150)，对比发现0卡的下发耗时明显较长。
 
   **图2** 算子下发普遍变慢<a name="ZH-CN_TOPIC_0000002503927256__fig1918315395150"></a>
 
-  ![img](../figures/zh-cn_image_0000002535807143.png)
+  ![img](../../figures/zh-cn_image_0000002535807143.png)
 
 此类问题通常因场景复杂而定位困难，可归类为下发异常问题。
 
@@ -336,7 +336,7 @@ bash ci/build.sh --python=3.8 --enable_lto --enable_pgo=2
 
   **图1** 多卡计算任务相对均衡<a name="ZH-CN_TOPIC_0000002503927280__fig0119124117159"></a>
 
-  ![img](../figures/zh-cn_image_0000002503927382.png)
+  ![img](../../figures/zh-cn_image_0000002503927382.png)
 
 - **绑核隔离检查（针对A+K场景）**：在服务器调度能力有限（可能出现CPU核切换或抢占）的A+K场景中，建议尝试绑核隔离任务。
 
@@ -356,13 +356,13 @@ bash ci/build.sh --python=3.8 --enable_lto --enable_pgo=2
 
   **图1** top命令执行界面
 
-  ![img](../figures/zh-cn_image_0000002503927362.png)
+  ![img](../../figures/zh-cn_image_0000002503927362.png)
 
 - **进程线程查看**：如需查看特定进程（PID）的所有线程，执行：top -H -p <pid>。
 
   **图2** top查看指定进程
 
-  ![img](../figures/zh-cn_image_0000002535887185.png)
+  ![img](../../figures/zh-cn_image_0000002535887185.png)
 
 - **界面操作说明**：
 
@@ -374,7 +374,7 @@ bash ci/build.sh --python=3.8 --enable_lto --enable_pgo=2
 
   **图3** top界面选择展示参数
 
-  ![img](../figures/zh-cn_image_0000002503927364.png)
+  ![img](../../figures/zh-cn_image_0000002503927364.png)
 
 - **结果分析与处理**：
 
@@ -384,7 +384,7 @@ bash ci/build.sh --python=3.8 --enable_lto --enable_pgo=2
 
   **图4** 显示各进程最后使用CPU
 
-  ![img](../figures/zh-cn_image_0000002504087192.png)
+  ![img](../../figures/zh-cn_image_0000002504087192.png)
 
 #### 异常堆栈捕获
 
