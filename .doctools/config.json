@@ -1,0 +1,88 @@
+{
+  "name": "Ascend 文档检查配置",
+  "config": {
+    "base": {
+      "docPath": "docs",
+      "markdownlintRemoteConfigUrl": "https://raw.gitcode.com/Ascend/docs/raw/master/.doctools/markdownlint.config.json",
+      "linkValidityCheckRemoteWhitelistUrl": "https://raw.gitcode.com/Ascend/docs/raw/master/.doctools/url.whitelist.json",
+      "resourceExistenceCheckRemoteWhitelistUrl": "https://raw.gitcode.com/Ascend/docs/raw/master/.doctools/url.whitelist.json",
+      "ci": [
+        "markdownlint",
+        "tag-closed-check",
+        "link-validity-check",
+        "resource-existence-check"
+      ]
+    }
+  },
+  "repo": {
+    "Ascend/community": {
+      "extendConfig": "base"
+    },
+    "Ascend/mstt": {
+      "extendConfig": "base"
+    },
+    "Ascend/msit": {
+      "extendConfig": "base"
+    },
+    "Ascend/msot": {
+      "extendConfig": "base"
+    },
+    "Ascend/msprobe": {
+      "extendConfig": "base"
+    },
+    "Ascend/msprof-analyze": {
+      "extendConfig": "base"
+    },
+    "Ascend/msmodeling": {
+      "extendConfig": "base"
+    },
+    "Ascend/msserviceprofiler": {
+      "extendConfig": "base"
+    },
+    "Ascend/msprof": {
+      "extendConfig": "base"
+    },
+    "Ascend/mspti": {
+      "extendConfig": "base"
+    },
+    "Ascend/msmodelslim": {
+      "extendConfig": "base"
+    },
+    "Ascend/msmemscope": {
+      "extendConfig": "base"
+    },
+    "Ascend/msmonitor": {
+      "extendConfig": "base"
+    },
+    "Ascend/msinsight": {
+      "extendConfig": "base"
+    },
+    "Ascend/mstx": {
+      "extendConfig": "base"
+    },
+    "Ascend/mskpp": {
+      "extendConfig": "base"
+    },
+    "Ascend/msopgen": {
+      "extendConfig": "base"
+    },
+    "Ascend/mssanitizer": {
+      "extendConfig": "base"
+    },
+    "Ascend/msdebug": {
+      "extendConfig": "base"
+    },
+    "Ascend/msopprof": {
+      "extendConfig": "base"
+    },
+    "Ascend/mskl": {
+      "extendConfig": "base"
+    },
+    "Ascend/msopcom": {
+      "extendConfig": "base"
+    },
+    "Ascend/msoptuner": {
+      "extendConfig": "base"
+    }
+  }
+}
