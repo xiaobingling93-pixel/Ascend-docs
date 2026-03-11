@@ -2,7 +2,7 @@
 
 - [简介](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/overview.md)
 - [版本说明](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/release_notes.md)
-- [安装升级与卸载](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/msprobe_install_guide.md)
+- [安装升级与卸载](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/msprobe_install_guide.md)
 - [快速入门]()
   - [MindSpore动态图精度数据采集快速入门](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/dump/mindspore_dump_quick_start.md)
 - [工具限制与注意事项](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/limitations_and_precautions.md)

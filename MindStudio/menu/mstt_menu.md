@@ -9,4 +9,3 @@
 - [功能介绍](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/functions.md)
 - [公网URL](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/public_ip_address.md)
 - [通信矩阵](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/communication_matrixes.md)
-

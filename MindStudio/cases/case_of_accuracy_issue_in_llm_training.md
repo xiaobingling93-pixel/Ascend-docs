@@ -99,13 +99,13 @@ __图1__ 训练精度问题整体定位流程
 
 - 打开确定性计算。
 
-  ```
+  ```shell
   torch.use_deterministic_algorithms(True)
   ```
 
 - 打开确定性通信。
 
-  ```
+  ```shell
   export HCCL_DETERMINISTIC=TRUE
   ```
 
@@ -113,7 +113,7 @@ __图1__ 训练精度问题整体定位流程
 
 固定随机性、打开确定性计算和通信可统一通过seed_all工具进行自动固定（数据加载除外）。
 
-```
+```shell
 from msprobe.pytorch import seed_all
 seed_all(seed=1234, mode=True, rm_dropout=True)
 ```
@@ -176,7 +176,7 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 - 开启流同步，排查并行计算时的内存踩踏问题，具体操作为配置如下环境变量：
 
-  ```
+  ```cfg
   export ASCEND_LAUNCH_BLOCKING=1
   ```
 
@@ -186,7 +186,7 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 - 排查Matmul错峰策略，当定位到可疑的Matmul算子但无法通过单算子验证排除时，可以尝试关闭错峰策略，具体操作为配置如下环境变量：
 
-  ```
+  ```cfg
   export CLOSE_MATMUL_K_SHIFT=1
   ```
 
@@ -202,7 +202,7 @@ seed_all(seed=1234, mode=True, rm_dropout=True)
 
 2. **命令压测**：使用ascend-dmi命令进行压测，命令如下：
 
-   ```
+   ```shell
    ascend-dmi -dg -i aicore -s -sc 60 -q
    ```
 
@@ -288,7 +288,7 @@ __定位方法：__
 
    用户可通过msprobe工具中的seed_all来自动实现以上目的。
 
-   ```
+   ```shell
    from msprobe.pytorch import seed_all
    seed_all(mode=True)
    ```
@@ -299,7 +299,7 @@ __定位方法：__
 
    config.json配置如下：
 
-   ```
+   ```cfg
    {
        "task": "statistics",
        "dump_path": "/home/data_dump",
@@ -362,7 +362,7 @@ __图1__ loss不齐
 
 **定位方法**：使用msprobe的dump工具采集step 0 mix级别数据，config.json配置如下：
 
-```
+```cfg
 {
     "task": "statistics",
     "dump_path": "/home/data_dump",
@@ -389,7 +389,7 @@ __图1__ loss不齐
 
    创建compare.json文件，文件拷贝如下内容。
 
-   ```
+   ```shell
    {
        "npu_path": "./npu_dump",
        "bench_path": "./bench_dump",
@@ -399,7 +399,7 @@ __图1__ loss不齐
 
    可视化命令为：
 
-   ```
+   ```shell
    msprobe -f pytorch graph -i ./compare.json -o ./output
    ```
 
@@ -413,7 +413,7 @@ __图1__ loss不齐
 
 3. 也可通过精度比对工具进行比对，精度比对compare.json配置如下：
 
-   ```
+   ```cfg
    {
        "npu_path": "./npu_dump/dump.json",
        "bench_path": "./bench_dump/dump.json",
@@ -426,7 +426,7 @@ __图1__ loss不齐
 
    运行如下比对命令得到比对的csv表格：
 
-   ```
+   ```shell
    msprobe -f pytorch compare -i ./compare.json -o ./output -s
    ```
 
@@ -462,7 +462,7 @@ __图1__ loss跑飞
 
    倾向于由梯度导致的loss突变，因此用如下配置采集梯度数据，monitor_config.json内容如下：
 
-   ```
+   ```cfg
    {
        "targets": {},
        "wg_distribution": true, 
@@ -522,7 +522,7 @@ __定位方法：__
 
 1. 使用dump工具采集step 0（溢出步）的mix级别数据，config.json配置如下：
 
-   ```
+   ```cfg
    {
        "task": "statistics",
        "dump_path": "/home/data_dump",
@@ -591,7 +591,7 @@ __定位方法：__
 
    去除工具并打开流同步进一步验证：
 
-   ```
+   ```shell
    export ASCEND_LAUNCH_BLOCKING=1
    ```
 

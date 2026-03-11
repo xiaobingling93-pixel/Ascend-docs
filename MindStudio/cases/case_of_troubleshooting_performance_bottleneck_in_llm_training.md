@@ -36,7 +36,7 @@ Ascend PyTorch Profiler详细介绍请参见《[性能调优工具用户指南](
 
 在训练脚本（如train_*.py文件）内添加如下示例代码进行性能数据采集参数配置，之后启动训练。
 
-```
+```python
 import torch
 import torch_npu
 
@@ -76,7 +76,7 @@ with torch_npu.profiler.profile(
 
 采集生成的文件结构如下所示：
 
-```
+```text
 └── localhost.localdomain_139247_20240628101435_ascend_pt
     ├── profiler_info.json
     ├── profiler_metadata.json
