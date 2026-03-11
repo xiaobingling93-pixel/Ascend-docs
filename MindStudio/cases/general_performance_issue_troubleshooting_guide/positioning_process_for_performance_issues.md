@@ -55,7 +55,7 @@
 
 > [!NOTE] 说明
 >
-> - 使用msprof-analyze工具初步分析，粗粒度定位性能问题，并为后续的深入分析提供明确的方向，具体请参见[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md#模型调优快速分析（msprof-analyze命令行工具）)。
+> - 使用msprof-analyze工具初步分析，粗粒度定位性能问题，并为后续的深入分析提供明确的方向，具体请参见[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md #模型调优快速分析（msprof-analyze命令行工具）)。
 > - 通过MindStudio Insight工具进一步识别瓶颈点，深入剖析问题根源。具体请参见[模型调优深入分析（MindStudio Insight）](performance_tool_usage.md#模型调优深入分析（MindStudio Insight）)。
 
 **图1** 详细排查流程图
@@ -66,7 +66,7 @@
 
 下发问题是指算子下发过程耗时异常。下发指Graph Engine将算子执行请求下发至Runtime，Runtime判断算子的Task类型，根据类型将算子执行请求下发到Device上执行，详细说明请参考《[TBE&AI CPU算子开发指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/opdevg/tbeaicpudevg/atlasopdev_10_0001.html)》中的[算子编译运行流程](https://www.hiascend.com/document/detail/zh/canncommercial/850/opdevg/tbeaicpudevg/atlasopdev_10_0012.html)章节。
 
-理想情况下，NPU侧的计算流水不停运转，不会出现NPU等待CPU的场景，一旦出现下发延迟，将导致流水线阻塞，从而影响AI Core的算力利用率。此时即判定存在下发问题。下发问题主要通过MindStudio Insight工具中[时间线（Timeline）](performance_tool_usage.md#时间线（Timeline）)进行观察，若存在下列任一现象，请参考[下发异常分析](solution_to_top3.md#下发异常分析)进行分析。
+理想情况下，NPU侧的计算流水不停运转，不会出现NPU等待CPU的场景，一旦出现下发延迟，将导致流水线阻塞，从而影响AI Core的算力利用率。此时即判定存在下发问题。下发问题主要通过MindStudio Insight工具中[时间线（Timeline）](performance_tool_usage.md #时间线（Timeline）)进行观察，若存在下列任一现象，请参考[下发异常分析](solution_to_top3.md#下发异常分析)进行分析。
 
 - 覆盖Free Time占比过大：Overlap Analysis中Free Time占比远超Computing和Communication。理想的Free Time占比应在10%以内。
 
@@ -92,7 +92,7 @@
 
 > [!NOTE] 说明
 >
-> 在大集群场景中，全量集群的Profiling可能会数据量过大，不利于分析，建议使用[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md#模型调优快速分析（msprof-analyze命令行工具）)中的cluster_analyze（集群分析）工具先对全量Profiling做一遍集群分析，将交付件cluster_analysis_output目录导入MindStudio Insight，观察是否存在明显快慢卡或通信传输问题，再挑选部分感兴趣卡的Profiling，从单卡维度分析。
+> 在大集群场景中，全量集群的Profiling可能会数据量过大，不利于分析，建议使用[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md #模型调优快速分析（msprof-analyze命令行工具）)中的cluster_analyze（集群分析）工具先对全量Profiling做一遍集群分析，将交付件cluster_analysis_output目录导入MindStudio Insight，观察是否存在明显快慢卡或通信传输问题，再挑选部分感兴趣卡的Profiling，从单卡维度分析。
 
 - **图5**为MindStudio Insight通信（Communication）界面中的“通信耗时分析”功能，其中每一个色块代表一个集合通信算子，其长度代表通信算子的执行时间。如果对于某个集合通信算子，不同卡间通信算子执行时间差距非常大，说明通信算子耗时最短的那张卡是慢卡（其他卡都在等此慢卡）。
 
