@@ -18,6 +18,9 @@
     "Ascend/community": {
       "extendConfig": "base"
     },
+    "Ascend/docs": {
+      "extendConfig": "base"
+    },
     "Ascend/mstt": {
       "extendConfig": "base"
     },
