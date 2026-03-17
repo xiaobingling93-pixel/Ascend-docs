@@ -2,7 +2,7 @@
   "name": "Ascend 文档检查配置",
   "config": {
     "base": {
-      "docPath": "docs",
+      "docPath": "docs|README(.*)?\\.md|CHANGELOG(.*)?\\.md",
       "markdownlintRemoteConfigUrl": "https://raw.gitcode.com/Ascend/docs/raw/master/.doctools/markdownlint.config.json",
       "linkValidityCheckRemoteWhitelistUrl": "https://raw.gitcode.com/Ascend/docs/raw/master/.doctools/url.whitelist.json",
       "resourceExistenceCheckRemoteWhitelistUrl": "https://raw.gitcode.com/Ascend/docs/raw/master/.doctools/url.whitelist.json",
