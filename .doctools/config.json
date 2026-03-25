@@ -20,7 +20,7 @@
     },
     "Ascend/docs": {
       "extendConfig": "base",
-      "docPath":"?!.*[/\\](menu|menu_26_0_0)[/\\]"
+      "docPath":"^(?!.*menu).*$"
     },
     "Ascend/mstt": {
       "extendConfig": "base"
