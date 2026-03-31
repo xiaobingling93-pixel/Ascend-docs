@@ -1,7 +1,7 @@
 # 服务化性能调优工具
 
 - [快速入门](https://gitcode.com/Ascend/msserviceprofiler/blob/master/docs/zh/quick_start.md)
-- [安装升级与卸载](https://gitcode.com/Ascend/msserviceprofiler/blob/master/docs/zh/msserviceprofiler_install_guide.md)
+- [安装指南](https://gitcode.com/Ascend/msserviceprofiler/blob/master/docs/zh/msserviceprofiler_install_guide.md)
 - [功能介绍]()
     - [服务化调优工具](https://gitcode.com/Ascend/msserviceprofiler/blob/master/docs/zh/msserviceprofiler_serving_tuning_instruct.md)
     - [vLLM服务化性能采集工具](https://gitcode.com/Ascend/msserviceprofiler/blob/master/docs/zh/vLLM_service_oriented_performance_collection_tool.md)

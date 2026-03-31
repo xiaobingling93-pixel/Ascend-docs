@@ -4,7 +4,7 @@
   - [MindSpore动态图精度数据采集快速入门](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/dump/mindspore_dump_quick_start.md)
   - [PyTorch场景模型精度调试快速入门](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/pytorch_mstt_quick_start.md)
   - [MindSpore场景模型精度调试快速入门](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/mindspore_mstt_quick_start.md)
-- [安装升级与卸载](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/msprobe_install_guide.md)
+- [安装指南](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/msprobe_install_guide.md)
 - [功能介绍]()
   - [vLLM推理场景（eager模式）]()
     - [数据采集](https://docs.vllm.ai/projects/ascend/zh-cn/latest/developer_guide/performance_and_debug/msprobe_guide.html)

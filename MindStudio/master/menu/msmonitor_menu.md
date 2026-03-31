@@ -1,7 +1,7 @@
 # 在线监控工具
 
 - [快速入门](https://gitcode.com/Ascend/msmonitor/blob/master/docs/zh/quick_start.md)
-- [安装升级与卸载](https://gitcode.com/Ascend/msmonitor/blob/master/docs/zh/install_guide.md)
+- [安装指南](https://gitcode.com/Ascend/msmonitor/blob/master/docs/zh/install_guide.md)
 - [特性介绍]()
     - [总体介绍](https://gitcode.com/Ascend/msmonitor/blob/master/docs/zh/overview.md)
     - [dyno](https://gitcode.com/Ascend/msmonitor/blob/master/docs/zh/dyno_instruct.md)
