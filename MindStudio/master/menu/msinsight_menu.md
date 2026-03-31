@@ -7,7 +7,7 @@
 
     -   [算子调优场景快速入门](https://gitcode.com/Ascend/msinsight/blob/master/docs/zh/user_guide/quick_start/operator_start.md)
 
--   [安装升级与卸载](https://gitcode.com/Ascend/msinsight/blob/master/docs/zh/user_guide/mindstudio_insight_install_guide.md)
+-   [安装指南](https://gitcode.com/Ascend/msinsight/blob/master/docs/zh/user_guide/mindstudio_insight_install_guide.md)
 
 -   [基础操作](https://gitcode.com/Ascend/msinsight/blob/master/docs/zh/user_guide/basic_operations.md)
 

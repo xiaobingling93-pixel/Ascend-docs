@@ -3,7 +3,7 @@
 -   [简介](https://gitcode.com/Ascend/msot/blob/master/docs/zh/overview/overview.md)
 -   [版本说明](https://gitcode.com/Ascend/msot/blob/master/docs/zh/release_notes/release_notes.md)
 -   [快速入门](https://gitcode.com/Ascend/msot/blob/master/docs/zh/quick_start/op_tool_quick_start.md)
--   [安装升级与卸载](https://gitcode.com/Ascend/msot/blob/master/docs/zh/install_guide/msot_install_guide.md)
+-   [安装指南](https://gitcode.com/Ascend/msot/blob/master/docs/zh/install_guide/msot_install_guide.md)
 
 -   [功能介绍]()
     -   [msKPP](https://gitcode.com/Ascend/mskpp/blob/master/docs/zh/mskpp_user_guide.md)

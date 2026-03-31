@@ -1,7 +1,7 @@
 # msPTI工具
 
 - [工具指南](https://gitcode.com/Ascend/mspti/blob/master/docs/zh/README.md)
-- [安装升级与卸载](https://gitcode.com/Ascend/mspti/blob/master/docs/zh/mspti_install_guide.md)
+- [安装指南](https://gitcode.com/Ascend/mspti/blob/master/docs/zh/mspti_install_guide.md)
 - [API参考]()
     - [msPTI C API参考]()
         - [总体介绍](https://gitcode.com/Ascend/mspti/blob/master/docs/zh/c_api/README.md)
