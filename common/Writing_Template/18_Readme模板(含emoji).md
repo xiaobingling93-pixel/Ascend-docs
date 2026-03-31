@@ -1,116 +1,151 @@
-
+<h1 align="center">MindStudio Sanitizer</h1>
 
 <div align="center">
-  <br />
-  <h3>MindStudio msModelslim</h3>
-  <p align="center">
-  <h4>昇腾模型压缩工具</h4>
-
-[📖工具文档](https://msmodelslim.readthedocs.io/zh-cn/latest/) |
-[🤔Ask DeepWiki](https://deepwiki.com/Keithwwa/msmodelslim) |
-[🔥昇腾社区](https://www.hiascend.com/developer/software/mindstudio)|
-[🌐软件下载](https://gitcode.com/Ascend/msinsight/releases)
+<h2>昇腾 AI 算子异常检测工具</h2>
+  
+ [![Ascend](https://img.shields.io/badge/Community-MindStudio-blue.svg)](https://www.hiascend.com/developer/software/mindstudio) 
+ [![License](https://badgen.net/badge/License/MulanPSL-2.0/blue)](./LICENSE)
 
 </div>
 
-<br>
-
 ## ✨ 最新消息
 
-* [2025.12.30]：MindStudio Operator Tools 项目首次上线 
+<span style="font-size:14px;">
 
-## ℹ️ 简介
+🔹 **[2025.12.31]**：xxx功能上线  
+🔹 **[2025.12.31]**：MindStudio Sanitizer 项目首次上线
 
-MindStudio Operator Tools（msOT）算子开发工具链，致力于解决算子开发中的关键挑战。通过提供高效算子设计、开发框架自动生成、全面功能调试、精准异常检测与多维性能调优等能力，
-降低算子开发复杂度，提升高性能算子的交付效率。
+</span>
 
-## 🗺️ 目录结构
-关键目录如下，详细目录可以参考[目录文件](docs/zh/dir_structure.md)
-```
+> [!CAUTION] 注意：此引用块内容只用于指导资料开发，请勿纳入正式文档
+> **【最新消息】段落规范：**  
+> 1.**内容聚焦**：本段旨在快速传递核心亮点以吸引用户关注，应突出技术特性或关键功能更新；行政类事项（如 License 变更等）请移至子文档说明；  
+> 2.**行数控制**：建议不超过 5 行，且单行内容应尽量简短，避免挤占 README 首屏黄金展示区域；  
+> 3.**列表符号**：禁用 Markdown 无序列表符号（如 `-` 或 `*`），统一采用 emoji 列表符（如 `🔹`）开头，规避不同渲染引擎导致的行间距不一致问题，提升视觉一致性与美观度；    
+> 4.**字体**：建议使用 14 号字体，略小于正文，以在有限空间内承载更多信息，避免过度占用页面篇幅，影响主体内容阅读；   
+> 5.**日期格式**：月、日不足两位时需补零，例如将 `2026.2.1` 规范为 `2026.02.01`；  
+
+## ️ ℹ️ 简介
+
+MindStudio Sanitizer（算子异常检测，msSanitizer）是专为昇腾 AI 处理器打造的单算子异常检测工具，提供内存越界、数据竞争、未初始化访问及同步异常四大检测能力。
+
+> [!CAUTION] 注意：此引用块内容只用于指导资料开发，请勿纳入正式文档 
+> **【简介】段落规范：**   
+> 1.**长度**：应尽量简短，避免长篇叙述；本段旨在让用户在数秒内快速把握核心能力，并激发进一步了解的兴趣；   
+> 2.**图片**：若工具逻辑较复杂，可酌情添加一张高度适中的示意图，建议采用 SVG 格式，便于后续维护与修改；  
+
+## ⚙️ 功能介绍
+
+msSanitizer 通过多个子功能模块提供不同类型的异常检测能力，当前已支持的功能如下：
+
+| 功能名称 | 功能描述  |
+|---------|--------|
+| **内存检测** | 检测 Global Memory 与 Local Memory 中的越界访问、未对齐访问等内存异常。 |
+| **竞争检测** | 检测并行计算环境中因并发内存访问引发的数据竞争问题。 |
+| **未初始化检测**  | 检测因使用未初始化变量导致的内存读取异常。 |
+| **同步检测**   |检测 Ascend C 算子中未配对的 SetFlag/WaitFlag 指令。 |
+
+> [!CAUTION] 注意：此引用块内容只用于指导资料开发，请勿纳入正式文档
+> **【功能介绍】段落规范：**   
+> 1.**长度**：应尽量简短，避免长篇叙述；本段旨在让用户快速了解各项主要能力，并激发进一步使用的兴趣；  
+> 2.**呈现形式**：须采用表格组织内容，相较于多行文字，更利于信息的快速浏览与理解；
+
+## 🚀 快速入门
+
+以简易加法算子为例，快速体验核心功能，请参见 [《msSanitizer 快速入门》](./docs/zh/quick_start/mssanitizer_quick_start.md)。
+
+## 📦 安装指南
+
+介绍工具的环境依赖与安装方法，请参见 [《msSanitizer 安装指南》](docs/zh/install_guide/mssanitizer_install_guide.md)。
+
+## 📘 使用指南
+
+工具的详细使用方法，请参见 [《msSanitizer 使用指南》](docs/zh/user_guide/mssanitizer_user_guide.md)
+
+## 💡 典型案例
+
+通过典型问题场景帮助用户理解并掌握工具使用，请参见 [《msSanitizer 典型案例》](docs/zh/best_practices/basic_cases.md)。
+
+## 📚 API参考
+
+包含sanitizer接口和mstx扩展接口两种类型，请参见 [《msSanitizer 对外接口使用说明》](docs/zh/api_reference/mssanitizer_api_reference.md)。
+
+## ❓ FAQ
+
+常见问题及解决方案，请参见 [《msSanitizer FAQ》](docs/zh/support/faq.md)。
+
+## 🛠️ 贡献指南
+
+欢迎参与项目贡献，请参见 [《贡献指南》](./docs/zh/contributing/contributing_guide.md)。  
+
+> [!CAUTION] 注意：此引用块内容只用于指导资料开发，请勿纳入正式文档 
+> **【快速入门/安装指南/使用指南/典型案例/API参考/FAQ/贡献指南】段落统一规范：**  
+> 1.**章节顺序**：按如上所示，遵循“渐进式披露”原则，按用户认知路径组织——优先展示高价值信息，继而提供深度使用指引，最后引导参与贡献；  
+> 2.**呈现形式**：按如上所示，每项内容以单行形式呈现，并通过超链接引导至对应的子页面；  
+
+## ⚖️ 相关说明
+
+🔹 [《版本说明》](./docs/zh/release_notes/release_notes.md)  
+🔹 [《许可证声明》](./docs/zh/legal/license_notice.md)  
+🔹 [《安全声明》](./docs/zh/legal/security_statement.md)  
+🔹 [《免责声明》](./docs/zh/legal/disclaimer.md)  
+
+> [!CAUTION] 注意：此引用块内容只用于指导资料开发，请勿纳入正式文档  
+> **【相关说明】段落规范：**   
+> 1.**内容**：严格遵循上述四行信息，不得随意增删或调整；  
+> 2.**列表符号**：禁用 Markdown 无序列表符号（如 `-` 或 `*`），统一采用 emoji 列表符（如 `🔹`）开头，规避不同渲染引擎导致的行间距不一致问题，提升视觉一致性与美观度；
+
+## 🤝 建议与交流
+
+欢迎大家为社区做贡献。如果有任何疑问或建议，请提交[Issues](https://gitcode.com/Ascend/mssanitizer/issues)，我们会尽快回复。感谢您的支持。
+
+|                                      📱 关注 MindStudio 公众号                                       | 💬 更多交流与支持                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|:-----------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <img src="https://gitcode.com/Ascend/msot/blob/master/docs/zh/figures/readme/officialAccount.png" width="120"><br><sub>*扫码关注获取最新动态*</sub> | 💡 **加入微信交流群**：<br>关注公众号，回复“交流群”即可获取入群二维码。<br><br>🛠️ **其他渠道**：<br>👉 昇腾助手：[![WeChat](https://img.shields.io/badge/WeChat-07C160?style=flat-square&logo=wechat&logoColor=white)](https://gitcode.com/Ascend/msot/blob/master/docs/zh/figures/readme/xiaozhushou.png)<br>👉 昇腾论坛：[![Website](https://img.shields.io/badge/Website-%231e37ff?style=flat-square&logo=RSS&logoColor=white)](https://www.hiascend.com/forum/) |
+
+## 🙏 致谢
+
+本工具由华为公司的下列部门联合贡献：    
+🔹 昇腾计算MindStudio开发部  
+🔹 昇腾计算生态使能部  
+🔹 华为云昇腾云服务  
+🔹 2012编译器实验室  
+🔹 2012马尔科夫实验室  
+感谢来自社区的每一个 PR，欢迎贡献！
+
+> [!CAUTION] 注意：此引用块内容只用于指导资料开发，请勿纳入正式文档   
+> **【致谢】段落规范：**   
+> 1.**内容**：建议精选约5个相关部门，数量不宜过多或过少；本段不仅用于致谢，更通过多部门联合署名，为工具提供组织背书，增强其权威性与可信度，部门选择应以此为目标依据；  
+> 2.**列表符号**：禁用 Markdown 无序列表符号（如 `-` 或 `*`），统一采用 emoji 列表符（如 `🔹`）开头，规避不同渲染引擎导致的行间距不一致问题，提升视觉一致性与美观度；    
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+# 其它设计说明（【注意】此段及以下内容只用于指导资料开发，请勿纳入正式文档）
+
+## 1. 关于“目录结构”章节
+
+该章节不建议置于首页，应移至贡献指南部分，以更好地服务于贡献者群体。原因如下：   
+1.受众错位：普通用户关注“如何使用”，而非“代码如何组织”；目录结构信息主要面向开发者或潜在贡献者。   
+2.信息过载：在首页展示技术细节容易分散用户注意力，降低核心功能与使用路径信息的传达效率。   
+
+如果你有必要的理由需要放在首页，参考格式如下：   
+🗺️ 目录结构   
+关键目录如下，详细目录可以参考 [开发指南](docs/zh/develop_guide.md)  
+
+```text
 ├─config             # 配置文件
 └─test               # 测试目录
 ```
 
-## ⚙️ 功能介绍
+## 2. emoji刷新到当前版本的依据
 
-算子开发工具链提供以下系列化工具：
-
-| 工具名称 | 功能简介 | 源码仓库 |
-| --- | --- | :---: |
-| **msKPP** | **【性能预测】** 支持输入算子描述，预测算子在特定算法实现下的性能上限。 | [点击查看](https://gitcode.com/Ascend/mskpp) |
-| **msOpGen** | **【工程生成】** 算子开发效率提升工具，提供模板工程生成能力，简化工程搭建。 | [点击查看](https://gitcode.com/Ascend/msopgen) |
-| **msSanitizer** | **【异常检测】** 提供内存、竞争、未初始化及同步检测，支持多核程序内存问题的精准定位。 | [点击查看](https://gitcode.com/Ascend/mssanitizer) |
-| **msDebug** | **【原生调试】** 基于昇腾处理器的原生环境调试，支持变量查看、单步执行及上板调试。 | [点击查看](https://gitcode.com/Ascend/msdebug) |
-| **msOpProf** | **【性能分析】** 支持上板与仿真数据采集，通过 MindStudio Insight 可视化工具定位性能瓶颈。 | [点击查看](https://gitcode.com/Ascend/msopprof) |
-| **msKL** | **【快捷调用】** 提供 Python 接口，快速实现 Kernel 的代码生成、编译及下发运行。 | [点击查看](https://gitcode.com/Ascend/mskl) |
-
-
-## 🚀 快速入门
-
-以简单的加法算子开发为例，贯穿算子开发全流程，10分钟快速体验msKPP(设计)、msOpGen(开发)、msSanitizer(检测)、msDebug(调试)、msOpProf(调优)工具的核心功能。详细操作步骤请参见 [《算子开发工具链快速入门》](docs/zh/quick_start/op_tool_quick_start.md)。
-
-## 📦 安装指南
-
-介绍 msOT 工具的环境依赖与安装方法，具体请参见 [《msOT安装指南》](./docs/zh/install_guide/msot_install_guide.md)。
-
-## 📘 使用指南
-工具的详细使用方法，具体请参见 [《msSanitizer 使用指南》](docs/zh/user_guide/msanitizer_user_guide.md)。
-
-## 💡 典型案例
-通过典型问题场景帮助用户理解并掌握工具使用，具体请参见 [《msSanitizer 典型案例》](docs/zh/cases/msanitizer_cases.md)。
-
-## 📚 API 参考
-包含 sanitizer 接口和 mstx 扩展接口两种类型，具体请参见 [《msSanitizer 对外接口使用说明》](docs/zh/api/msanitizer_api_ref.md)。
-
-## ❓ 常见问题
-常见问题详见 [《msSanitizer FAQ》](docs/zh/faq/msanitizer_faq.md)。
-
-## 🛠️ 贡献指南
-若您有意参与项目贡献， 具体请参见 [《贡献指南》](./docs/zh/contributing/contributing_guide.md)。  
-
-## ⚖️ 相关说明
-
-- [《License声明》](docs/zh/legal/license_notice.md) 
-
-- [《安全声明》](docs/zh/legal/security_statement.md) 
-
-- [《免责声明》](docs/zh/legal/disclaimer.md)  
-
-## 🤝 建议与交流
-
-欢迎大家为社区做贡献。如果有任何疑问或建议，请提交 [Issues](https://gitcode.com/Ascend/msot/issues)，我们会尽快回复。感谢您的支持。
-
-## 🙏 致谢
-
-本工具由华为公司的下列部门贡献：   
-
-- 计算产品线   
-
-感谢来自社区的每一个PR，欢迎贡献。
-
-## 关于MindStudio团队
-
-华为MindStudio全流程开发工具链团队致力于提供端到端的昇腾AI应用开发解决方案，使能开发者高效完成训练开发、推理开发和算子开发。您可以通过以下渠道更深入了解华为MindStudio团队：
-<div style="display: flex; align-items: center; gap: 10px;">
-    <span>MindStudio公众号：</span>
-    <img width="100" src="https://gitcode.com/Ascend/msinsight/blob/master/docs/zh/user_guide/figures/readme/officialAccount.jpg" >
-    <span style="margin-left: 20px;">昇腾小助手：</span>
-    <a href="https://gitcode.com/Ascend/msinsight/blob/master/docs/zh/user_guide/figures/readme/xiaozhushou.png">
-        <img src="https://camo.githubusercontent.com/22bbaa8aaa1bd0d664b5374d133c565213636ae50831af284ef901724e420f8f/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5765436861742d3037433136303f7374796c653d666f722d7468652d6261646765266c6f676f3d776563686174266c6f676f436f6c6f723d7768697465" data-canonical-src="./docs/zh/user_guide/figures/readme/xiaozhushou.png" style="max-width: 100%;">
-    </a>
-    <span style="margin-left: 20px;">昇腾论坛：</span>
-    <a href="https://www.hiascend.com/forum/" rel="nofollow">
-        <img src="https://camo.githubusercontent.com/dd0b7ef70793ab93ce46688c049386e0755a18faab780e519df5d7f61153655e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f576562736974652d2532333165333766663f7374796c653d666f722d7468652d6261646765266c6f676f3d6279746564616e6365266c6f676f436f6c6f723d7768697465" data-canonical-src="https://img.shields.io/badge/Website-%231e37ff?style=for-the-badge&amp;logo=bytedance&amp;logoColor=white" style="max-width: 100%;">
-    </a>
-</div>
-在公众号中私信【交流群】，可以获取技术交流群二维码
-
-<br>
-<br>
-
-## 修改理由
-
-本次修改的核心逻辑是从“社交媒体/通用风格”转向“企业级开源/工程技术风格”，旨在提升文档的专业度、语义精准度和视觉一致性。
+修改的核心逻辑是从“社交媒体/通用风格”转向“企业级开源/工程技术风格”，旨在提升文档的专业度、语义精准度和视觉一致性。
 
 | 章节标题 | 修改前 Emoji | 修改后 Emoji | 新 Emoji 含义 | 原 Emoji 的不足                                                            | 修改理由与专业性提升 |
 | :--- | :---: | :---: | :--- |:-----------------------------------------------------------------------| :--- |
@@ -126,11 +161,11 @@ MindStudio Operator Tools（msOT）算子开发工具链，致力于解决算子
 | *(新增)* 典型案例 | (无) | 💡 (灯泡) | 灵感方案：象征解决问题的思路、最佳实践和启发。 | -                                                                      | 价值外显：案例不仅是步骤，更是解决方案。💡 暗示阅读后能获得“灵光一现”的解题思路。 |
 | *(新增)* API参考 | (无) | 📚 (书堆) | 权威字典：象征密集的知识点、接口定义库和权威参考。 | -                                                                      | 强调权威：📚 比单本书📘更显厚重，适合存放大量接口定义的“字典”类文档，体现严谨性。 |
 | *(新增)* 常见问题 | (无) | ❓ (问号) | 疑问解答：全球通用的 Q&A 符号，零认知成本。 | -                                                                      | 高效识别：❓ 是最直观的符号，让用户在遇到阻碍时能第一时间找到帮助入口。 |
+| *(新增)* 贡献指南  | (无)    |  🛠️(工具)  |  开发协作：象征开发者参与构建、调试与维护，突出技术贡献属性。                        | -                                                                      |  角色匹配：🛠️ 直观传达“动手参与”的含义，契合贡献者身份，强化社区共建的专业形象。                                    |
 
 ### 💡 总结：修改带来的核心价值
 
-1.  **语义精准化**：从“泛化的图形”（如喇叭、图钉）转变为“具有工程隐喻的符号”（如齿轮、地图、包裹），使图标真正服务于内容理解。
-2.  **去娱乐化**：移除了带有强烈社交媒体属性（📢, 💬）的图标，替换为更符合企业级开源项目（✨, 🤝, ⚖️）的稳重符号，提升了昇腾工具链的品牌形象。
-3.  **视觉层级清晰**：通过引入一套颜色协调（蓝、灰、红、黄点缀）、风格统一的图标体系，构建了清晰的文档导航地图，降低了用户的认知负荷。
-4.  **符合国际惯例**：新选用的 Emoji（如 📦 安装, ⚙️ 功能, ℹ️ 简介）高度契合 GitHub 顶级开源项目（如 Kubernetes, PyTorch, TensorFlow）的文档规范，有助于提升项目的国际化观感。
-
+1. **语义精准化**：从“泛化的图形”（如喇叭、图钉）转变为“具有工程隐喻的符号”（如齿轮、地图、包裹），使图标真正服务于内容理解。
+2. **去娱乐化**：移除了带有强烈社交媒体属性（📢, 💬）的图标，替换为更符合企业级开源项目（✨, 🤝, ⚖️）的稳重符号，提升了昇腾工具链的品牌形象。
+3. **视觉层级清晰**：通过引入一套颜色协调（蓝、灰、红、黄点缀）、风格统一的图标体系，构建了清晰的文档导航地图，降低了用户的认知负荷。
+4. **符合国际惯例**：新选用的 Emoji（如 📦 安装, ⚙️ 功能, ℹ️ 简介）高度契合 GitHub 顶级开源项目（如 Kubernetes, PyTorch, TensorFlow）的文档规范，有助于提升项目的国际化观感。
