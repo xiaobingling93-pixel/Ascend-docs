@@ -88,6 +88,18 @@
     },
     "Ascend/msoptuner": {
       "extendConfig": "base"
+    },
+    "Ascend/MindIE-Motor": {
+      "extendConfig": "base"
+    },
+    "Ascend/MindIE-PyMotor": {
+      "extendConfig": "base"
+    },
+    "Ascend/MindIE-LLM": {
+      "extendConfig": "base"
+    },
+    "Ascend/MindIE-SD": {
+      "extendConfig": "base"
     }
   }
 }
