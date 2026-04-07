@@ -105,6 +105,4 @@
         - [SessionConfig](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/python_api_v0/unified_multimodal_generation_apis/SessionConfig.md)
   - [附录]()
     - [常见问题](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/appendix/faq.md)
-    - [版本说明](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/appendix/release_notes.md)
-    - [安全声明](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/appendix/security_statement.md)
     
