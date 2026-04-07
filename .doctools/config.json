@@ -99,6 +99,26 @@
     },
     "Ascend/MindIE-SD": {
       "extendConfig": "base"
+    },
+    "Ascend/MindSpeed-RL": {
+      "extendConfig": "base",
+      "docPath":"^(?!.*menu).*$"
+    },
+    "Ascend/MindSpeed": {
+      "extendConfig": "base",
+      "docPath":"^(?!.*menu).*$"
+    },
+    "Ascend/MindSpeed-LLM": {
+      "extendConfig": "base",
+      "docPath":"^(?!.*menu).*$"
+    },
+    "Ascend/DrivingSDK": {
+      "extendConfig": "base",
+      "docPath":"^(?!.*menu).*$"
+    },
+    "Ascend/apex": {
+      "extendConfig": "base",
+      "docPath":"^(?!.*menu).*$"
     }
   }
 }
