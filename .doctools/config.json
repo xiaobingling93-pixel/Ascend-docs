@@ -147,5 +147,15 @@
     },
     "Ascend/MindInferenceService": {
       "extendConfig": "base"
+    },
+    "Ascend/op-plugin": {
+      "extendConfig": "base"
+    },
+    "Ascend/Tensorpipe": {
+      "extendConfig": "base"
+    },
+    "Ascend/torchvision": {
+      "extendConfig": "base"
+    }
   }
 }
