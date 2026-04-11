@@ -19,4 +19,3 @@
 ## MindStudio Insight
 
 参见《MindStudio Insight 用户指南》中的“[安装与卸载](https://www.hiascend.com/document/detail/zh/mindstudio/830/GUI_baseddevelopmenttool/msascendinsightug/Insight_userguide_0005.html)”章节，完成工具准备。该工具是一款主要针对大模型集群场景的可视化调优工具，包括了Timeline视图、通信分析、计算耗时等的可视化呈现，以便用户分析潜在的性能瓶颈，并指导如何采取措施提升性能。
-

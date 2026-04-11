@@ -26,5 +26,3 @@ torch_npu.npu.set_option(option)
 |ACL_OPTYPELIST_FOR_IMPLMODE|列举算子类型列表。|当前仅支持配置的算子为Pooling、SoftmaxV2、LRN、ROIAlign。|该参数当前仅支持设置某个具体算子的实现方式，不支持设置多个算子。|
 |MM_BMM_ND_ENABLE|开启MatMul、BatchMatMul算子支持ND模式。|&#8226; enable：MatMul、BatchMatMul算子输入输出Shape每个维度都是16的整数倍时，会支持ND格式输入，不满足则使用算子内部私有格式并视情况结合插入转换算子。<br>&#8226; disable：MatMul、BatchMatMul算子使用私有格式。|默认采用enable模式。|
 |ACL_OP_DEBUG_OPTION|算子内存检测开关。|**oom**：用于定位算子执行过程中检测Global Memory是否内存越界，越界算子会直接报错。|维测能力，默认不配置。|
-
-

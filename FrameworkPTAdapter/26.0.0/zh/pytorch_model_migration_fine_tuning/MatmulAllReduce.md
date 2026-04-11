@@ -3,6 +3,7 @@
 ## 算子基础信息
 
 **表 1** 算子信息
+
 |算子名称|MatmulAllReduce|
 |------|----------------|
 |torch_npu api接口|torch_npu.npu_mm_all_reduce_base|
@@ -87,7 +88,7 @@ MatMul/hcom\_allReduce
 
 GPT3 65B
 
--   case 1：
+- case 1：
 
     x1: S = 1 \~ 8192, \{S,1024\}, BF16/FP16
 
@@ -95,7 +96,7 @@ GPT3 65B
 
     bias: \{8192\}
 
--   case 2：
+- case 2：
 
     x1: S = 1 \~ 8192, \{S,2732\}, BF16/FP16
 
@@ -103,7 +104,7 @@ GPT3 65B
 
     bias: \{8192\}
 
--   case 3：
+- case 3：
 
     x1: B = 1 \~ 24, \{B,1024\}, BF16/FP16
 
@@ -111,11 +112,10 @@ GPT3 65B
 
     bias: \{8192\}
 
--   case 4：
+- case 4：
 
     x1: B = 1 \~ 24, \{B,2732\}, BF16/FP16
 
     x2: \{2732,8192\}, BF16/FP16
 
     bias: \{8192\}
-

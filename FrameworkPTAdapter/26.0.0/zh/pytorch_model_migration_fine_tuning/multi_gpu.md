@@ -2,23 +2,28 @@
 
 ## 环境准备
 
-1.  请参见《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（商用版）或《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（社区版）手册，安装硬件与OS，NPU驱动和固件以及CANN软件；请参见《[Ascend Extension for PyTorch 软件安装指南](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/installation_guide/installation_description.md)》手册，安装PyTorch框架、torch\_npu插件以及APEX模块（可选）。
-2.  根据实际需求准备模型环境，如conda、docker以及三方库依赖。
+1. 请参见《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（商用版）或《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（社区版）手册，安装硬件与OS，NPU驱动和固件以及CANN软件；请参见《[Ascend Extension for PyTorch 软件安装指南](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/installation_guide/installation_description.md)》手册，安装PyTorch框架、torch\_npu插件以及APEX模块（可选）。
+2. 根据实际需求准备模型环境，如conda、docker以及三方库依赖。
 
     > [!CAUTION]
     > 
     > 分布式训练场景下，HCCL会使用Host服务器的部分端口进行集群信息收集，需要操作系统预留该部分端口。HCCL建议使用60000-60015端口，也可以通过环境变量HCCL\_IF\_BASE\_PORT指定Host网卡起始端口，此场景下需要预留以指定端口起始的16个端口。
-    > -   若操作系统端口号预留仅需临时生效，可执行如下命令，临时生效的配置重启后会失效：
+    > - 若操作系统端口号预留仅需临时生效，可执行如下命令，临时生效的配置重启后会失效：
+    >
     >     ```shell
     >     sysctl -w net.ipv4.ip_local_reserved_ports=60000-60015
     >     ```
-    > -   若操作系统端口号预留需永久生效，可执行如下操作：
-    >     1.  以root用户登录服务器，编辑`/etc/sysctl.conf`文件。
+    >
+    > - 若操作系统端口号预留需永久生效，可执行如下操作：
+    >     1. 以root用户登录服务器，编辑`/etc/sysctl.conf`文件。
+    >
     >         ```shell
     >         vim /etc/sysctl.conf
     >         ```
-    >     2.  在“/etc/sysctl.conf”文件末尾加上`net.ipv4.ip_local_reserved_ports=60000-60015`，保存并退出。
-    >     3.  执行如下命令使配置生效。
+    >
+    >     2. 在“/etc/sysctl.conf”文件末尾加上`net.ipv4.ip_local_reserved_ports=60000-60015`，保存并退出。
+    >     3. 执行如下命令使配置生效。
+    >
     >         ```shell
     >         sysctl -p
     >         ```
@@ -27,7 +32,7 @@
 
 本节以[适配样例（DDP单NPU单进程场景）](ddp_single_npu_single_process_example.md)章节的代码为样例，介绍将单机单卡训练脚本修改为单机多卡训练脚本的核心步骤。
 
-1.  在主函数中添加如下代码。
+1. 在主函数中添加如下代码。
 
     a.  添加分布式逻辑，即在环境变量中获取local\_rank参数。
 
@@ -47,19 +52,19 @@
     torch.distributed.init_process_group(backend="hccl",rank=(args.node_rank)*(args.nproc_per_node) + local_rank)
     ```
 
-2.  定义模型后，开启DDP模式。
+2. 定义模型后，开启DDP模式。
 
     ```python
     model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[local_rank], output_device=local_rank)
     ```
 
-3.  在获取训练数据集后，设置train\_sampler。
+3. 在获取训练数据集后，设置train\_sampler。
 
     ```python
     train_sampler = torch.utils.data.distributed.DistributedSampler(train_data)
     ```
 
-4.  将train\_sampler赋值至DataLoader中的sampler。
+4. 将train\_sampler赋值至DataLoader中的sampler。
 
     ```python
     train_dataloader = DataLoader(dataset = train_data, batch_size=batch_size, sampler = train_sampler)
@@ -69,29 +74,30 @@
 
 有5种脚本启动方式可拉起多卡训练：
 
--   [shell脚本方式](launch_multi_gpu_train_demo.md#suctom-anchor01)
--   [mp.spawn方式](launch_multi_gpu_train_demo.md#suctom-anchor02)
--   [torch.distributed.launch方式](launch_multi_gpu_train_demo.md#suctom-anchor03)
--   [torchrun方式](launch_multi_gpu_train_demo.md#suctom-anchor04)
--   [torch\_npu\_run方式](launch_multi_gpu_train_demo.md#suctom-anchor05)**（集群场景推荐）**：此方式是torchrun在大集群场景的改进版，提升集群建链性能。
+- [shell脚本方式](launch_multi_gpu_train_demo.md#suctom-anchor01)
+- [mp.spawn方式](launch_multi_gpu_train_demo.md#suctom-anchor02)
+- [torch.distributed.launch方式](launch_multi_gpu_train_demo.md#suctom-anchor03)
+- [torchrun方式](launch_multi_gpu_train_demo.md#suctom-anchor04)
+- [torch\_npu\_run方式](launch_multi_gpu_train_demo.md#suctom-anchor05)**（集群场景推荐）**：此方式是torchrun在大集群场景的改进版，提升集群建链性能。
 
 附录[拉起多卡训练脚本示例](launch_multi_gpu_train_demo.md)中，以一个简单模型脚本为样例，展示了每种拉起方式脚本代码的修改方法以及各种拉起方式的适配方法，用户可以参考学习。
 
 > [!NOTE]
-> -   集合通信存在如下约束：
-> -   数据并行模式中不同device上执行的计算图相同。
-> -   针对<term>Atlas 训练系列产品</term>：AllReduce和reduce\_scatter仅支持int8、int32、float16和float32数据类型。
-> -   针对<term>Atlas A2 训练系列产品</term>/<term>Atlas A3 训练系列产品</term>：AllReduce和reduce\_scatter仅支持int8、int32、float16、float32和bfloat16数据类型。
-> -   针对<term>Atlas A2 训练系列产品</term>/<term>Atlas A3 训练系列产品</term>，若用户准备进行2卡训练，可将8卡训练脚本进行改写，改为2卡训练脚本。可参见以下修改方法：
->       1.  若8卡脚本的batch\_size是单卡脚本的batch\_size的8倍，则将8卡训练时的batch\_size和learning\_rate同时除以4，作为2卡训练时的batch\_size和learning\_rate。
->       2.  将nproc\_per\_node修改为2。
-> -   一个device对应执行一个训练进程，当前不支持多进程在同一个device上进行训练。
+>
+> - 集合通信存在如下约束：
+> - 数据并行模式中不同device上执行的计算图相同。
+> - 针对<term>Atlas 训练系列产品</term>：AllReduce和reduce\_scatter仅支持int8、int32、float16和float32数据类型。
+> - 针对<term>Atlas A2 训练系列产品</term>/<term>Atlas A3 训练系列产品</term>：AllReduce和reduce\_scatter仅支持int8、int32、float16、float32和bfloat16数据类型。
+> - 针对<term>Atlas A2 训练系列产品</term>/<term>Atlas A3 训练系列产品</term>，若用户准备进行2卡训练，可将8卡训练脚本进行改写，改为2卡训练脚本。可参见以下修改方法：
+>   1. 若8卡脚本的batch\_size是单卡脚本的batch\_size的8倍，则将8卡训练时的batch\_size和learning\_rate同时除以4，作为2卡训练时的batch\_size和learning\_rate。
+>   2. 将nproc\_per\_node修改为2。
+> - 一个device对应执行一个训练进程，当前不支持多进程在同一个device上进行训练。
 
 ## 单机多卡示例
 
 以torchrun方式启动为例，通过一个简单的自定义模型，展示单机八卡的模型代码和启动脚本样例。
 
-1.  模型脚本配置示例，以下示例以一个简单的自定义模型为例，在适配NPU时需要注意和修改的内容已加注释。<a id="custom-anchor"></a>
+1. 模型脚本配置示例，以下示例以一个简单的自定义模型为例，在适配NPU时需要注意和修改的内容已加注释。<a id="custom-anchor"></a>
 
     ```python
     import argparse
@@ -213,10 +219,10 @@
         main()
     ```
 
-2.  启动脚本的配置样例，通过bash启动即可拉起训练：<br>
-    a.  新建启动脚本文件，例如`_train_8p_torchrun.py_`，将[1](#custom-anchor)的示例代码放置其中。<br>
-    b.  在bash执行如下指令启动：
+2. 启动脚本的配置样例，通过bash启动即可拉起训练：<br>
+    a. 新建启动脚本文件，例如`train_8p_torchrun.py`，将[1](#custom-anchor)的示例代码放置其中。<br>
+    b. 在bash执行如下指令启动：
 
-        ```python
+        ```bash
         torchrun --nproc_per_node=8 --master_addr localhost --master_port 12345 train_8p_torchrun.py
         ```

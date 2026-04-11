@@ -23,7 +23,6 @@
 |torch.autograd.profiler.profile(use_cuda=True)|torch.autograd.profiler.profile(use_npu=True)|指定执行profiler过程中使用CUDA/NPU。|
 |torch.cuda.Event()|torch_npu.npu.Event()|返回某个设备上的事件。|
 
-
 用户在构建网络或进行网络迁移时，需要创建指定数据类型的tensor。在昇腾AI处理器上创建的部分tensor如下，更多接口请参见《[Ascend Extension for PyTorch 自定义API参考](https://www.hiascend.com/document/detail/zh/Pytorch/730/apiref/torchnpuCustomsapi/docs/context/overview.md)》。
 
 **表 2**  tensor创建接口替换
@@ -40,5 +39,3 @@
 |torch.cuda.IntTensor([1,2,3])|torch.npu.IntTensor([1,2,3])|
 |torch.cuda.LongTensor([1,2,3])|torch.npu.LongTensor([1,2,3])|
 |torch.cuda.HalfTensor([1,2,3])|torch.npu.HalfTensor([1,2,3])|
-
-

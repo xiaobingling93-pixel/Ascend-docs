@@ -28,13 +28,13 @@
 >
 > 开启透明大页前使用“getconf PAGESIZE“检查当前Linux操作系统页大小，若显示“4096“则表明当前操作系统默认使用的4K页内存，建议开启透明大页；若显示“65536“则表明当前操作系统使用的是64K页内存，此时透明大页2MB仅能覆盖32个基础页，无法有效缩小页延迟或者减少TLB miss，建议关闭透明大页。
 
-1.  确认透明大页是否开启：
+1. 确认透明大页是否开启：
 
     执行命令cat /sys/kernel/mm/transparent_hugepage/enabled确认透明大页是否启动，若回显结果为[always]则表明已开启透明大页。一般透明大页是默认开启的。
 
     ![](./figures/hp_opt_fig_01.png)
 
-2.  执行以下命令，开启透明大页：
+2. 执行以下命令，开启透明大页：
 
     ```shell
     echo always > /sys/kernel/mm/transparent_hugepage/enabled
@@ -44,7 +44,7 @@
 
 ### 使能OS开启标准大页内存
 
--   临时启用标准大页内存池。
+- 临时启用标准大页内存池。
 
     方法一（推荐采用此方法，不需要重启机器）：
 
@@ -70,8 +70,8 @@
     ```
 
     > [!NOTE]
-    > -   采用方法二配置标准大页时，x86和Arm标准大页的配置方式有所不同，Arm机器需要针对NUMA各个节点都配置大页才能保证各个CPU能够访问大页内存池。
-    > -   Arm机器若已经确定需要使用哪几个node（例如通过绑核等手段限定使用哪几个node时），可以仅设置需要使用的node节点。
+    > - 采用方法二配置标准大页时，x86和Arm标准大页的配置方式有所不同，Arm机器需要针对NUMA各个节点都配置大页才能保证各个CPU能够访问大页内存池。
+    > - Arm机器若已经确定需要使用哪几个node（例如通过绑核等手段限定使用哪几个node时），可以仅设置需要使用的node节点。
 
     申请完成后使用如下命令确认大页已完成分配。
 
@@ -81,13 +81,13 @@
 
     ![](./figures/hp_opt_fig_03.png)
 
--   永久启用标准大页内存池。
+- 永久启用标准大页内存池。
 
     > [!CAUTION]
     > 
     > 修改启动项配置属于危险操作，请谨慎修改启动项配置，建议采用临时分配大页的方式申请大页内存池。
 
-    -   执行以下命令，查看Linux启动项信息，确认当前系统启动项名称。（一台机器可以安装多个内核版本，请先确认当前正在运行的内核版本对应的是哪个启动项）
+    - 执行以下命令，查看Linux启动项信息，确认当前系统启动项名称。（一台机器可以安装多个内核版本，请先确认当前正在运行的内核版本对应的是哪个启动项）
 
         ```shell
         grubby --info=ALL | grep `uname -r`
@@ -97,31 +97,31 @@
 
         ![](./figures/hp_opt_fig_04.png)
 
-    -   更新系统启动项参数。
+    - 更新系统启动项参数。
 
         ```shell
         grubby --update-kernel=/boot/vmlinuz-4.18.0-193.el8.aarch64 --args="default_hugepagesz=2M hugepagesz=2M hugepages=5000" 
         ```
 
         > [!NOTE]
-        >-   更新对应启动项参数，update-kernel后面的参数即上一步获取的kernel后面对应的字符串。
-        >-   default_hugepagesz表示系统默认的大页内存大小，hugepagesz表示系统可选哪些大小的大页，hugepages表示设置每种size的大页最多可申请多少个。
-        >-   一般推荐选择2M大小作为大页size，可申请大页内存数量一般建议设置5000以上，内核版本越高需要的大页内存可能也会更高。
+        >- 更新对应启动项参数，update-kernel后面的参数即上一步获取的kernel后面对应的字符串。
+        >- default_hugepagesz表示系统默认的大页内存大小，hugepagesz表示系统可选哪些大小的大页，hugepages表示设置每种size的大页最多可申请多少个。
+        >- 一般推荐选择2M大小作为大页size，可申请大页内存数量一般建议设置5000以上，内核版本越高需要的大页内存可能也会更高。
 
-    -   重启物理机。
+    - 重启物理机。
 
         ```shell
         reboot
         ```
 
         > [!NOTE]
-        >-   申请一定大小的大页内存，相应的OS可用内存大小也会等量减少，建议选取合适的大小，一般设置5000个2M大页即可（申请大页内存大小为各种size的大页内存 \* 大页内存数量之和，以上述例子为例，hugepagesz=2M仅设置了一种size的大页，且hugepages=5000，因此系统会预分配5000 \* 2M = 9.7G）。
-        >-   若大页内存数量过小，而开启相关优化手段后，程序可能引起大页内存池内存不够导致进程coredump，可以通过dmesg | tail检查系统日志是否有`PID xxx killed due to inadequate hugepage pool。
-        >    ![](./figures/hp_opt_fig_05.png)
-        >-   上述大页内存配置方法仅支持在物理机上，不适用于虚拟机配置标准大页。
-        >-   设置完启动项参数之后，必须重启系统才能生效。
+        >- 申请一定大小的大页内存，相应的OS可用内存大小也会等量减少，建议选取合适的大小，一般设置5000个2M大页即可（申请大页内存大小为各种size的大页内存 \* 大页内存数量之和，以上述例子为例，hugepagesz=2M仅设置了一种size的大页，且hugepages=5000，因此系统会预分配5000 \* 2M = 9.7G）。
+        >- 若大页内存数量过小，而开启相关优化手段后，程序可能引起大页内存池内存不够导致进程coredump，可以通过dmesg | tail检查系统日志是否有`PID xxx killed due to inadequate hugepage pool。
+        > ![](./figures/hp_opt_fig_05.png)
+        >- 上述大页内存配置方法仅支持在物理机上，不适用于虚拟机配置标准大页。
+        >- 设置完启动项参数之后，必须重启系统才能生效。
 
-    -   删除启动项参数。
+    - 删除启动项参数。
 
         ```shell
         grubby --update-kernel=/boot/vmlinuz-4.18.0-193.el8.aarch64 --remove-args="hugepages hugepagesz default_hugepagesz"
@@ -131,7 +131,7 @@
         >
         > 删除启动项之后同样需要重启系统才能生效。
 
-    -   确认配置是否生效。
+    - 确认配置是否生效。
 
     重启系统之后，可以通过命令cat /proc/cmdline确认当前系统启动时是否带有大页相关参数。也可使用cat /proc/meminfo | grep Huge来查看当前系统可用的大页内存大小。其中HugePages_Total表示总共可用大页数量，HugePages_Free表示当前系统可用大页数量。若HugePages_Total为你所设置的数量，则表明大页内存启用成功；若这个数量为0，则表明未启用大页内存。
 
@@ -142,15 +142,16 @@
 glibc可以通过Tunables参数来设置malloc使用大页，注意该特性对glibc的版本有要求，可通过ldd --version命令确认当前glibc版本。
 
 **表2** glibc版本及启动方式
+
 |glibc版本|启用方式|
 |--|--|
 |2.28到2.34之间（不包括2.34）|1. 首先需要额外安装libhugetlbfs库。<br>2. 安装完成后通过命令find /usr -name "libhugetlbfs.so*寻找对应动态库路径。一般在/usr/lib64/libhugetlbfs.so路径下，然后执行以下命令：<br>export HUGETLB_MORECORE=yes<br>export LD_PRELOAD=/usr/lib64/libhugetlbfs.so<br>glibc版本低于2.34（不包括2.34）只能通过libhugetlbfs库的能力使用标准大页。|
 |大于等于2.34|&#8226; 导入环境变量export GLIBC_TUNABLES=glibc.malloc.hugetlb=1，其中1表示glibc的malloc函数会使用透明大页。<br>&#8226; export GLIBC_TUNABLES=glibc.malloc.hugetlb=2，2表示glibc的malloc函数会使用标准大页。|
 
-
 > [!NOTE]
->-   如果训练模型场景下，使用标准大页出现报错：Bus error. It is possible that dataloader's workers are out of shared memory. Please try to raise your shared memory limit.，可以尝试使用透明大页规避这个问题。
->-   若在容器中使用，请先确保容器环境有权限申请大页内存池；低版本glibc（glibc版本低于2.34）采用libhugetlbfs申请大页的方式。
+>
+> - 如果训练模型场景下，使用标准大页出现报错：Bus error. It is possible that dataloader's workers are out of shared memory. Please try to raise your shared memory limit.，可以尝试使用透明大页规避这个问题。
+> - 若在容器中使用，请先确保容器环境有权限申请大页内存池；低版本glibc（glibc版本低于2.34）采用libhugetlbfs申请大页的方式。
 
 ## tmpfs使用大页
 
@@ -162,25 +163,25 @@ tmpfs大页（也称为临时文件系统大页）是指在临时文件系统（
 
 ### 使用方法
 
--   创建待挂载tmpfs的目录：
+- 创建待挂载tmpfs的目录：
 
     ```shell
     mkdir -p /mnt/temp
     ```
 
--   挂载tmpfs时使用透明大页：
+- 挂载tmpfs时使用透明大页：
 
     ```shell
     mount -t tmpfs -o huge=always tmpfs /mnt/temp
     ```
 
--   PyTorch使能tmpfs大页：
+- PyTorch使能tmpfs大页：
 
     ```shell
     export TMPDIR=/mnt/temp
     ```
 
--   关闭tmpfs使用大页：
+- 关闭tmpfs使用大页：
 
     ```shell
     umount /mnt/temp
@@ -192,10 +193,10 @@ tmpfs大页（也称为临时文件系统大页）是指在临时文件系统（
 
 ### 安装方法
 
-1.  该特性需安装对应版本的glibc和glibc-devel包，详细对应版本要求见如下表格说明。
-2.  glibc为Linux核心软件包，不推荐直接安装，容易造成软件兼容性问题，建议安装OpenEuler后使用，也可以通过OpenEuler的docker镜像使用（openeuler源地址：[https://repo.openeuler.org/](https://repo.openeuler.org/)，选择下面表格中符合要求的OpenEuler版本，例如：openEuler-22.03-LTS-SP4/docker_img/aarch64/openEuler-docker.aarch64.tar.xz）。
+1. 该特性需安装对应版本的glibc和glibc-devel包，详细对应版本要求见如下表格说明。
+2. glibc为Linux核心软件包，不推荐直接安装，容易造成软件兼容性问题，建议安装OpenEuler后使用，也可以通过OpenEuler的docker镜像使用（openeuler源地址：[https://repo.openeuler.org/](https://repo.openeuler.org/)，选择下面表格中符合要求的OpenEuler版本，例如：openEuler-22.03-LTS-SP4/docker_img/aarch64/openEuler-docker.aarch64.tar.xz）。
 
-3.  EulerOS使用该特性需要额外配置启动项参数exec_hugepages，具体修改启动项配置可参考“[使能OS开启标准大页内存](#开启大页内存池)”中的“永久启用标准大页内存池”章节。
+3. EulerOS使用该特性需要额外配置启动项参数exec_hugepages，具体修改启动项配置可参考“[使能OS开启标准大页内存](#开启大页内存池)”中的“永久启用标准大页内存池”章节。
 
     **表 3** 软件版本要求
 
@@ -231,12 +232,12 @@ yum install glibc-devel
 yum upgrade glibc glibc-devel
 ```
 
--   方法一（推荐使用）：
+- 方法一（推荐使用）：
 
     使用`LD_HUGEPAGE_LIB`环境变量，会让可执行程序依赖的所有动态库都尝试映射大页。变量值为动态库的大页模式（当前仅支持0或1，其他值未定义）：
 
-    -   配置为1，使用动态库大页模式。
-    -   配置为0，动态库不使用大页。
+    - 配置为1，使用动态库大页模式。
+    - 配置为0，动态库不使用大页。
 
     该环境变量不会被复制到子进程，建议在运行程序入口配置，在外部shell脚本（非程序入口）设置不会生效，例如脚本训练入口：
 
@@ -246,8 +247,8 @@ yum upgrade glibc glibc-devel
     configs/opensora-v1-1/train/stage1.py 
     ```
 
--   方法二（不推荐使用，使用方法较复杂，需要细粒度控制标准大页分配时可以尝试此方法）：本方法支持更细粒度地控制哪些动态库使用标准大页，并且支持标记指定的段。
-    1.  首先确认当前待运行程序会使用到的动态库。
+- 方法二（不推荐使用，使用方法较复杂，需要细粒度控制标准大页分配时可以尝试此方法）：本方法支持更细粒度地控制哪些动态库使用标准大页，并且支持标记指定的段。
+    1. 首先确认当前待运行程序会使用到的动态库。
 
         使能动态库大页，并非动态库的所有PT_LOAD段的映射都会使用大页，只有PT_LOAD段映射的区间覆盖了至少一个完整的2MB大页，才会尝试映射2MB大页。
 
@@ -258,47 +259,46 @@ yum upgrade glibc glibc-devel
         上面图中，LOAD段对应VirtAddr和MemSiz分别为0x0000000000000000和0x0000000001bc47e4，段大小即MemSize为十六进制的0x0000000001bc47e4，转换为十进制之后为29116388字节，进一步计算为27M，超过了2M，因此libtorch_npu.so使用动态库大页可生效。
 
         >[!NOTE]
-        >-   libtorch\_npu.so为Python软件包torch\_npu提供，请先确认当前应用程序是否会使用到该动态库。
-        >-   conda环境下，请确保标记的动态库文件为应用程序所使用的动态库文件。
+        >- libtorch\_npu.so为Python软件包torch\_npu提供，请先确认当前应用程序是否会使用到该动态库。
+        >- conda环境下，请确保标记的动态库文件为应用程序所使用的动态库文件。
 
-    2.  标记动态库。
+    2. 标记动态库。
 
         > [!CAUTION]
         >
         > hugepageedit工具为glibc-devel包提供的二进制程序，若无此命令请参考上面使用方法中安装glibc-devel包命令。
 
-        -   标记所有段。
+        - 标记所有段。
 
             ```shell
             hugepageedit &lt;file>
             ```
 
-        -   只标记代码段。
+        - 只标记代码段。
 
             ```shell
             hugepageedit -x &lt;file>
             ```
 
-        -   标记动态库中的指定段。
+        - 标记动态库中的指定段。
 
             ```shell
             hugepageedit -i &lt;index> &lt;file>
             ```
 
-            -   index：类型为LOAD的段在ELF格式文件中的索引，从0开始，可以通过readelf -l file查看ProgramHeaders表，索引值对应表中段的顺序。
-            -   hugepageedit -i选项一次只能指定一个段，可以执行多次。
-            -   hugepageedit -i选项不能指定非LOAD段，索引值不能超过ELF可执行文件的段的数量。
+            - index：类型为LOAD的段在ELF格式文件中的索引，从0开始，可以通过readelf -l file查看ProgramHeaders表，索引值对应表中段的顺序。
+            - hugepageedit -i选项一次只能指定一个段，可以执行多次。
+            - hugepageedit -i选项不能指定非LOAD段，索引值不能超过ELF可执行文件的段的数量。
 
-        -   清除所有标记。
+        - 清除所有标记。
 
             ```shell
             hugepageedit -d &lt;file>
             ```
 
-    3.  使能HUGEPAGE\_PROBE环境变量，仅支持配置为1，其他值未定义。该环境变量支持在外部shell脚本中使用，环境变量的值会传递到程序中。配置为1时动态库中被hugepageedit工具标记的段使用大页。
+    3. 使能HUGEPAGE\_PROBE环境变量，仅支持配置为1，其他值未定义。该环境变量支持在外部shell脚本中使用，环境变量的值会传递到程序中。配置为1时动态库中被hugepageedit工具标记的段使用大页。
 
         ```shell
         hugepageedit libtorch_npu.so
         export HUGEPAGE_PROBE=1
         ```
-

@@ -6,8 +6,8 @@
 
 因此，为了正确测量吞吐率，可以执行以下两个步骤：
 
-1.  估计允许最大并行度的最佳训练样本数据批量大小，即batch size；
-2.  在AI训练集群中给定这个最佳batch size大小，测量网络在1秒钟内可以处理的训练样本数据。
+1. 估计允许最大并行度的最佳训练样本数据批量大小，即batch size；
+2. 在AI训练集群中给定这个最佳batch size大小，测量网络在1秒钟内可以处理的训练样本数据。
 
 要找到最佳batch size大小值，一个有效的经验法则是达到Ascend昇腾处理器对给定数据类型的内存限制，即batch size占满内存。这取决于硬件类型、网络的大小以及输入数据的大小。
 
@@ -19,13 +19,12 @@
 
 ![](./figures/throughput_metrics_fig_01.png)
 
--   **BS**为batch size per DP，即每个数据并行维度的batch size大小。
--   **N**为集群中数据并行维度的大小。
--   **step\_time**为在分布式集群中，执行完一个total batch size的时间（单位为s）。
+- **BS**为batch size per DP，即每个数据并行维度的batch size大小。
+- **N**为集群中数据并行维度的大小。
+- **step\_time**为在分布式集群中，执行完一个total batch size的时间（单位为s）。
 
 对于固定shape的NLP任务，吞吐率的单位为samples/s时，可通过**seq\_len**，将吞吐率指标单位换算为tokens/s，吞吐率换算公式为：
 
 ![](./figures/throughput_metrics_fig_02.png)
 
 假设GLM10B网络模型的吞吐率为25 samples/s，max seq\_len为1024，那么按照tokens来计算吞吐率为25 \* 1024=25600 tokens/s，也就是每秒能处理2万多个tokens。
-

@@ -4,9 +4,7 @@
 
 ## 模型脚本示例<a id="custom-anchor"></a>
 
-
 单机八卡torchrun方式模型脚本示例：
-
 
 ```python
 import argparse
@@ -128,7 +126,7 @@ if __name__ == "__main__":
 
 ## 拉起单机八卡训练（shell脚本方式）<a id="suctom-anchor01"></a>
 
-1. 修改模型脚本，脚本名称为`_train_8p_shell.py_`，`_train_8p_shell.py_`仅为示例。
+1. 修改模型脚本，脚本名称为`train_8p_shell.py`，`train_8p_shell.py`仅为示例。
     1. 修改train\(\)函数。
         1. 修改如下代码。
 
@@ -144,13 +142,13 @@ if __name__ == "__main__":
             train(local_rank, world_size, args):
             ```
 
-        2.  删除如下代码。
+        2. 删除如下代码。
 
             ```python
             world_size = int(os.environ["WORLD_SIZE"])
             ```
 
-        3.  修改如下代码。
+        3. 修改如下代码。
 
             修改前：
 
@@ -164,7 +162,7 @@ if __name__ == "__main__":
             local_rank_idx = local_rank
             ```
 
-    2.  修改main\(\)函数。
+    2. 修改main\(\)函数。
 
         修改前：
 
@@ -184,7 +182,7 @@ if __name__ == "__main__":
             train(local_rank, world_size, args)  # 修改  
         ```
 
-2.  新建shell训练脚本，脚本名称为`_start_train_8p_.sh`，`_start_train_8p_.sh`仅为示例。
+2. 新建shell训练脚本，脚本名称为`_start_train_8p_.sh`，`_start_train_8p_.sh`仅为示例。
 
     ```shell
     #!/bin/bash
@@ -204,7 +202,7 @@ if __name__ == "__main__":
     wait
     ```
 
-3.  运行训练脚本。
+3. 运行训练脚本。
 
     ```shell
     bash start_train_8p.sh   # 根据实际命名进行修改
@@ -212,15 +210,15 @@ if __name__ == "__main__":
 
 ## 拉起单机八卡训练（mp.spawn方式）<a id="suctom-anchor02"></a>
 
-1.  修改模型脚本，脚本名称为`_train_8p_spawn.py_`，`_train_8p_spawn.py_`仅为示例。
-    1.  导入torch.multiprocessing。
+1. 修改模型脚本，脚本名称为`train_8p_spawn.py`，`train_8p_spawn.py`仅为示例。
+    1. 导入torch.multiprocessing。
 
-        ```
+        ```python
         import torch.multiprocessing as mp
         ```
 
-    2.  修改train\(\)函数。
-        1.  修改如下代码。
+    2. 修改train\(\)函数。
+        1. 修改如下代码。
 
             修改前：
 
@@ -234,13 +232,13 @@ if __name__ == "__main__":
             train(local_rank, world_size, args):
             ```
 
-        2.  删除如下代码。
+        2. 删除如下代码。
 
             ```python
             world_size = int(os.environ["WORLD_SIZE"])
             ```
 
-        3.  修改如下代码。
+        3. 修改如下代码。
 
             修改前：
 
@@ -254,7 +252,7 @@ if __name__ == "__main__":
             local_rank_idx = local_rank
             ```
 
-    3.  修改main\(\)函数。
+    3. 修改main\(\)函数。
 
         ```python
         def main():
@@ -263,7 +261,7 @@ if __name__ == "__main__":
             mp.spawn(train, args=(world_size, args), nprocs=world_size)  # 新增
         ```
 
-2.  运行训练脚本。
+2. 运行训练脚本。
 
     ```shell
     export MASTER_ADDR=xxxx  # 将xxxx改为本机IP地址
@@ -273,14 +271,14 @@ if __name__ == "__main__":
 
 ## 拉起单机八卡训练（torch.distributed.launch方式）<a id="suctom-anchor03"></a>
 
-1.  修改模型脚本，脚本名称为`_train_8p_torch_distributed_launch.py_`，`_train_8p_torch_distributed_launch.py_`仅为示例。
-    1.  修改get\_train\_args\(\)函数。
+1. 修改模型脚本，脚本名称为`train_8p_torch_distributed_launch.py`，`train_8p_torch_distributed_launch.py`仅为示例。
+    1. 修改get\_train\_args\(\)函数。
 
         ```python
         parser.add_argument("--local-rank", type=int, default=0)  # 新增    
         ```
 
-    2.  修改train\(\)函数。
+    2. 修改train\(\)函数。
 
         修改前：
 
@@ -294,7 +292,7 @@ if __name__ == "__main__":
         local_rank_idx = args.local_rank
         ```
 
-2.  运行训练脚本。
+2. 运行训练脚本。
 
     ```shell
     python -m torch.distributed.launch --nproc_per_node 8 --master_addr localhost --master_port 12345 train_8p_torch_distributed_launch.py
@@ -302,8 +300,8 @@ if __name__ == "__main__":
 
 ## 拉起单机八卡训练（torchrun方式）<a id="suctom-anchor04"></a>
 
-1.  [模型脚本示例](#custom-anchor)以torchrun方式为例，模型脚本无需修改。脚本名称为`_train_8p_torchrun.py_`，`_train_8p_torchrun.py_`仅为示例。
-2.  运行训练脚本。
+1. [模型脚本示例](#custom-anchor)以torchrun方式为例，模型脚本无需修改。脚本名称为`train_8p_torchrun.py`，`train_8p_torchrun.py`仅为示例。
+2. 运行训练脚本。
 
     ```shell
     torchrun --nproc_per_node 8 --master_addr localhost --master_port 12345 train_8p_torchrun.py
@@ -311,15 +309,15 @@ if __name__ == "__main__":
 
 ## 拉起单机八卡训练（torch\_npu\_run方式）<a id="suctom-anchor05"></a>
 
-1.  修改模型脚本，脚本名称为_train\_8p\_torch\_npu\_run.py_，_train\_8p\_torch\_npu\_run.py_仅为示例。
-    1.  修改get\_train\_args\(\)函数。
+1. 修改模型脚本，脚本名称为train\_8p\_torch\_npu\_run.py，train\_8p\_torch\_npu\_run.py仅为示例。
+    1. 修改get\_train\_args\(\)函数。
 
         ```python
         parser.add_argument("--master_addr", type=str, default="xxxx")  # 新增，将xxxx改为本机IP地址   
         parser.add_argument("--master_port", type=str, default="12345")  # 新增 
         ```
 
-    2.  修改train\(\)函数。
+    2. 修改train\(\)函数。
 
         修改前：
 
@@ -333,7 +331,7 @@ if __name__ == "__main__":
         dist.init_process_group("hccl", init_method=f"parallel://{args.master_addr}:{args.master_port}", rank=local_rank_idx, world_size=world_size, timeout=timedelta(minutes=30))
         ```
 
-2.  运行训练脚本。
+2. 运行训练脚本。
 
     ```shell
     torch_npu_run --rdzv_backend parallel --master_addr xxxx --master_port 12345 --nproc_per_node 8 train_8p_torch_npu_run.py  # 将xxxx改为本机IP地址
@@ -341,15 +339,15 @@ if __name__ == "__main__":
 
 ## 拉起双机16卡训练（shell脚本方式）<a id="suctom-anchor06"></a>
 
-1.  修改模型脚本，脚本名称为`_train_16p_shell.py_`，`t_rain_16p_shell.py_`仅为示例。
-    1.  修改train\(\)函数。
-        1.  新增如下代码。
+1. 修改模型脚本，脚本名称为`train_16p_shell.py`，`train_16p_shell.py`仅为示例。
+    1. 修改train\(\)函数。
+        1. 新增如下代码。
 
             ```python
             global_rank_idx = int(os.environ["RANK"])  # 新增 
             ```
 
-        2.  修改如下代码。
+        2. 修改如下代码。
 
             修改前：
 
@@ -363,8 +361,8 @@ if __name__ == "__main__":
             dist.init_process_group("hccl", rank=global_rank_idx, world_size=world_size, timeout=timedelta(minutes=30))
             ```
 
-2.  新建shell训练脚本。
-    1.  主节点训练脚本，脚本名称为`_start_train_16p_master_node_.sh`，`_start_train_16p_master_node_.sh`仅为示例。
+2. 新建shell训练脚本。
+    1. 主节点训练脚本，脚本名称为`_start_train_16p_master_node_.sh`，`_start_train_16p_master_node_.sh`仅为示例。
 
         ```shell
         #!/bin/bash
@@ -387,7 +385,7 @@ if __name__ == "__main__":
         wait
         ```
 
-    2.  从节点训练脚本，脚本名称为`_start_train_16p_slave_node_.sh`，`_start_train_16p_slave_node_.sh`仅为示例。
+    2. 从节点训练脚本，脚本名称为`_start_train_16p_slave_node_.sh`，`_start_train_16p_slave_node_.sh`仅为示例。
 
         ```shell
         #!/bin/bash
@@ -410,14 +408,14 @@ if __name__ == "__main__":
         wait
         ```
 
-3.  运行训练脚本。
-    1.  主节点：
+3. 运行训练脚本。
+    1. 主节点：
 
         ```shell
         bash start_train_16p_master_node.sh  # 根据实际命名进行修改
         ```
 
-    2.  从节点：
+    2. 从节点：
 
         ```shell
         bash start_train_16p_slave_node.sh  # 根据实际命名进行修改
@@ -425,22 +423,22 @@ if __name__ == "__main__":
 
 ## 拉起双机16卡训练（mp.spawn方式）<a id="suctom-anchor07"></a>
 
-1.  修改模型脚本，脚本名称为`_train_16p_spawn.py_`，`_train_16p_spawn.py_`仅为示例。
-    1.  导入torch.multiprocessing。
+1. 修改模型脚本，脚本名称为`train_16p_spawn.py`，`train_16p_spawn.py`仅为示例。
+    1. 导入torch.multiprocessing。
 
         ```python
         import torch.multiprocessing as mp
         ```
 
-    2.  修改get\_train\_args\(\)函数。
+    2. 修改get\_train\_args\(\)函数。
 
         ```python
         parser.add_argument("--node_rank", type=int, default=0)  # 新增
         parser.add_argument("--nnodes", type=int, default=-1)  # 新增
         ```
 
-    3.  修改train\(\)函数。
-        1.  修改如下代码。
+    3. 修改train\(\)函数。
+        1. 修改如下代码。
 
             修改前：
 
@@ -454,13 +452,13 @@ if __name__ == "__main__":
             train(local_rank, world_size, args):
             ```
 
-        2.  删除如下代码。
+        2. 删除如下代码。
 
             ```python
             world_size = int(os.environ["WORLD_SIZE"])
             ```
 
-        3.  修改如下代码：
+        3. 修改如下代码：
 
             修改前：
 
@@ -474,13 +472,13 @@ if __name__ == "__main__":
             local_rank_idx = local_rank
             ```
 
-        4.  添加如下代码。
+        4. 添加如下代码。
 
             ```python
             global_rank_idx = args.node_rank * torch.npu.device_count() + local_rank
             ```
 
-        5.  修改如下代码。
+        5. 修改如下代码。
 
             修改前：
 
@@ -494,7 +492,7 @@ if __name__ == "__main__":
             dist.init_process_group("hccl", rank=global_rank_idx, world_size=world_size, timeout=timedelta(minutes=30))
             ```
 
-    4.  修改main\(\)函数。
+    4. 修改main\(\)函数。
 
         ```python
         def main():
@@ -503,8 +501,8 @@ if __name__ == "__main__":
             mp.spawn(train, args=(world_size, args), nprocs=torch.npu.device_count())  # 新增
         ```
 
-2.  运行训练脚本。
-    1.  主节点：
+2. 运行训练脚本。
+    1. 主节点：
 
         ```shell
         export MASTER_ADDR=xxxx   # 将xxxx改为主节点IP地址
@@ -512,7 +510,7 @@ if __name__ == "__main__":
         python train_16p_spawn.py --nnodes 2 --node_rank 0 
         ```
 
-    2.  从节点：
+    2. 从节点：
 
         ```shell
         export MASTER_ADDR=xxxx   # 将xxxx改为主节点IP地址
@@ -522,15 +520,15 @@ if __name__ == "__main__":
 
 ## 拉起双机16卡训练（torch.distributed.launch方式）<a id="suctom-anchor08"></a>
 
-1.  修改模型脚本，脚本名称为`_train_16p_python.py_`，`_train_16p_python.py_`仅为示例。
-    1.  修改get\_train\_args\(\)函数。
+1. 修改模型脚本，脚本名称为`train_16p_python.py`，`train_16p_python.py`仅为示例。
+    1. 修改get\_train\_args\(\)函数。
 
         ```python
         parser.add_argument("--local-rank", type=int, default=0)  # 新增    
         ```
 
-    2.  修改train\(\)函数。
-        1.  修改如下代码。
+    2. 修改train\(\)函数。
+        1. 修改如下代码。
 
             修改前：
 
@@ -544,13 +542,13 @@ if __name__ == "__main__":
             local_rank_idx = args.local_rank
             ```
 
-        2.  添加如下代码。
+        2. 添加如下代码。
 
             ```python
             global_rank_idx = int(os.environ["RANK"])
             ```
 
-        3.  修改如下代码。
+        3. 修改如下代码。
 
             修改前：
 
@@ -564,15 +562,15 @@ if __name__ == "__main__":
             dist.init_process_group("hccl", rank=global_rank_idx, world_size=world_size, timeout=timedelta(minutes=30))
             ```
 
-2.  运行训练脚本。
-    1.  主节点：
+2. 运行训练脚本。
+    1. 主节点：
 
         ```shell
         # 将xxxx改为主节点IP地址
         python -m torch.distributed.launch --nnodes 2 --nproc_per_node 8 --node_rank 0 --master_addr xxxx --master_port 12345 train_16p_python.py  
         ```
 
-    2.  从节点：
+    2. 从节点：
 
         ```shell
         # 将xxxx改为主节点IP地址
@@ -581,15 +579,15 @@ if __name__ == "__main__":
 
 ## 拉起双机16卡训练（torchrun方式）<a id="suctom-anchor09"></a>
 
-1.  修改模型脚本，脚本名称为`_train_16p_torchrun.py_`，`_train_16p_torchrun.py_`仅为示例。
-    1.  修改train\(\)函数。
-        1.  添加如下代码。
+1. 修改模型脚本，脚本名称为`train_16p_torchrun.py`，`train_16p_torchrun.py`仅为示例。
+    1. 修改train\(\)函数。
+        1. 添加如下代码。
 
             ```python
             global_rank_idx = int(os.environ["RANK"])
             ```
 
-        2.  修改如下代码。
+        2. 修改如下代码。
 
             修改前：
 
@@ -603,15 +601,15 @@ if __name__ == "__main__":
             dist.init_process_group("hccl", rank=global_rank_idx, world_size=world_size, timeout=timedelta(minutes=30))
             ```
 
-2.  运行训练脚本。
-    1.  主节点：
+2. 运行训练脚本。
+    1. 主节点：
 
         ```shell
         # 将xxxx改为主节点IP地址
         torchrun --nnodes 2 --nproc_per_node 8 --node_rank 0 --master_addr xxxx --master_port 12345 train_16p_torchrun.py  
         ```
 
-    2.  从节点：
+    2. 从节点：
 
         ```shell
         # 将xxxx改为主节点IP地址
@@ -620,22 +618,22 @@ if __name__ == "__main__":
 
 ## 拉起双机16卡训练（torch\_npu\_run方式）<a id="suctom-anchor"></a>
 
-1.  修改模型脚本，脚本名称为`_train_16p_torch_npu_run.py_`，`_train_16p_torch_npu_run.py_`仅为示例。
-    1.  修改get\_train\_args\(\)函数。
+1. 修改模型脚本，脚本名称为`train_16p_torch_npu_run.py`，`train_16p_torch_npu_run.py`仅为示例。
+    1. 修改get\_train\_args\(\)函数。
 
         ```python
         parser.add_argument("--master_addr", type=str, default=None)  # 新增，将xxxx改为主节点IP地址
         parser.add_argument("--master_port", type=str, default="12345")  # 新增 
         ```
 
-    2.  修改train\(\)函数。
-        1.  添加如下代码。
+    2. 修改train\(\)函数。
+        1. 添加如下代码。
 
             ```python
             global_rank_idx = int(os.environ["RANK"])
             ```
 
-        2.  修改如下代码。
+        2. 修改如下代码。
 
             修改前：
 
@@ -649,15 +647,15 @@ if __name__ == "__main__":
             dist.init_process_group("hccl", init_method=f"parallel://{args.master_addr}:{args.master_port}", rank=global_rank_idx, world_size=world_size, timeout=timedelta(minutes=30))
             ```
 
-2.  运行训练脚本。
-    1.  主节点：
+2. 运行训练脚本。
+    1. 主节点：
 
         ```shell
         # 将xxxx改为主节点IP地址
         torch_npu_run --rdzv_backend parallel --master_addr xxxx --master_port 12345 --nnodes 2 --node_rank 0 --nproc_per_node 8 train_16p_torch_npu_run.py  
         ```
 
-    2.  从节点：
+    2. 从节点：
 
         ```shell
         # 将xxxx改为主节点IP地址
@@ -665,4 +663,3 @@ if __name__ == "__main__":
         ```
 
 当屏幕打印/定向日志中出现模型加载、训练等正常运行日志时，说明拉起训练成功。
-
