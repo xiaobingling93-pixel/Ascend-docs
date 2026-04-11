@@ -2,11 +2,11 @@
 
 模型能否成功迁移至昇腾AI处理器，主要取决于其使用的算子是否被昇腾平台支持。为保证迁移可行性，迁移前可使用如下方法进行分析：
 
-1.  若模型原始代码中调用了模型套件或第三方库，需要关注NPU对其的支持情况。
-    -   如果该三方库原生支持NPU，用户需要关注NPU目前对库中特性的支持情况；
-    -   如果是昇腾适配的第三方库，用户需要额外安装该库的昇腾适配版本，并关注其适配情况。详细昇腾第三方库支持情况请参考《[套件与三方库支持清单](https://www.hiascend.com/document/detail/zh/Pytorch/730/modthirdparty/modparts/thirdpart_0003.html)》。如果用户希望以上第三方库和模型套件在适配昇腾设备后能达到更高的性能，可以自行调优。
+1. 若模型原始代码中调用了模型套件或第三方库，需要关注NPU对其的支持情况。
+    - 如果该三方库原生支持NPU，用户需要关注NPU目前对库中特性的支持情况；
+    - 如果是昇腾适配的第三方库，用户需要额外安装该库的昇腾适配版本，并关注其适配情况。详细昇腾第三方库支持情况请参考《[套件与三方库支持清单](https://www.hiascend.com/document/detail/zh/Pytorch/730/modthirdparty/modparts/thirdpart_0003.html)》。如果用户希望以上第三方库和模型套件在适配昇腾设备后能达到更高的性能，可以自行调优。
 
-2.  确认是否存在以下已知的不支持场景：
+2. 确认是否存在以下已知的不支持场景：
 
     **表 1**  不支持场景列表
 
@@ -18,11 +18,10 @@
     |xFormers|暂不支持|不原生支持xFormers|xFormers中的FlashAttentionScore融合算子的迁移可参考[FlashAttentionScore](FlashAttentionScore.md)章节进行替换|
     |bmtrain框架|暂不支持|大模型迁移场景不支持|暂无替代方案|
     |colossalai库中HybridAdam优化器|暂不支持|大模型迁移场景不支持|暂无替代方案|
-    |grouped_gemm三方库|暂不支持|NPU不支持安装|暂无替代方案|
-    |composer三方库|暂不支持|NPU支持安装但未适配|暂无替代方案|
+    |grouped_gemm第三方库|暂不支持|NPU不支持安装|暂无替代方案|
+    |composer第三方库|暂不支持|NPU支持安装但未适配|暂无替代方案|
 
-
-3.  借助PyTorch Analyse工具，分析基于GPU平台的PyTorch训练脚本中三方库套件、API、动态shape以及亲和API分析在昇腾AI处理器上的支持情况，具体可参见表2，工具使用详细指导可参见《[CANN 分析迁移工具用户指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/devaids/migrationtools/atlasfmkt_16_0001.html)》。
+3. 借助PyTorch Analyse工具，分析基于GPU平台的PyTorch训练脚本中三方库套件、API、动态shape以及亲和API分析在昇腾AI处理器上的支持情况，具体可参见表2，工具使用详细指导可参见《[CANN 分析迁移工具用户指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/devaids/migrationtools/atlasfmkt_16_0001.html)》。
 
     **表 2**  分析模式介绍
 
@@ -64,7 +63,6 @@
 
     在迁移可行性分析中如果存在平台未支持的算子，可参考如下方法进行算子适配：
 
-    -   修改模型脚本使用等价支持的算子替换；
-    -   算子开发与适配，算子开发相关请参见《[CANN Ascend C算子开发指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/opdevg/Ascendcopdevg/atlas_ascendc_10_0001.html)》或《[CANN TBE&AI CPU算子开发指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/opdevg/tbeaicpudevg/atlasopdev_10_0001.html)》，算子适配请参见《PyTorch 框架特性指南》中的“[自定义算子适配开发](../framework_feature_guide_pytorch/adaptation_description_opplugin.md)”章节；
-    -   联系华为工程师提出开发适配诉求。
-
+    - 修改模型脚本使用等价支持的算子替换；
+    - 算子开发与适配，算子开发相关请参见《[CANN Ascend C算子开发指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/opdevg/Ascendcopdevg/atlas_ascendc_10_0001.html)》或《[CANN TBE&AI CPU算子开发指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/opdevg/tbeaicpudevg/atlasopdev_10_0001.html)》，算子适配请参见《PyTorch 框架特性指南》中的“[自定义算子适配开发](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/framework_feature_guide_pytorch/adaptation_overview_opplugin.md)”章节；
+    - 联系华为工程师提出开发适配诉求。

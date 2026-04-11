@@ -8,9 +8,9 @@ PyTorch作为当前深度学习领域中广泛采用的框架之一，经过Asce
 
 本手册面向的读者主要是具有一定深度学习基础与编程经验的研究人员、工程师和开发者：
 
--   了解深度学习的基本概念和技术，能够使用Python编程语言、PyTorch框架进行深度学习模型开发和调试；
--   对深度学习模型的训练和优化有一定的了解，包括训练任务执行与评估，分布式训练，性能数据采集及分析等；
--   对常见的系统性能优化手段有基本认知，例如并行化、编译优化等。
+- 了解深度学习的基本概念和技术，能够使用Python编程语言、PyTorch框架进行深度学习模型开发和调试；
+- 对深度学习模型的训练和优化有一定的了解，包括训练任务执行与评估，分布式训练，性能数据采集及分析等；
+- 对常见的系统性能优化手段有基本认知，例如并行化、编译优化等。
 
 ## 什么是模型迁移
 
@@ -20,17 +20,17 @@ PyTorch作为当前深度学习领域中广泛采用的框架之一，经过Asce
 
 将模型从其他硬件平台迁移到NPU时，由于硬件架构和库的不同，涉及到一系列底层到上层的适配操作。以GPU为例，模型迁移至NPU需要适配的原因可分为三方面：
 
--   硬件特性和性能特点差异
+- 硬件特性和性能特点差异
 
     由于NPU和GPU的硬件特性和性能特点不同，模型在NPU上可能需要进一步的性能调试和优化，以充分发挥NPU的潜力。
 
--   计算架构差异
+- 计算架构差异
 
     NVIDIA GPU采用CUDA（Compute Unified Device Architecture）的并行计算架构，而华为NPU采用CANN（Compute Architecture for Neural Networks）的异构计算架构。
 
--   深度学习框架差异
+- 深度学习框架差异
 
-    为了支持NPU硬件，需要通过[Ascend Extension for PyTorch](../quick_start/quick_start.md)对PyTorch框架进行适配：包括适配张量运算、自动微分等功能，以便在NPU上高效执行。此外，[PyTorch](https://pytorch.org/tutorials/advanced/privateuseone.html)正持续原生支持NPU，以提供给用户更好的模型体验，实现迁移修改最小化。
+    为了支持NPU硬件，需要通过[Ascend Extension for PyTorch](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/quick_start/quick_start.md)对PyTorch框架进行适配：包括适配张量运算、自动微分等功能，以便在NPU上高效执行。此外，[PyTorch](https://pytorch.org/tutorials/advanced/privateuseone.html)正持续原生支持NPU，以提供给用户更好的模型体验，实现迁移修改最小化。
 
 ## 如何进行模型迁移
 

@@ -19,5 +19,4 @@ export HCCL_RDMA_TC=100
 
 ## 使用场景
 
-昇腾网卡与交换机QoS（Quality of Service，服务质量）不匹配导致RDMA通信带宽下降时配置。
-
+昇腾网卡与交换机QoS（Quality of Service，服务质量）不匹配导致RDMA通信带宽下降时，需要进行配置。

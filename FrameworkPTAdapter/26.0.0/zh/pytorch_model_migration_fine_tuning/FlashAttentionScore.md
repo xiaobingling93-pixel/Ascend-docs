@@ -52,7 +52,7 @@ scaled\_dot\_product\_attention：
 
 当前已适配NPU，训练场景直接调用即可调用到FA，相关规格限制请参考[torch原生接口调用FA算子使用限制](#custom-anchor)。若依然需要使用NPU接口，可以按以下方式适配替换，但输入规格依然要满足[torch原生接口调用FA算子使用限制](#custom-anchor)要求。
 
--   不使能is\_causal时，原调用接口代码：
+- 不使能is\_causal时，原调用接口代码：
 
     ```python
     res = torch.nn.functional.scaled_dot_product_attention(query, key, value, atten_mask=attention_mask,
@@ -78,7 +78,7 @@ scaled\_dot\_product\_attention：
                        )[0]
     ```
 
--   使能is\_causal时，原调用接口代码：
+- 使能is\_causal时，原调用接口代码：
 
     ```python
     res = torch.nn.functional.scaled_dot_product_attention(query, key, value, atten_mask=None,
@@ -103,8 +103,8 @@ scaled\_dot\_product\_attention：
 
 **flash-attention库**
 
--   flash\_attn\_func
-    -   接口参数对应表格：
+- flash\_attn\_func
+    - 接口参数对应表格：
 
         **表 3：** 接口参数替换
 
@@ -117,11 +117,10 @@ scaled\_dot\_product\_attention：
         |softmax_scale|scale|对QKT的缩放系数；gpu、npu参数名不一致，含义一致；npu接口参数的默认值为1.0，适配时查阅原实现的scale值。|
         |causal|atten_mask|gpu接口参数causal=true时，npu接口需要传入下三角形式的atten mask；gpu接口参数causal=false时，npu接口不需要传入atten mask。|
         |-|head_num|npu接口新增参数，表示query的头数。|
-        |-|layout|npu接口新增参数，表示qkv的layout，gpu接口默认layout为" BSND"。|
+        |-|layout|npu接口新增参数，表示qkv的layout，gpu接口默认layout为“BSND”。|
         |-|sparse_mode|npu接口新增参数，表示稀疏计算模式。sparse_mode=2表示leftUp causal，sparse_mode=3表示rightDown causal；gpu接口在FA2.0版本及之前，causal场景默认是leftUp，在2.0版本之后，默认是rightDown。|
 
-
-    -   接口参数替换实例：
+    - 接口参数替换实例：
 
         不使能causal时，模型中替换代码：
 
@@ -156,8 +155,8 @@ scaled\_dot\_product\_attention：
         >
         > 当替换flash-attention为2.0或之前版本时，应设置sparse\_mode=2；当替换2.1或之后版本时，应设置sparse\_mode=3。
 
--   flash\_attn\_varlen\_func
-    -   接口参数对应表格：
+- flash\_attn\_varlen\_func
+    - 接口参数对应表格：
 
         **表 4** 接口参数替换
 
@@ -171,14 +170,13 @@ scaled\_dot\_product\_attention：
         |causal|atten_mask|gpu接口参数causal=true时，npu接口需要传入下三角形式的atten mask；gpu接口参数causal=false时，npu接口不需要传入atten mask。|
         |cu_seqlens_q|actual_seq_qlen|query序列的累积长度；gpu、npu参数名不一致，含义一致；npu接口该参数需要转换为host侧的list格式。|
         |cu_seqlens_k|actual_seq_kvlen|key、value序列的累积长度；gpu、npu参数名不一致，含义一致；npu接口该参数需要转换为host侧的list格式。|
-        |max_seqlen_q|-|npu无需配置该参数； gpu接口中表示query序列的最大长度，npu在接口内部计算。|
-        |max_seqlen_k|-|npu无需配置该参数； gpu接口中表示key、value序列的最大长度，npu在接口内部计算。|
+        |max_seqlen_q|-|npu无需配置该参数；gpu接口中表示query序列的最大长度，npu在接口内部计算。|
+        |max_seqlen_k|-|npu无需配置该参数；gpu接口中表示key、value序列的最大长度，npu在接口内部计算。|
         |-|head_num|npu接口新增参数，表示query的头数。|
         |-|layout|npu接口新增参数，表示qkv的layout，gpu接口默认layout为" BSND"。|
         |-|sparse_mode|npu接口新增参数，表示稀疏计算模式。sparse_mode=2表示leftUp causal，sparse_mode=3表示rightDown causal；gpu接口在FA2.0版本及之前，causal场景默认是leftUp，在2.0版本之后，默认是rightDown。|
 
-
-    -   接口参数替换实例：
+    - 接口参数替换实例：
 
         不使能causal时，原调用接口代码：
 
@@ -311,24 +309,25 @@ hidden_states = torch_npu.npu_fusion_attention(
 
 ```python
 def forward(q, k, v, drop_mask, atten_mask, pse, scale, keep_prob):
-	if pse is None:
-		qk = torch.matmul(q, k.permute(0, 1, 3, 2)).mul(scale)
-	else:
-		qk = (torch.matmul(q, k.permute(0, 1, 3, 2)) + pse).mul(scale)
-	if atten_mask is None:
-		qk = qk
-	else:
-		qk = qk + atten_mask * torch.finfo(torch.float32).min
-	softmax_res, softmax_max, softmax_sum = softmax(qk)
-	if drop_mask:
-		drop_res = softmax_res
-	else:
-		drop_res = softmax_res * drop_mask * (1.0 / (keep_prob))
-	attention_out = torch.matmul(drop_res, v)
-	return attention_out
+    if pse is None:
+        qk = torch.matmul(q, k.permute(0, 1, 3, 2)).mul(scale)
+    else:
+        qk = (torch.matmul(q, k.permute(0, 1, 3, 2)) + pse).mul(scale)
+    if atten_mask is None:
+        qk = qk
+    else:
+        qk = qk + atten_mask * torch.finfo(torch.float32).min
+    softmax_res, softmax_max, softmax_sum = softmax(qk)
+    if drop_mask:
+        drop_res = softmax_res
+    else:
+        drop_res = softmax_res * drop_mask * (1.0 / (keep_prob))
+    attention_out = torch.matmul(drop_res, v)
+    return attention_out
 ```
 
-**图 1** 计算流程图  
+**图 1** 计算流程图
+
 ![](./figures/FlashAttentionScore_fig_02.png)
 
 ## 已支持模型典型case
@@ -343,11 +342,11 @@ def forward(q, k, v, drop_mask, atten_mask, pse, scale, keep_prob):
 |4|[1,4096,48,64]|[1,4096,8,64]|[1,4096,8,64]|48|BSND|None|2147483647|2147483647|None|None|0|
 |5|[13440,16,72]|[13440,16,72]|[13440,16,72]|16|TND|None|2147483647|2147483647|[4480,8960,13440]|[4480,8960,13440]|0|
 
-
 > [!NOTE]
-> 1.  query/key/value的数据类型为fp16/bf16。
-> 2.  atten\_mask的数据类型为bool/uint8。
-> 3.  case5的actual\_seq\_qlen/actual\_seq\_kvlen是数据类型为int64且shape为\[3,\]的list。
+>
+> 1. query/key/value的数据类型为fp16/bf16。
+> 2. atten\_mask的数据类型为bool/uint8。
+> 3. case5的actual\_seq\_qlen/actual\_seq\_kvlen是数据类型为int64且shape为\[3,\]的list。
 
 ## torch原生接口调用FA算子使用限制<a id="custom-anchor"></a>
 
@@ -357,18 +356,17 @@ def forward(q, k, v, drop_mask, atten_mask, pse, scale, keep_prob):
 
 使用限制：
 
--   参数输入符合规格：
-    -   输入query、key、value的N：batch size，当前只支持\[N，head\_num, S\(L\), E\(Ev\)\]的排布方式，取值范围1\~2K。
-    -   输入query的head\_num和key/value的head\_num必须成比例关系，即Nq/Nkv必须是非0整数，取值范围1\~256。
-    -   输入query的L：target sequence length，取值范围1\~512K。
-    -   输入key、value的S：source sequence length，取值范围1\~512K。
-    -   输入query、key、value的E：embedding dimension of the query and key，取值范围1\~512。
-    -   输入value的Ev：embedding dimension of the value，必须与E相等。
-    -   输入atten\_mask：当前支持\[N, 1, L, S\]、\[N, head\_num, L, S\]、\[1, 1, L, S\]、\[L, S\]共4种排布方式。
-    -   在使能is\_causal计算时，atten\_mask必须为None；不使能is\_causal时，若atten\_mask输入有效数据，输入数据类型必须是bool类型。
+- 参数输入符合规格：
+    - 输入query、key、value的N：batch size，当前只支持\[N，head\_num, S\(L\), E\(Ev\)\]的排布方式，取值范围1\~2K。
+    - 输入query的head\_num和key/value的head\_num必须成比例关系，即Nq/Nkv必须是非0整数，取值范围1\~256。
+    - 输入query的L：target sequence length，取值范围1\~512K。
+    - 输入key、value的S：source sequence length，取值范围1\~512K。
+    - 输入query、key、value的E：embedding dimension of the query and key，取值范围1\~512。
+    - 输入value的Ev：embedding dimension of the value，必须与E相等。
+    - 输入atten\_mask：当前支持\[N, 1, L, S\]、\[N, head\_num, L, S\]、\[1, 1, L, S\]、\[L, S\]共4种排布方式。
+    - 在使能is\_causal计算时，atten\_mask必须为None；不使能is\_causal时，若atten\_mask输入有效数据，输入数据类型必须是bool类型。
 
--   与原接口除了规格限制之外还存在如下差异点：
-    -   NPU的随机算法部分用DSA硬件实现，算法在DSA引擎固化与GPU算法实现存在差异，导致dropout功能和GPU结果不一致。
-    -   当前接口支持输入query的head\_num和key/value的head\_num不等长，而原生PyTorch接口不支持。
-    -   输入query、key、value的数据类型bf16、fp16、fp32并且使能requires\_grad时，执行FA算子。
-
+- 与原接口除了规格限制之外还存在如下差异点：
+    - NPU的随机算法部分用DSA硬件实现，算法在DSA引擎固化与GPU算法实现存在差异，导致dropout功能和GPU结果不一致。
+    - 当前接口支持输入query的head\_num和key/value的head\_num不等长，而原生PyTorch接口不支持。
+    - 输入query、key、value的数据类型bf16、fp16、fp32并且使能requires\_grad时，执行FA算子。

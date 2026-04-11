@@ -20,4 +20,3 @@
 假设MicroBatch Num是**m**，pipeline stage是**p**，流水线并行的效率是：
 
 ![](./figures/pipeline_parallel_perf_metrics_fig_04.png)
-

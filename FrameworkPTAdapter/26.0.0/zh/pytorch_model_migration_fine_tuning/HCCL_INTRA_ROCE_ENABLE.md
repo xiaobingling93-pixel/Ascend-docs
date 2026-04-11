@@ -13,4 +13,3 @@ export HCCL_INTRA_ROCE_ENABLE=1
 ## 使用场景
 
 当用户使用设备虚拟化场景或PCIe带宽较低时（如不足20GB/s），建议使用此参数。
-

@@ -1,6 +1,6 @@
 # 编译优化常见问题
 
-- 运行模型时出现.so或者某模块找不到情况。
+- 运行模型时出现.so或者某模块找不到的情况。
 
     参考[依赖安装](comp_opt_py.md)，确认依赖是否已完全安装。
 
@@ -14,7 +14,7 @@
 
 - “fatal error: 'filesystem' file not found.”
 
-    gcc版本过低，请执行命令gcc --version查询版本，并参考《[Ascend Extension for PyTorch 软件安装指南](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/installation_guide/installation_description.md)》安装GCC 8以上版本。
+    gcc版本过低，请执行命令gcc --version查询版本，并参考《[Ascend Extension for PyTorch 软件安装指南](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/installation_guide/installation_description.md)》安装GCC 8以上版本。
 
 - “Error while loading shared libraries: libomp.so: cannot open shared object file: No such file or directory.”
 
@@ -26,4 +26,4 @@
 
 - 运行时报错未定义符号，其中包含如basic\_string等字样。
 
-    可能是编译时C++11 abi不一致导致，建议查看PyTorch和torch\_npu的build目录下的compile\_commands.json文件，检查宏GLIBCXX\_USE\_CXX11\_ABI的值是否一致。若不一致，设置环境变量**export \_GLIBCXX\_USE\_CXX11\_ABI=0**，再重新编译PyTorch。
+    可能是编译时C++11 abi不一致导致，建议查看PyTorch和torch\_npu的build目录下的compile\_commands.json文件，检查宏GLIBCXX\_USE\_CXX11\_ABI的值是否一致。若不一致，设置环境变量**export _GLIBCXX_USE_CXX11_ABI=0**，再重新编译PyTorch。

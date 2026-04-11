@@ -2,7 +2,7 @@
 
 在开始训练前，需要先配置训练相关环境变量，用于配置NPU上的PyTorch训练环境，一般使用shell脚本配置，具体配置步骤与示例如下：
 
-1.  <a id="custom-anchor"></a>配置环境变量shell脚本，默认配置示例如下，用户可根据实际情况自行增加其他环境变量，具体可参考《[环境变量参考](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/environment_variable_reference/env_variable_list.md)》。
+1. <a id="custom-anchor"></a>配置环境变量shell脚本，默认配置示例如下，用户可根据实际情况自行增加其他环境变量，具体可参考《[环境变量参考](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/environment_variable_reference/env_variable_list.md)》。
 
     ```shell
     #!/bin/bash
@@ -44,10 +44,8 @@
     export HCCL_IF_IP=$(hostname -I |awk '{print $1}')
     ```
 
-2.  在开始训练前，执行[1](#custom-anchor)配置的环境变量脚本。
+2. 在开始训练前，执行[1](#custom-anchor)配置的环境变量脚本。
 
     ```shell
-    source env.sh    
-    # env.sh为环境变量脚本名称，用户可根据实际情况进行修改
+    source env.sh # env.sh为环境变量脚本名称，用户可根据实际情况进行修改
     ```
-

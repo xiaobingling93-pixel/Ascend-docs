@@ -16,5 +16,3 @@
 |bert_adam|optimizer = **torch.optim.BertAdam**(model.parameters(), lr=args.lr)|optimizer = **torch_npu.optim.NpuFusedBertAdam**(model.parameters(), lr=args.lr)|
 |rmsprop|optimizer = **torch.optim.RMSprop**(model.parameters(), lr=args.lr)|optimizer = **torch_npu.optim.NpuFusedRMSprop**(model.parameters(), lr=args.lr)|
 |rmsprop_tf|optimizer = **torch.optim.RMSpropTF**(model.parameters(), lr=args.lr)|optimizer = **torch_npu.optim.NpuFusedRMSpropTF**(model.parameters(), lr=args.lr)|
-
-

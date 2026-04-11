@@ -49,16 +49,16 @@
 
     “\[\]”表示可选参数，实际使用可不用添加。
 
-    **表 1:**  参数说明
+    **表 1**  参数说明
 
     |参数|参数说明|取值示例|
     |--|--|--|
-    |-i</br>--input|&#8226; 要进行迁移的原始脚本文件所在文件夹路径。</br>&#8226; 必选。|/home/username/fmktransplt|
-    |-o</br>--output|&#8226; 脚本迁移结果文件输出路径。</br>&#8226; 不开启distributed即迁移至单卡脚本场景下，输出目录名为xxx_msft；开启distributed即迁移至多卡脚本场景下，输出目录名为xxx_msft_multi，xxx为原始脚本所在文件夹名称。</br>&#8226; 必选。|/home/username/fmktransplt_output|
-    |-v</br>--version|&#8226; 待迁移脚本的PyTorch版本。</br>&#8226; 必选。|&#8226; 2.1.0<br>&#8226; 2.6.0<br>&#8226; 2.7.1<br>&#8226; 2.8.0 |
-    |-s</br>--specify-device|&#8226; 可以通过环境变量DEVICE_ID指定device作为高级特性，但有可能导致原本脚本中分布式功能失效。</br>&#8226; 可选。|-|
-    |distributed|&#8226; 将GPU单卡脚本迁移为NPU多卡脚本，仅支持使用torch.utils.data.DataLoader方式加载数据的场景，具体可参考《CANN 分析迁移工具用户指南》中的“迁移训练 > 典型案例 > 使用torch.utils.data.DataLoader方式加载数据的场景说明”章节。指定此参数时，才可以指定-t/--target_model参数。</br>&#8226; -m，--main：训练脚本的入口Python文件，必选。</br>&#8226; -t，--target_model：待迁移脚本中的实例化模型变量名，默认为“model”，可选。如果变量名不为"model"时，则需要配置此参数，例如"my_model = Model()"，需要配置为-t my_model。|-|
-    |-h</br>--help|显示帮助信息。|-|
+    |-i<br>--input|&#8226; 要进行迁移的原始脚本文件所在文件夹路径。<br>&#8226; 必选。|/home/username/fmktransplt|
+    |-o<br>--output|&#8226; 脚本迁移结果文件输出路径。<br>&#8226; 不开启distributed即迁移至单卡脚本场景下，输出目录名为xxx_msft；开启distributed即迁移至多卡脚本场景下，输出目录名为xxx_msft_multi，xxx为原始脚本所在文件夹名称。<br>&#8226; 必选。|/home/username/fmktransplt_output|
+    |-v<br>--version|&#8226; 待迁移脚本的PyTorch版本。<br>&#8226; 必选。|&#8226; 2.1.0<br>&#8226; 2.6.0<br>&#8226; 2.7.1<br>&#8226; 2.8.0 |
+    |-s<br>--specify-device|&#8226; 可以通过环境变量DEVICE_ID指定device作为高级特性，但有可能导致原本脚本中分布式功能失效。<br>&#8226; 可选。|-|
+    |distributed|&#8226; 将GPU单卡脚本迁移为NPU多卡脚本，仅支持使用torch.utils.data.DataLoader方式加载数据的场景，具体可参考《CANN 分析迁移工具用户指南》中的“迁移训练 > 典型案例 > 使用torch.utils.data.DataLoader方式加载数据的场景说明”章节。指定此参数时，才可以指定-t/--target_model参数。<br>&#8226; -m，--main：训练脚本的入口Python文件，必选。<br>&#8226; -t，--target_model：待迁移脚本中的实例化模型变量名，默认为“model”，可选。如果变量名不为"model"时，则需要配置此参数，例如"my_model = Model()"，需要配置为-t my_model。|-|
+    |-h<br>--help|显示帮助信息。|-|
 
 ## 注意事项
 
@@ -70,7 +70,7 @@
 
 1. 训练脚本语句替换。
 
-    将执行迁移命令后生成的`run_distributed_npu.sh`文件中的p`lease input your shell script here`语句替换成模型原来的训练shell脚本。例如将`please input your shell script here`替换为模型训练命令`bash  _model_train_script.sh _--data_path  _data_path_`。
+    将执行迁移命令后生成的`run_distributed_npu.sh`文件中的`please input your shell script here`语句替换成模型原来的训练shell脚本。例如将`please input your shell script here`替换为模型训练命令`bash  _model_train_script.sh _--data_path  _data_path_`。
 
     `run\_distributed\_npu.sh`文件如下所示：
 
@@ -92,7 +92,7 @@
     done
     ```
 
-    **表 2:**  run_distributed_npu.sh参数说明
+    **表 2** run_distributed_npu.sh参数说明
 
     |参数|说明|
     |--|--|

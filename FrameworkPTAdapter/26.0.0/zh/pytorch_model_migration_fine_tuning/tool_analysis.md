@@ -6,7 +6,7 @@
 
 性能优化分析的核心思想是抓大放小，根据场景进行针对性优化。对于性能不及预期的场景，普遍有竞品作为标杆，因此，对于问题场景，可以通过性能分析识别出性能较差的组件。在比对分析时，会进行性能的自动拆解和比对，拆解和比对方法可参考性能比对工具（[compare\_tools](https://gitcode.com/ascend/mstt/tree/master/profiler/msprof_analyze/compare_tools)），结果如图1所示。
 
-**图 1**  拆解对比结果  
+**图 1**  拆解对比结果
 ![](figures/tool_analysis_fig_01.jpg)
 
 查看图1，可以从最右列（Diff Ratio）找到问题组件，问题可能出现在计算（Flash Attention、Conv、Matmul）、调度（Free Time），或者出现在更为复杂的通信场景（Uncovered Communication Time）。同时，我们使用专家建议功能（advisor），提供性能调优建议，使用方法可参考[advisor](https://gitcode.com/ascend/mstt/tree/master/profiler/msprof_analyze/advisor)。当前专家建议不断总结性能调优经验，能迅速识别并解决大部分常见性能问题。
@@ -15,6 +15,5 @@
 
 但对于以下复杂情况需要特殊处理：
 
--   若问题来源于下发（拆解中的Free）阶段：问题来源于Host，因此需要利用”火焰图”等相关工具，对CPU相关性能进行分析。
--   若问题来源于未掩盖通信（Uncover Communication Time）：问题可能来自于快慢卡或者通信网络的阻塞，需结合具体现象做进一步分析。
-
+- 若问题来源于下发（拆解中的Free）阶段：问题来源于Host，因此需要利用”火焰图”等相关工具，对CPU相关性能进行分析。
+- 若问题来源于未掩盖通信（Uncovered Communication Time）：问题可能来自于快慢卡或者通信网络的阻塞，需结合具体现象做进一步分析。

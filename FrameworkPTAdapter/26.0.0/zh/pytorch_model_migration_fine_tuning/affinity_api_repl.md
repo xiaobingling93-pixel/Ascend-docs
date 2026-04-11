@@ -4,7 +4,7 @@
 
 npu\_confusion\_transpose可以代替transpose + view的操作。
 
--   torch原生代码示例
+- torch原生代码示例
 
     ```python
     import torch  
@@ -13,7 +13,7 @@ npu\_confusion\_transpose可以代替transpose + view的操作。
     result = data.transpose(1, 2).contiguous().view(batch, height, channel*width)
     ```
 
--   torch\_npu代码示例
+- torch\_npu代码示例
 
     ```python
     import torch 
@@ -28,7 +28,7 @@ npu\_confusion\_transpose可以代替transpose + view的操作。
 
 在替换为NPU亲和梯度裁剪API之前，请确保代码中已使用NPU亲和优化器。
 
--   torch原生代码示例
+- torch原生代码示例
 
     ```python
     import torch 
@@ -36,7 +36,7 @@ npu\_confusion\_transpose可以代替transpose + view的操作。
     torch.nn.utils.clip_grad_norm_(parameters=model.parameters(), max_norm=10, norm_type=2)
     ```
 
--   torch\_npu代码示例
+- torch\_npu代码示例
 
     ```python
     import torch 
@@ -45,4 +45,3 @@ npu\_confusion\_transpose可以代替transpose + view的操作。
     optimizer = torch_npu.optim.NpuFusedAdamW(model.parameters(), lr = lr) 
     optimizer.clip_grad_norm_fused_(max_norm=10, norm_type=2)
     ```
-

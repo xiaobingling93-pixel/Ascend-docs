@@ -3,13 +3,13 @@
 ## 算子基础信息
 
 **表 1** 算子信息
+
 |算子名称|RmsNorm & RmsNormGrad|
 |------|----------------------|
 |torch_npu api接口|torch_npu.npu_rms_norm(x, gamma, epsilon)|
 |支持的torch_npu版本|2.6.0|
 |支持的芯片类型|<term>Atlas A2 训练系列产品</term>，<term>Atlas A3 训练系列产品</term> |
 |支持的数据类型|float16, bfloat16, float|
-
 
 ## torch\_npu接口参数
 
@@ -21,14 +21,14 @@ torch_npu.npu_rms_norm(self, gamma, epsilon=1e-06) -> (Tensor, Tensor)
 
 参数说明：
 
--   **self：** Tensor类型，shape支持1-8维。
--   **gamma：** Tensor类型，通常为weight，shape要求与self的后几维保持一致。
--   **epsilon：** float数据类型，用于防止除0错误。
+- **self：** Tensor类型，shape支持1-8维。
+- **gamma：** Tensor类型，通常为weight，shape要求与self的后几维保持一致。
+- **epsilon：** float数据类型，用于防止除0错误。
 
 输出说明：
 
--   第1个输出为Tensor，计算公式的最终输出y。
--   第2个输出为Tensor，rms\_norm的中间结果rstd，用于反向计算。
+- 第1个输出为Tensor，计算公式的最终输出y。
+- 第2个输出为Tensor，rms\_norm的中间结果rstd，用于反向计算。
 
 ## 模型中替换代码及算子计算逻辑
 
@@ -136,27 +136,26 @@ torch.rsqrt(x.pow(2).mean(-1, keepdim=True) + self.eps)
 
 ## 已支持模型典型case
 
--   case 1：
+- case 1：
 
     x: \[1024, 1, 12288\], bfloat16
 
     gamma: \[12288\], bfloat16
 
--   case 2：
+- case 2：
 
     x: \[512, 4, 4096\], bfloat16
 
     gamma: \[4096\], bfloat16
 
--   case 3：
+- case 3：
 
     x: \[4, 2048, 5120\], bfloat16
 
     gamma: \[5120\], bfloat16
 
--   case 4：
+- case 4：
 
     x: \[2, 2048, 4096\], bfloat16
 
     gamma: \[4096\], bfloat16
-

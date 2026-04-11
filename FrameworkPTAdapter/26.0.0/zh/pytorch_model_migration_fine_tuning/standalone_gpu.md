@@ -2,12 +2,12 @@
 
 ## 环境准备
 
-1.  请参见《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（商用版）或《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（社区版）手册，安装硬件与OS，NPU驱动和固件以及CANN软件；请参见《[Ascend Extension for PyTorch 软件安装指南](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/installation_guide/installation_description.md)》手册，安装PyTorch框架、torch\_npu插件以及APEX模块（可选）。
-2.  根据实际需求准备模型环境，如conda、docker以及三方库依赖。
+1. 请参见《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（商用版）或《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（社区版）手册，安装硬件与OS，NPU驱动和固件以及CANN软件；请参见《[Ascend Extension for PyTorch 软件安装指南](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/installation_guide/installation_description.md)》手册，安装PyTorch框架、torch\_npu插件以及APEX模块（可选）。
+2. 根据实际需求准备模型环境，如conda、docker以及三方库依赖。
 
 ## 模型脚本配置
 
--   **GPU转NPU**
+- **GPU转NPU**
 
     通常模型源码支持GPU单机单卡训练，用户根据[模型迁移](model_migration.md)章节的指导，将模型源码映射至NPU，即可完成模型脚本配置。以下示例以一个简单的自定义模型为例，适配NPU需要注意和修改的内容已注释。
 
@@ -88,7 +88,7 @@
         main()
     ```
 
--   **CPU转NPU**
+- **CPU转NPU**
 
     如果模型源码仅使用了CPU编程，不支持GPU单机单卡训练，用户可使用如下命令，将数据、模型放置NPU上训练。
 
@@ -117,7 +117,7 @@
 
 执行如下命令拉起单机训练，以下参数为举例，用户可根据实际情况自行改动。
 
--   **GPU转NPU**
+- **GPU转NPU**
 
     ```shell
     python3 main.py \               # main.py为上述模型脚本配置示例代码名称，用户可自行定义
@@ -126,7 +126,7 @@
           --epochs 1                # 训练迭代轮数
     ```
 
--   **CPU转NPU**
+- **CPU转NPU**
 
     ```shell
     python3 main.py \                                             # main.py为上述模型脚本配置示例代码名称，用户可自行定义
@@ -142,4 +142,3 @@
                       --weight_decay 1e-4 \                       # 权重衰减 
                       --gpu 0                                     # device号, 这里参数名称仍为gpu, 但迁移完成后实际训练设备已在代码中定义为npu
     ```
-

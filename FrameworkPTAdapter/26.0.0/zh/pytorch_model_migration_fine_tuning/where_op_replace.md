@@ -13,4 +13,3 @@ out = torch.where(x &lt; y, y, x)
 ```python
 out = torch.lerp(x, y, (x &lt; y).float())
 ```
-

@@ -3,6 +3,7 @@
 ## 算子基础信息
 
 **表 1** 算子信息
+
 |算子名称|SwiGlu|
 |------|-------|
 |torch_npu api接口|torch_npu.npu_swiglu(self,dim)|
@@ -20,8 +21,8 @@ torch_npu.npu_swiglu(Tensor self, int dim=-1) -> (Tensor)
 
 参数说明：
 
--   **self：** Tensor类型，shape支持1-8维。
--   **dim：** int类型，默认为-1。
+- **self：** Tensor类型，shape支持1-8维。
+- **dim：** int类型，默认为-1。
 
 输出说明：
 
@@ -29,7 +30,7 @@ torch_npu.npu_swiglu(Tensor self, int dim=-1) -> (Tensor)
 
 ## 模型中替换代码及算子计算逻辑
 
--   SwiGlu算子常见于LLaMA、LLaMA2、Baichuan等LLM模型中，由于torch侧没有提供SwiGlu算子的接口，因此在模型中通常是以自定义类的形式出现，在forward函数中定义计算逻辑。例如：
+- SwiGlu算子常见于LLaMA、LLaMA2、Baichuan等LLM模型中，由于torch侧没有提供SwiGlu算子的接口，因此在模型中通常是以自定义类的形式出现，在forward函数中定义计算逻辑。例如：
 
     ```python
     class SwiGlu(torch.nn.Module):
@@ -77,7 +78,7 @@ torch_npu.npu_swiglu(Tensor self, int dim=-1) -> (Tensor)
             return output
     ```
 
--   用torch\_npu的接口替换forward函数中的所有内容。替换如下：
+- 用torch\_npu的接口替换forward函数中的所有内容。替换如下：
 
     ```python
     import torch_npu
@@ -112,7 +113,7 @@ torch_npu.npu_swiglu(Tensor self, int dim=-1) -> (Tensor)
             return torch_npu.npu_swiglu(x, dim = dim)
     ```
 
--   算子的计算逻辑：
+- 算子的计算逻辑：
 
     参考替换前forward函数。
 
@@ -129,19 +130,18 @@ torch_npu.npu_swiglu(Tensor self, int dim=-1) -> (Tensor)
 
 ## 已支持模型典型case
 
--   case 1:
+- case 1:
 
-    x: \[8192, 1, 3904\], bfloat16
+  x: \[8192, 1, 3904\], bfloat16
 
--   case 2:
+- case 2:
 
-    x: \[4096, 4, 1376\], bfloat16
+  x: \[4096, 4, 1376\], bfloat16
 
--   case 3:
+- case 3:
 
-    x: \[4096, 4, 4096\], bfloat16,float16
+  x: \[4096, 4, 4096\], bfloat16,float16
 
--   case 4:
+- case 4:
 
-    x: \[4096, 4, 6848\], bfloat16,float16
-
+  x: \[4096, 4, 6848\], bfloat16,float16

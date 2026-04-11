@@ -11,4 +11,3 @@
 除内存快照保存的相关文件外，同目录下还额外保存了CANN相关组件的内存占用信息，文件目录为PROF\_XXX，用户可参考《CANN 性能调优工具用户指南》中的“[msprof模型调优工具](https://www.hiascend.com/document/detail/zh/canncommercial/850/devaids/Profiling/atlasprofiling_16_0010.html)”章节，导出数据对内存进行进一步分析。
 
 同时支持从so文件中加载自定义NPU内存分配器，详情请参考《PyTorch 框架特性指南》中的“[自定义内存分配器](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/framework_feature_guide_pytorch/custom_memory_allocator.md)”章节。
-

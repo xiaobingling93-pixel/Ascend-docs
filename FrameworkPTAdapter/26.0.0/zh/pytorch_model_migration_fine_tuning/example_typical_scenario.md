@@ -64,4 +64,3 @@ for epoch in range(args.epochs):
 ```
 
 执行命令拉起训练，端到端模型脚本示例可参考[LINK](https://gitee.com/ascend/ModelZoo-PyTorch/blob/master/PyTorch/contrib/others/ToyModel_for_PyTorch/train_1p_with_amp.py)，启动脚本示例可参考[LINK](https://gitee.com/ascend/ModelZoo-PyTorch/blob/master/PyTorch/contrib/others/ToyModel_for_PyTorch/test/run_1p_with_amp.sh)。
-

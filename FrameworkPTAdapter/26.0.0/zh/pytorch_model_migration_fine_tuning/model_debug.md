@@ -4,7 +4,7 @@
 
 其他常见报错问题和解决方法可参见《[故障案例](https://www.hiascend.com/document/caselibrary)》。
 
--   **脚本打印定位**：使用print打印，判断模型发生问题的代码位置。由于PyTorch框架是异步执行框架，直接打印可能位置不准确，需要添加流同步逻辑辅助打点。
+- **脚本打印定位**：使用print打印，判断模型发生问题的代码位置。由于PyTorch框架是异步执行框架，直接打印可能位置不准确，需要添加流同步逻辑辅助打点。
 
     ```python
     print(torch.npu.synchronize(),"debug message")
@@ -16,8 +16,8 @@
     >
     > 该方法适用于问题定位场景，正式训练可删除。
 
--   **pdb断点调试**：在需要设置断点的部分添加函数。
-    -   方法一：在代码中引入pdb模块，在需要设置断点的部分添加set\_trace函数触发调试器。
+- **pdb断点调试**：在需要设置断点的部分添加函数。
+    - 方法一：在代码中引入pdb模块，在需要设置断点的部分添加set\_trace函数触发调试器。
 
         ```python
         import pdb
@@ -30,7 +30,7 @@
 
         ![](./figures/model_debug_fig_01.png)
 
-    -   方法二：在需要设置断点的部分添加breakpoint函数，脚本运行至此处会停留。
+    - 方法二：在需要设置断点的部分添加breakpoint函数，脚本运行至此处会停留。
 
         ```python
         breakpoint()
@@ -39,16 +39,16 @@
         下图是在执行训练的循环中设置断点的效果。<br>
         ![](./figures/model_debug_fig_02.png)
 
--   **gdb命令行调试**：gdb调试工具的主要功能为在程序中设置断点、监视变量、单步骤运行、运行时改变变量值、跟踪路径、线程切换。此方法主要针对coredump场景，执行目录下会生成core dump文件，使用gdb调试该文件并打印堆栈，方法如下：
-    1.  参考[GDB官方文档](https://sourceware.org/gdb/)安装GDB。
-    2.  设置生成coredump文件（ulimit设置）。
+- **gdb命令行调试**：gdb调试工具的主要功能为在程序中设置断点、监视变量、单步骤运行、运行时改变变量值、跟踪路径、线程切换。此方法主要针对coredump场景，执行目录下会生成core dump文件，使用gdb调试该文件并打印堆栈，方法如下：
+    1. 参考[GDB官方文档](https://sourceware.org/gdb/)安装GDB。
+    2. 设置生成coredump文件（ulimit设置）。
 
         ```shell
         ulimit -c    # 查看当前设置，0表明不生成coredump文件，需要更改ulimit设置
         ulimit -c unlimited    # unlimited将生成coredump文件大小设置为无限制，此时如果进程崩溃就会生成coredump文件
         ```
 
-    3.  设置coredump文件存储位置和名称。
+    3. 设置coredump文件存储位置和名称。
 
         ```shell
         # 临时修改生成的coredump文件的名称，加粗命令为文件名称的变量，可自行设置
@@ -72,12 +72,11 @@
         |%h|主机名|
         |%e|程序文件名|
 
-
-    4.  生成coredump文件。
+    4. 生成coredump文件。
 
         运行模型脚本，若模型报错、进程崩溃，即可在当前目录下生成coredump文件。
 
-    5.  调试coredump文件。
+    5. 调试coredump文件。
 
         执行如下命令进入gdb模式，调试coredump文件。
 
@@ -106,10 +105,9 @@
         |finish|退出函数|
         |q|退出gdb|
 
-
         更多调试命令请参考[官方文档](http://www.sourceware.org/gdb/documentation/)。
 
--   **Hook定位**：该方法主要针对定位模型中某个module的报错，通常适用于正反向module的报错定位。
+- **Hook定位**：该方法主要针对定位模型中某个module的报错，通常适用于正反向module的报错定位。
 
     在脚本中添加如下代码，定义hook。
 
@@ -132,4 +130,3 @@
     下图展示了添加hook函数后的日志打印内容，可以看到模型的每个模块名被打印出来，用户也可以通过修改hook\_func函数，自定义想打印的内容。
 
     ![](./figures/model_debug_fig_04.png)
-
