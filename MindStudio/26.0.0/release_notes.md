@@ -1,8 +1,8 @@
 # 版本说明
 
-MindStudio各个子工具的版本说明获取方式如下表所示。
+MindStudio各个子工具版本说明的获取链接如下表所示。
 
-| 工具名称 | 子工具安装获取方式                                    |
+| 工具名称 | 获取链接                                    |
 |:--:| :----------------------------------------------------------|
 | msKPP | [版本说明](https://gitcode.com/Ascend/mskpp/releases)               |
 | msOpGen | [版本说明](https://gitcode.com/Ascend/msopgen/releases)               |
