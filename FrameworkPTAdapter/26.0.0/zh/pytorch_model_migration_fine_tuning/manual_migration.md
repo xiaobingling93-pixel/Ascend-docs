@@ -44,7 +44,7 @@
         torch_npu.npu.set_device(local_rank)
         ```
 
-3. 替换CUDA接口：将训练脚本中的CUDA接口替换为NPU接口，例如模型、损失函数、数据集等迁移到NPU上。常见替换接口请参见[常见PyTorch迁移替换接口](pytorch_migrate_api.md)。更多接口请参见《[Ascend Extension for PyTorch 自定义API参考](https://gitcode.com/Ascend/op-plugin/blob/7.3.0/docs/menu_Pytorch_API.md)》。
+3. 替换CUDA接口：将训练脚本中的CUDA接口替换为NPU接口，例如模型、损失函数、数据集等迁移到NPU上。常见替换接口请参见[常见PyTorch迁移替换接口](pytorch_migrate_api.md)。更多接口请参见《[Ascend Extension for PyTorch 自定义API参考](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/docs/zh/custom_APIs/menu_Pytorch_API.md)》。
 
     a. CUDA接口替换为NPU接口。
 

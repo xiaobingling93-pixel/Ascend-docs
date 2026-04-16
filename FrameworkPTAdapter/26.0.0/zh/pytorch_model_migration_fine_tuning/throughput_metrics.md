@@ -7,9 +7,9 @@
 因此，为了正确测量吞吐率，可以执行以下两个步骤：
 
 1. 估计允许最大并行度的最佳训练样本数据批量大小，即batch size；
-2. 在AI训练集群中给定这个最佳batch size大小，测量网络在1秒钟内可以处理的训练样本数据。
+2. 在AI训练集群中给定这个最佳batch size，测量网络在1秒钟内可以处理的训练样本数据。
 
-要找到最佳batch size大小值，一个有效的经验法则是达到Ascend昇腾处理器对给定数据类型的内存限制，即batch size占满内存。这取决于硬件类型、网络的大小以及输入数据的大小。
+要找到最佳batch size值，一个有效的经验法则是达到Ascend昇腾处理器对给定数据类型的内存限制，即batch size占满内存。这取决于硬件类型、网络的大小以及输入数据的大小。
 
 要找到这个最大的batch size，最快方法是执行二分搜索。当时间不重要时，简单的顺序搜索就足够了。不过在大模型训练的过程中，batch size的值会影响到重计算、Pipeline并行、Tensor并行等不同并行模式的配比，还有micro batch size的数据配比。因此默认batch size为16的倍数比较合理。
 
@@ -19,7 +19,7 @@
 
 ![](./figures/throughput_metrics_fig_01.png)
 
-- **BS**为batch size per DP，即每个数据并行维度的batch size大小。
+- **BS**为batch size per DP，即每个数据并行维度的batch size。
 - **N**为集群中数据并行维度的大小。
 - **step\_time**为在分布式集群中，执行完一个total batch size的时间（单位为s）。
 

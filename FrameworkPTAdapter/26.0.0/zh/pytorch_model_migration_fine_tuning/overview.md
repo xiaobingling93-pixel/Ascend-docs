@@ -74,7 +74,7 @@ PyTorch作为当前深度学习领域中广泛采用的框架之一，经过Asce
     <tr>
       <td colspan="2">自动驾驶模型</td>
       <td>Driving SDK自动驾驶加速库</td>
-      <td>请参见<a href="https://gitcode.com/Ascend/DrivingSDK/blob/branch_v7.3.0/docs/get_started/model_optimization.md">《自驾模型迁移优化指导》</a>。</td>
+      <td>请参见<a href="https://gitcode.com/Ascend/DrivingSDK/blob/branch_v26.0.0/docs/zh/migration_tuning/model_optimization.md">《自驾模型迁移优化指导》</a>。</td>
     </tr>
   </tbody>
 </table>

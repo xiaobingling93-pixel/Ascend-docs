@@ -14,7 +14,7 @@
     export TASK_QUEUE_ENABLE=2
     ```
 
-    该环境变量的实现细节请参考《环境变量参考》中的“[TASK\_QUEUE\_ENABLE](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/environment_variable_reference/TASK_QUEUE_ENABLE.md)”章节。
+    该环境变量的实现细节请参考《环境变量参考》中的“[TASK\_QUEUE\_ENABLE](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/environment_variable_reference/TASK_QUEUE_ENABLE.md)”章节。
 
 > [!NOTE]
 >

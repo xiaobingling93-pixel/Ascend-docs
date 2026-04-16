@@ -12,7 +12,7 @@
 
 - [（可选）特性适配](optional_feature_adaptation.md)
   - [特征值检测](eigenvalue_detection.md)
-  - [混合精度适配](mixed_prec_adpt.md)
+  - [混合精度适配](mixed_prec_adapt.md)
     - [适配简介](adaptation_introduction.md)
     - [适配样例（典型场景）](example_typical_scenario.md)
     - [适配样例（梯度累加场景）](grad_accum_example.md)

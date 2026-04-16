@@ -11,7 +11,7 @@
 > - 由于此特性检测对象为梯度，无梯度场景（如推理、强化学习的推理部分）不支持使用。
 > - 特征值检测需要计算激活值梯度的统计值，会产生额外的显存占用，最多可能存在1.5G的额外显存消耗，用户显存紧张情况下可能导致OOM（Out of Memory，内存不足）。
 
-特征值检测具体介绍可参见《PyTorch 框架特性指南》中的“[特征值检测](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/framework_feature_guide_pytorch/feature_value_detection.md)”章节。
+特征值检测具体介绍可参见《PyTorch 框架特性指南》中的“[特征值检测](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/framework_feature_guide_pytorch/feature_value_detection.md)”章节。
 
 ## 开启检测开关
 
@@ -29,7 +29,7 @@
     # 开启特征值检测和Checksum联动功能
     ```
 
-    更多参数可参考《PyTorch 框架特性指南》中的“[特征值检测](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/framework_feature_guide_pytorch/feature_value_detection.md)”章节。
+    更多参数可参考《PyTorch 框架特性指南》中的“[特征值检测](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/framework_feature_guide_pytorch/feature_value_detection.md)”章节。
 
 ## 故障处理
 
