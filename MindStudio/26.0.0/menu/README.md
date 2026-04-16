@@ -2,194 +2,155 @@
 
 MindStudio是华为面向昇腾AI开发者提供的全流程工具链，致力于提供端到端的昇腾AI应用开发解决方案，使能开发者高效完成训练开发、推理开发和算子开发。
 
+-  [MindStudio是什么](https://gitcode.com/Ascend/docs/blob/master/MindStudio/26.0.0/mindstudio_introduction.md)
+- [版本说明](https://gitcode.com/Ascend/docs/blob/master/MindStudio/26.0.0/release_notes.md)
+  
+- [快速入门](https://gitcode.com/Ascend/docs/blob/master/MindStudio/26.0.0/menu/ms_quickstart_menu.md)
+   -  [算子开发工具快速入门](https://gitcode.com/Ascend/msot/blob/26.0.0/docs/zh/quick_start/op_tool_quick_start.md)
+   -  训练场景工具快速入门
+      - [PyTorch场景msTT工具快速入门](https://gitcode.com/Ascend/mstt/blob/26.0.0/docs/zh/pytorch_mstt_quick_start.md)
+      - [MindSpore场景msTT工具快速入门](https://gitcode.com/Ascend/mstt/blob/26.0.0/docs/zh/mindspore_mstt_quick_start.md)
+   -  [大模型推理工具快速入门](https://gitcode.com/Ascend/msit/blob/26.0.0/docs/zh/msit_quick_start.md)
+
+
 ## 可视化工具
 
-   [MindStudio Insight工具](https://gitcode.com/Ascend/msinsight/blob/master/docs/zh/user_guide/overview.md)
+[MindStudio Insight工具](https://gitcode.com/Ascend/msinsight/blob/26.0.0/docs/zh/user_guide/overview.md)
 
 可视化性能调优工具，辅助定位模型和算子的性能问题。
 
 ## 算子开发工具
 
-- [简介](https://gitcode.com/Ascend/msot/blob/master/docs/zh/overview/overview.md)
-
-- [版本说明](https://gitcode.com/Ascend/msot/blob/master/docs/zh/release_notes/release_notes.md)
-
-- [安装指南](https://gitcode.com/Ascend/msot/blob/master/docs/zh/install_guide/msot_install_guide.md)
-  
-   提供算子开发工具整包的安装指导。
-
-   各个子工具也可以使用对应子包单独安装，可参照对应子工具安装手册。
-   
-- [快速入门](https://gitcode.com/Ascend/msot/blob/master/docs/zh/quick_start/op_tool_quick_start.md)
-
-   算子开发场景下MindStudio工具使用的快速入门。
-
-- [算子设计工具](https://gitcode.com/Ascend/mskpp/blob/master/docs/zh/quick_start/mskpp_quick_start.md)
+- [算子设计 msKPP](https://gitcode.com/Ascend/mskpp/blob/26.0.0/docs/zh/quick_start/mskpp_quick_start.md)
 
    支持用户输入算子表达，进而预测算子在这一算法实现下的性能上限。
 
-- [算子调用工具](https://gitcode.com/Ascend/mskl/blob/master/docs/zh/quick_start/mskl_quick_start.md)
+- [算子调用 msKL](https://gitcode.com/Ascend/mskl/blob/26.0.0/docs/zh/quick_start/mskl_quick_start.md)
 
    利用提供的接口在Python脚本中快速实现Kernel下发代码生成、编译及运行Kernel。
 
-- [算子工程创建工具](https://gitcode.com/Ascend/msopgen/blob/master/docs/zh/quick_start/msopgen_quick_start.md)
+- [算子工程 msOpGen](https://gitcode.com/Ascend/msopgen/blob/26.0.0/docs/zh/quick_start/msopgen_quick_start.md)
 
    包含msOpGen提供模板工程生成能力，简化算子工程搭建并辅助算子测试验证；msOpST旨在真实的硬件环境中，对算子的输入输出进行测试，以验证算子的功能是否正确。
 
-- [算子异常检测工具](https://gitcode.com/Ascend/mssanitizer/blob/master/docs/zh/quick_start/mssanitizer_quick_start.md)
+- [异常检测 msSanitizer](https://gitcode.com/Ascend/mssanitizer/blob/26.0.0/docs/zh/quick_start/mssanitizer_quick_start.md)
 
    提供内存检测、竞争检测、未初始化检测及同步检测的能力，支持多核程序下内存问题的精准定位。
 
-- [算子调试工具](https://gitcode.com/Ascend/msdebug/blob/master/docs/zh/quick_start/msdebug_quick_start.md)
+- [算子调试 msDebug](https://gitcode.com/Ascend/msdebug/blob/26.0.0/docs/zh/quick_start/msdebug_quick_start.md)
 
    提供基于昇腾处理器的原生环境调试能力，实现灵活的变量展示。支持算子功能调试，单步调试（上板）等功能。
 
-- [算子调优工具](https://gitcode.com/Ascend/msopprof/blob/master/docs/zh/quick_start/msopprof_quick_start.md)
+- [算子调优 msOpProf](https://gitcode.com/Ascend/msopprof/blob/26.0.0/docs/zh/quick_start/msopprof_quick_start.md)
 
    提供上板和仿真的性能数据采集方式，并通过MindStudio Insight进行可视化呈现，方便用户快速定位算子性能瓶颈。
 
-- [msTX工具](https://gitcode.com/Ascend/mstx/blob/master/docs/zh/mstx_api_reference.md)
-
-   可以自定义采集时间段或者关键函数的开始和结束时间点，识别关键函数或迭代等信息，对性能和算子问题快速定界。
-
 ## 训练开发工具
 
-- [简介](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/overview.md)
+**开发**
 
-- [版本说明](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/release_notes.md)
+- [分析迁移 msTransplant](https://gitcode.com/Ascend/mstt/blob/26.0.0/msfmktransplt/docs/zh/msfmktransplt_instruct.md)
 
-- [安装指南](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/mstt_install_guide.md)
+  将PyTorch训练脚本一键式迁移至昇腾NPU。
 
-   提供训练开发工具整包的安装指导。
+**调试**
 
-   各个子工具也可以使用对应子包单独安装，可参照对应子工具安装手册。
+- [精度调试 msProbe](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/quick_start/pytorch_quick_start.md)
 
-- [快速入门]()
+  针对昇腾提供的全场景精度工具链，帮助用户快速提高模型精度定位效率。
 
-   训练开发场景下MindStudio工具使用的快速入门。
+**调优**
 
-   [PyTorch场景msTT工具快速入门](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/pytorch_mstt_quick_start.md)
-
-   [MindSpore场景msTT工具快速入门](https://gitcode.com/Ascend/mstt/blob/master/docs/zh/mindspore_mstt_quick_start.md)
-
-**分析迁移**
-
-[分析迁移工具](https://gitcode.com/Ascend/mstt/blob/master/msfmktransplt/docs/zh/msfmktransplt_instruct.md)
-
-将PyTorch训练脚本一键式迁移至昇腾NPU。
-
-**精度调试**
-
-[精度调试工具](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/dump/mindspore_dump_quick_start.md)
-
-针对昇腾提供的全场景精度工具链，帮助用户快速提高模型精度定位效率。
-
-**性能调优**
-
-- [模型调优工具](https://gitcode.com/Ascend/msprof/blob/master/docs/zh/quick_start.md)
+- [模型调优 msProf](https://gitcode.com/Ascend/msprof/blob/26.0.0/docs/zh/quick_start.md)
 
      支持采集CANN和NPU性能数据，提升昇腾设备性能调优效率。
 
-- [Ascend PyTorch调优工具](https://gitcode.com/Ascend/pytorch/blob/v2.7.1/docs/zh/ascend_pytorch_profiler/ascend_pytorch_profiler_user_guide.md)
+- [Ascend PyTorch Profiler](https://gitcode.com/Ascend/pytorch/blob/v2.7.1/docs/zh/ascend_pytorch_profiler/ascend_pytorch_profiler_user_guide.md)
 
      提供PyTorch训练/在线推理场景采集性能数据，输出可视化的性能数据文件，提升性能分析效率。
 
-- [msTX工具](https://gitcode.com/Ascend/mstx/blob/master/docs/zh/mstx_api_reference.md)
+- [MindSpore Profiler](../mindspore_profiler_user_guide.md)
+
+     提供MindSpore训练/在线推理场景采集性能数据，输出可视化的性能数据文件，提升性能分析效率。
+
+- [工具扩展SDK msTX](https://gitcode.com/Ascend/mstx/blob/26.0.0/docs/zh/api_reference/mstx_api_reference.md)
 
      可以自定义采集时间段或者关键函数的开始和结束时间点，识别关键函数或迭代等信息，对性能和算子问题快速定界。
 
-- [性能分析工具](https://gitcode.com/Ascend/msprof-analyze/blob/master/docs/zh/README.md)
+- [性能分析 msprof-analyze](https://gitcode.com/Ascend/msprof-analyze/blob/26.0.0/docs/zh/README.md)
 
      基于采集的性能数据进行分析，提供昇腾设备性能瓶颈快速识别能力。
 
-- [内存分析工具](https://gitcode.com/Ascend/msmemscope/blob/master/docs/zh/quick_start.md)
+- [内存分析 msMemScope](https://gitcode.com/Ascend/msmemscope/blob/26.0.0/docs/zh/quick_start.md)
 
      提供整网级多维度显存数据采集、自动诊断、优化分析能力。
 
-- [在线监控工具](https://gitcode.com/Ascend/msmonitor/blob/master/docs/zh/quick_start.md)
+- [在线监测 msMonitor](https://gitcode.com/Ascend/msmonitor/blob/26.0.0/docs/zh/quick_start.md)
 
      支持落盘和在线性能数据采集，提供集群场景性能监测及定位能力。
 
-- [msPTI工具](https://gitcode.com/Ascend/mspti/blob/master/docs/zh/README.md)
+- [调优工具接口库 msPTI](https://gitcode.com/Ascend/mspti/blob/26.0.0/docs/zh/quick_start.md)
 
      用户可以通过msPTI构建针对NPU应用程序的工具，用于分析应用程序的性能。
 
-**扩展工具**
+**扩展**
 
-- [bind_core](https://gitcode.com/Ascend/mstt/blob/master/profiler/affinity_cpu_bind/README.md)
+实践案例
 
-  绑核脚本，支持非侵入修改工程代码，实现一键式绑核功能。
-
-- [Tinker](https://gitcode.com/Ascend/mstt/blob/master/profiler/tinker/README.md)
-
-  Tinker大模型并行策略自动寻优系统，根据提供的训练脚本，进行单节点NPU性能测量，推荐高性能并行策略训练脚本。
+- [性能问题通用定位指南](https://gitcode.com/Ascend/docs/blob/26.0.0/MindStudio/cases/general_performance_issue_troubleshooting_guide/guide.md)
+- [大模型训练性能瓶颈定位流程案例](https://gitcode.com/Ascend/docs/blob/26.0.0/MindStudio/cases/case_of_troubleshooting_performance_bottleneck_in_llm_training.md)
+- [大模型训练精度问题定位案例](https://gitcode.com/Ascend/docs/blob/26.0.0/MindStudio/cases/case_of_accuracy_issue_in_llm_training.md)
 
 ## 推理开发工具
 
-- [简介](https://gitcode.com/Ascend/msit/blob/master/docs/zh/overview.md)
+**调优**
 
-- [版本说明](https://gitcode.com/Ascend/msit/blob/master/docs/zh/release_notes.md)
+- [模型调优 msProf](https://gitcode.com/Ascend/msprof/blob/26.0.0/docs/zh/quick_start.md)
 
-- [安装指南](https://gitcode.com/Ascend/msit/blob/master/docs/zh/msit_install_guide.md)
+  支持采集CANN和NPU性能数据，提升昇腾设备性能调优效率。
 
-   提供推理开发工具整包的安装指导。
+- [在线监测 msMonitor](https://gitcode.com/Ascend/msmonitor/blob/26.0.0/docs/zh/quick_start.md)
 
-   各个子工具也可以使用对应子包单独安装，可参照对应子工具安装手册。
+  支持落盘和在线性能数据采集，提供集群场景性能监测及定位能力。
 
-- [快速入门](https://gitcode.com/Ascend/msit/blob/master/docs/zh/msit_quick_start.md)
+- [服务化调优 msServiceProf](https://gitcode.com/Ascend/msserviceprofiler/blob/26.0.0/docs/zh/quick_start.md)
 
-   推理开发场景下MindStudio工具使用的快速入门。
+  支持请求调度、模型执行过程可视化，提升服务化性能分析效率。
 
-**性能调优**
+- [预检工具 msprechecker](https://gitcode.com/Ascend/msit/blob/master/msprechecker/README.md)
 
-- [模型调优工具](https://gitcode.com/Ascend/msprof/blob/master/docs/zh/quick_start.md)
+  支持环境预检，连通性预检，推理过程中的落盘和比对功能。
 
-     支持采集CANN和NPU性能数据，提升昇腾设备性能调优效率。
+- [性能分析 msprof-analyze](https://gitcode.com/Ascend/msprof-analyze/blob/26.0.0/docs/zh/README.md)
 
-- [msTX工具](https://gitcode.com/Ascend/mstx/blob/master/docs/zh/mstx_api_reference.md)
+  基于采集的性能数据进行分析，提供昇腾设备性能瓶颈快速识别能力。
 
-     可以自定义采集时间段或者关键函数的开始和结束时间点，识别关键函数或迭代等信息，对性能和算子问题快速定界。
+**调试**
 
-- [在线监控工具](https://gitcode.com/Ascend/msmonitor/blob/master/docs/zh/quick_start.md)
+- [精度调试 msProbe](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/dump/vllm_dump_instruct.md)
 
-     支持落盘和在线性能数据采集，提供集群场景性能监测及定位能力。
+  针对昇腾提供的全场景精度工具链，帮助用户快速提高模型精度定位效率。
 
-- [服务化性能调优工具](https://gitcode.com/Ascend/msserviceprofiler/blob/master/docs/zh/quick_start.md)
+- [内存分析 msMemScope](https://gitcode.com/Ascend/msmemscope/blob/26.0.0/docs/zh/quick_start.md)
 
-     支持请求调度、模型执行过程可视化，提升服务化性能分析效率。
+  提供整网级多维度显存数据采集、自动诊断、优化分析能力。
 
-- [预检工具](https://gitcode.com/Ascend/msit/blob/master/msprechecker/README.md)
+**扩展**
 
-     支持环境预检，连通性预检，推理过程中的落盘和比对功能。
+- [模型量化 msModelSlim](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/getting_started/quantization_quick_start.md)
 
-- [性能分析工具](https://gitcode.com/Ascend/msprof-analyze/blob/master/docs/zh/README.md)
+  以加速为目标、压缩为技术、昇腾为根本的亲和压缩工具。
 
-     基于采集的性能数据进行分析，提供昇腾设备性能瓶颈快速识别能力。
+- [工具扩展SDK msTX](https://gitcode.com/Ascend/mstx/blob/26.0.0/docs/zh/api_reference/mstx_api_reference.md)
 
-**精度调试**
+  可以自定义采集时间段或者关键函数的开始和结束时间点，识别关键函数或迭代等信息，对性能和算子问题快速定界。
 
-- [精度调试工具](https://gitcode.com/Ascend/msprobe/blob/master/docs/zh/dump/mindspore_dump_quick_start.md)
+- 实践案例
 
-     针对昇腾提供的全场景精度工具链，帮助用户快速提高模型精度定位效率。
-
-- [内存分析工具](https://gitcode.com/Ascend/msmemscope/blob/master/docs/zh/quick_start.md)
-
-     提供整网级多维度显存数据采集、自动诊断、优化分析能力。
-
-**模型量化**
-
-[模型压缩工具](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/getting_started/quantization_quick_start.md)
-
-以加速为目标、压缩为技术、昇腾为根本的亲和压缩工具。
-
-## 实践案例
-
-- [性能问题通用定位指南](https://gitcode.com/Ascend/docs/blob/master/MindStudio/cases/general_performance_issue_troubleshooting_guide/guide.md)
-- [大模型训练性能瓶颈定位流程案例](https://gitcode.com/Ascend/docs/blob/master/MindStudio/cases/case_of_troubleshooting_performance_bottleneck_in_llm_training.md)
-- [大模型训练精度问题定位案例](https://gitcode.com/Ascend/docs/blob/master/MindStudio/cases/case_of_accuracy_issue_in_llm_training.md)
-- [大模型推理精度问题分析案例](https://gitcode.com/Ascend/docs/blob/master/MindStudio/cases/llm_inference_accuracy_analysis_case.md)
-- [大模型推理量化调试调优指南](https://gitcode.com/Ascend/docs/blob/master/MindStudio/cases/foundation_model_inference_quantization_debugging_and_tuning_guide.md)
-- [传统模型推理迁移调试调优全流程指南](https://gitcode.com/Ascend/docs/blob/master/MindStudio/cases/traditional_model_inference_optimizing_case.md)
+  - [性能问题通用定位指南](https://gitcode.com/Ascend/docs/blob/26.0.0/MindStudio/cases/general_performance_issue_troubleshooting_guide/guide.md)
+  - [大模型推理精度问题分析案例](https://gitcode.com/Ascend/docs/blob/26.0.0/MindStudio/cases/llm_inference_accuracy_analysis_case.md)
+  - [传统模型推理迁移调试调优全流程指南](https://gitcode.com/Ascend/docs/blob/26.0.0/MindStudio/cases/traditional_model_inference_optimizing_case.md)
+  - [大模型推理量化调试调优指南](https://gitcode.com/Ascend/docs/blob/26.0.0/MindStudio/cases/foundation_model_inference_quantization_debugging_and_tuning_guide.md)
 
 ## 参考
 
