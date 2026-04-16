@@ -1,16 +1,13 @@
 # 模型调优工具
 
-- [快速入门](https://gitcode.com/Ascend/msprof/blob/master/docs/zh/quick_start.md)
-- [安装指南](https://gitcode.com/Ascend/msprof/blob/master/docs/zh/msprof_install_guide.md)
+- [快速入门](https://gitcode.com/Ascend/msprof/blob/26.0.0/docs/zh/quick_start.md)
+- [安装指南](https://gitcode.com/Ascend/msprof/blob/26.0.0/docs/zh/msprof_install_guide.md)
 - [功能介绍]()
-    - [msProf性能数据采集]()
-    - [msProf性能数据解析](https://gitcode.com/Ascend/msprof/blob/master/docs/zh/msprof_parsing_instruct.md)
-    - [性能数据文件参考](https://gitcode.com/Ascend/msprof/blob/master/docs/zh/profile_data_file_references.md)
+    - [msProf性能数据采集](https://www.hiascend.com/document/detail/zh/mindstudio/830/T&ITools/Profiling/atlasprofiling_16_0008.html)
+    - [msProf性能数据解析](https://gitcode.com/Ascend/msprof/blob/26.0.0/docs/zh/msprof_parsing_instruct.md)
+    - [性能数据文件参考](https://gitcode.com/Ascend/msprof/blob/26.0.0/docs/zh/profile_data_file_references.md)
     - [扩展功能]()
-      - [msprof扩展功能](https://gitcode.com/Ascend/msprof/blob/master/docs/zh/extended_functions.md)
-      - [Function Monitor](https://gitcode.com/Ascend/msprof/blob/master/misc/function_monitor/README.md)
-    
-      - [GIL Tracer](https://gitcode.com/Ascend/msprof/blob/master/misc/gil_tracer/README.md)
-      
-      - [Host诊断调优工具](https://gitcode.com/Ascend/msprof/blob/master/misc/host_analyzer/README.md)
+      - [msprof扩展功能](https://gitcode.com/Ascend/msprof/blob/26.0.0/docs/zh/extended_functions.md)
+      - [Function Monitor](https://gitcode.com/Ascend/msprof/blob/26.0.0/misc/function_monitor/README.md)
+      - [GIL Tracer](https://gitcode.com/Ascend/msprof/blob/26.0.0/misc/gil_tracer/README.md)
 
