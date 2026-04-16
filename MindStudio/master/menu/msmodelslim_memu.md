@@ -50,10 +50,6 @@
       - [伪量化精度测试工具](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/feature_guide/traditional_quantization_v0/fake_quantization_accuracy_testing_tool.md)
       - [多模态生成模型推理优化](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/feature_guide/traditional_quantization_v0/inference_optimization_for_multimodal_generative_model.md)
       - [常见代码示例](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/feature_guide/traditional_quantization_v0/quantization_and_sparse_quantization_scenario_import_code_examples.md)
-  - [开发者指南]()
-    - [LLM大模型接入指南](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/developer_guide/integrating_models.md)
-    - [多模态理解模型接入](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/developer_guide/integrating_multimodal_understanding_model.md)
-    - [项目目录结构](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/dir_structure.md)
   - [调试案例集]()
     - [精度调优案例]()
       - [量化精度调优指南](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/case_studies/quantization_precision_tuning_guide.md)
@@ -105,6 +101,4 @@
         - [SessionConfig](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/python_api_v0/unified_multimodal_generation_apis/SessionConfig.md)
   - [附录]()
     - [常见问题](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/appendix/faq.md)
-    - [版本说明](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/appendix/release_notes.md)
-    - [安全声明](https://gitcode.com/Ascend/msmodelslim/blob/master/docs/zh/appendix/security_statement.md)
     
