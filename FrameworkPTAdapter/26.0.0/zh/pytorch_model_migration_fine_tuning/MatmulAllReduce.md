@@ -9,7 +9,7 @@
 |torch_npu api接口|torch_npu.npu_mm_all_reduce_base|
 |支持的torch_npu版本|2.6.0,2.8.0|
 |支持的芯片类型|<term>Atlas A2 训练系列产品</term>|
-|支持的数据类型|支持的输入和输出数据类型有差异，详细请参考《API参考》中的“[torch_npu.npu_mm_all_reduce_base](https://gitcode.com/Ascend/op-plugin/blob/7.3.0/docs/context/torch_npu-npu_mm_all_reduce_base.md)”章节的“参数说明”|
+|支持的数据类型|支持的输入和输出数据类型有差异，详细请参考《API参考》中的“[torch_npu.npu_mm_all_reduce_base](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/docs/zh/custom_APIs/torch_npu/torch_npu-npu_mm_all_reduce_base.md)”章节的“参数说明”|
 
 ## torch\_npu接口参数
 
@@ -23,13 +23,13 @@ torch_npu.npu_mm_all_reduce_base(x1, x2, hcom, *, reduce_op='sum', bias=None, an
 >
 > torch\_npu接口中的问号表示这个输入参数是可选的。
 
-参数说明、输出说明和约束说明具体请参考《API参考》中的“[torch\_npu.npu\_mm\_all\_reduce\_base](https://gitcode.com/Ascend/op-plugin/blob/7.3.0/docs/context/torch_npu-npu_mm_all_reduce_base.md)”章节。
+参数说明、输出说明和约束说明具体请参考《API参考》中的“[torch\_npu.npu\_mm\_all\_reduce\_base](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/docs/zh/custom_APIs/torch_npu/torch_npu-npu_mm_all_reduce_base.md)”章节。
 
 ## 模型中替换代码及算子计算逻辑
 
 > [!NOTE]
 >
-> 当前仅展示非量化场景替换逻辑，全量化/伪量化场景请参考《API参考》中的“[torch\_npu.npu\_mm\_all\_reduce\_base](https://gitcode.com/Ascend/op-plugin/blob/7.3.0/docs/context/torch_npu-npu_mm_all_reduce_base.md)”章节的“调用示例“。
+> 当前仅展示非量化场景替换逻辑，全量化/伪量化场景请参考《API参考》中的“[torch\_npu.npu\_mm\_all\_reduce\_base](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/docs/zh/custom_APIs/torch_npu/torch_npu-npu_mm_all_reduce_base.md)”章节的“调用示例”。
 
 模型中替换代码：
 

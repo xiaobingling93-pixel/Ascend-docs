@@ -2,4 +2,4 @@
 
 - **[特征值检测](eigenvalue_detection.md)**  
 
-- **[混合精度适配](mixed_prec_adpt.md)**  
+- **[混合精度适配](mixed_prec_adapt.md)**  

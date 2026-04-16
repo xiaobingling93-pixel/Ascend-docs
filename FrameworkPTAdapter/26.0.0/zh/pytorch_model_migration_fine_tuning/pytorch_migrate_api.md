@@ -1,6 +1,6 @@
 # 常见PyTorch迁移替换接口
 
-用户需要替换原生PyTorch框架的接口，才能使用昇腾PyTorch框架。在进行网络迁移时，用户需要将部分接口转换成适配昇腾AI处理器后的接口。当前适配的部分接口请参见表1，更多接口请参见《[Ascend Extension for PyTorch 自定义API参考](https://www.hiascend.com/document/detail/zh/Pytorch/730/apiref/torchnpuCustomsapi/docs/context/overview.md)》。
+用户需要替换原生PyTorch框架的接口，才能使用昇腾PyTorch框架。在进行网络迁移时，用户需要将部分接口转换成适配昇腾AI处理器后的接口。当前适配的部分接口请参见表1，更多接口请参见《[Ascend Extension for PyTorch 自定义API参考](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/docs/zh/custom_APIs/overview.md)》。
 
 **表 1**  设备接口替换表
 
@@ -23,7 +23,7 @@
 |torch.autograd.profiler.profile(use_cuda=True)|torch.autograd.profiler.profile(use_npu=True)|指定执行profiler过程中使用CUDA/NPU。|
 |torch.cuda.Event()|torch_npu.npu.Event()|返回某个设备上的事件。|
 
-用户在构建网络或进行网络迁移时，需要创建指定数据类型的tensor。在昇腾AI处理器上创建的部分tensor如下，更多接口请参见《[Ascend Extension for PyTorch 自定义API参考](https://www.hiascend.com/document/detail/zh/Pytorch/730/apiref/torchnpuCustomsapi/docs/context/overview.md)》。
+用户在构建网络或进行网络迁移时，需要创建指定数据类型的tensor。在昇腾AI处理器上创建的部分tensor如下，更多接口请参见《[Ascend Extension for PyTorch 自定义API参考](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/docs/zh/custom_APIs/overview.md)》。
 
 **表 2**  tensor创建接口替换
 

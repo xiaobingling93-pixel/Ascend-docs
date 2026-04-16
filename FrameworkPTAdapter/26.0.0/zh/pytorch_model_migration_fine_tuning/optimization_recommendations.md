@@ -30,13 +30,13 @@
 
 - 使能内存池扩展段功能，由PyTorch管理虚拟地址与物理地址映射，降低内存碎片。
 
-    对于动态shape场景，shape随step增加而增大，从而导致内存块不能复用内存碎片上升，对该场景有较好优化。
+    对于动态shape场景，shape随step增加而增大，从而导致内存块不能复用内存碎片增加，对该场景有较好优化。
 
     ```python
     export PYTORCH_NPU_ALLOC_CONF="expandable_segments:True"
     ```
 
-    更多虚拟内存的使用请参考《PyTorch 框架特性指南》中的“[虚拟内存](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/framework_feature_guide_pytorch/virtual_memory.md)”章节。
+    更多虚拟内存的使用请参考《PyTorch 框架特性指南》中的“[虚拟内存](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/framework_feature_guide_pytorch/virtual_memory.md)”章节。
 
 > [!NOTE]
 >
@@ -52,13 +52,13 @@
 
 流（stream）是PyTorch的一个重要机制，每个流代表一个时序上严格的执行逻辑。一般地，PyTorch在执行时会启动多个流，来并行完成模型的通信和计算任务。每个流在执行过程中会根据自身需要向设备（device）申请内存，称为该流的内存池。如果一个流申请的内存池需要给另一个流使用，两个流之间需要进行通信，以当前流的内存块（block）对应的数据执行完作为对应流使用这块内存的标志。host算子下发过快时，计算流的算子来不及复用通信流的算子，特别是通信流上的算子有依赖时，需要全部结束再释放复用，多流复用的逻辑就是让通信流上的内存提前释放，让计算流复用。
 
-多流复用是PyTorch侧非常有效的内存优化方法，需要配置环境变量，代码如下：
+多流复用是PyTorch的非常有效的内存优化方法，需要配置环境变量，代码如下：
 
 ```shell
 export MULTI_STREAM_MEMORY_REUSE=1
 ```
 
-更多多流复用内容请参考《PyTorch 框架特性指南》中的“[多流内存复用](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-7.3.0/docs/zh/framework_feature_guide_pytorch/multistream_memory_reuse.md)”章节。
+更多多流复用内容请参考《PyTorch 框架特性指南》中的“[多流内存复用](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/framework_feature_guide_pytorch/multistream_memory_reuse.md)”章节。
 
 ## 减小HCCL通信缓存
 

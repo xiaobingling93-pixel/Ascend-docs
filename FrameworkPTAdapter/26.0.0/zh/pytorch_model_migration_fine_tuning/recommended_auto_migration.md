@@ -19,7 +19,7 @@
     > [!NOTE]
     >
     > - 仅PyTorch框架下需要添加from torch_npu.contrib import transfer_to_npu代码。
-    > - 自动迁移工具与已适配的《[套件与三方库支持清单](https://www.hiascend.com/document/detail/zh/Pytorch/730/modthirdparty/modparts/thirdpart_0003.html)》可能存在功能冲突，若发生冲突，请使用[工具迁移](tool_migration.md)。
+    > - 自动迁移工具与已适配的《[套件与三方库支持清单](../supported_suites_and_third_party_libraries/supported_suites_and_third_party_libraries.md)》可能存在功能冲突，若发生冲突，请使用[工具迁移](tool_migration.md)。
 
     - PyTorch 2.4.0及之前版本，添加如下迁移代码：
 

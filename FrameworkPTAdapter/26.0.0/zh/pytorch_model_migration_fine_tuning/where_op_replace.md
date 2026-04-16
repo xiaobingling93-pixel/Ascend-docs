@@ -5,11 +5,11 @@
 例如：
 
 ```python
-out = torch.where(x &lt; y, y, x)  
+out = torch.where(x < y, y, x)  
 ```
 
 替换方法如下：
 
 ```python
-out = torch.lerp(x, y, (x &lt; y).float())
+out = torch.lerp(x, y, (x < y).float())
 ```

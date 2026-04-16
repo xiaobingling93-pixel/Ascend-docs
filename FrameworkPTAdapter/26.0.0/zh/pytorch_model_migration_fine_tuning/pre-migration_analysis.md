@@ -4,7 +4,7 @@
 
 1. 若模型原始代码中调用了模型套件或第三方库，需要关注NPU对其的支持情况。
     - 如果该三方库原生支持NPU，用户需要关注NPU目前对库中特性的支持情况；
-    - 如果是昇腾适配的第三方库，用户需要额外安装该库的昇腾适配版本，并关注其适配情况。详细昇腾第三方库支持情况请参考《[套件与三方库支持清单](https://www.hiascend.com/document/detail/zh/Pytorch/730/modthirdparty/modparts/thirdpart_0003.html)》。如果用户希望以上第三方库和模型套件在适配昇腾设备后能达到更高的性能，可以自行调优。
+    - 如果是昇腾适配的第三方库，用户需要额外安装该库的昇腾适配版本，并关注其适配情况。详细昇腾第三方库支持情况请参考《[套件与三方库支持清单](../supported_suites_and_third_party_libraries/supported_suites_and_third_party_libraries.md)》。如果用户希望以上第三方库和模型套件在适配昇腾设备后能达到更高的性能，可以自行调优。
 
 2. 确认是否存在以下已知的不支持场景：
 

@@ -2,7 +2,7 @@
 
 - Megatron版本可能会影响训练精度。
 
-    Megatron作为开源社区，代码有bug是难以避免的，OPT训练过程中发现Megatron  v2.4导致了训练不收敛，而v2.6训练状态明显改善。
+    Megatron作为开源社区，代码有bug是难以避免的，OPT训练过程中发现Megatron v2.4导致了训练不收敛，而v2.6训练状态明显改善。
 
     **图 1** v2.4训练
     ![](./figures/other_factors_fig_01.png)

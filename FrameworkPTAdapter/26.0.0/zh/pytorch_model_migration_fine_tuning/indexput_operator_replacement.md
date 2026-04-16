@@ -5,7 +5,7 @@
 例如：
 
 ```python
-target_mask = (target &lt; vocab_start_index) | (target >= vocab_end_index)  
+target_mask = (target < vocab_start_index) | (target >= vocab_end_index)  
 masked_target = target.clone() - vocab_start_index  
 masked_target[target_mask] = 0 
 ```
@@ -13,7 +13,7 @@ masked_target[target_mask] = 0
 替换代码如下：
 
 ```python
-target_mask = (target &lt; vocab_start_index) | (target >= vocab_end_index)  
+target_mask = (target < vocab_start_index) | (target >= vocab_end_index)  
 masked_target = target.clone() - vocab_start_index  
 masked_target *= ~target_mask
 ```

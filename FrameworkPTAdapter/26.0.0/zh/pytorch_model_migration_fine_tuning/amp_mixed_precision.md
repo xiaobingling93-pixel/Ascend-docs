@@ -1,6 +1,6 @@
 # AMP混合精度计算过程
 
-大规模分布式并行训练中使用半精度浮点数，一般有两种选择：float16或者bfloat16。这两种格式的区别见[半精度浮点数](https://www.hiascend.com/document/detail/zh/Pytorch/730/ptmoddevg/trainingmigrguide/LMaccuracy_0009.html#ZH-CN_TOPIC_0000002507362826__section188331116161514)。float16相对于bfloat16有更高的精度，但是表示范围更小。混合精度训练首先需要把模型中适合的参数转移到半精度浮点类型。
+大规模分布式并行训练中使用半精度浮点数，一般有两种选择：float16或者bfloat16。这两种格式的区别见[半精度浮点数](./floating_point_calc.md#半精度浮点数)。float16相对于bfloat16有更高的精度，但是表示范围更小。混合精度训练首先需要把模型中适合的参数转移到半精度浮点类型。
 
 如果混合精度训练中选择float16，为了避免表示范围小引起的浮点上溢和下溢，混合精度要结合动态Loss缩放机制，以下是采用float16的混合精度训练典型流程概述：
 

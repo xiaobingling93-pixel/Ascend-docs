@@ -193,7 +193,7 @@ if __name__ == "__main__":
     export WORLD_SIZE=8  # 总的NPU数量
     
     # 启动多个进程
-    for ((local_rank=0; local_rank&lt;$WORLD_SIZE; local_rank++))
+    for ((local_rank=0; local_rank<$WORLD_SIZE; local_rank++))
     do
         export LOCAL_RANK=$local_rank
         python train_8p_shell.py &
@@ -374,7 +374,7 @@ if __name__ == "__main__":
         export NODE_RANK=0
         
         # 启动多个进程
-        for ((local_rank=0; local_rank&lt;8; local_rank++))
+        for ((local_rank=0; local_rank<8; local_rank++))
         do
             export RANK=$((NODE_RANK * 8 + local_rank))
             export LOCAL_RANK=$local_rank
@@ -397,7 +397,7 @@ if __name__ == "__main__":
         export NODE_RANK=1
         
         # 启动多个进程
-        for ((local_rank=0; local_rank&lt;8; local_rank++))
+        for ((local_rank=0; local_rank<8; local_rank++))
         do
             export RANK=$((NODE_RANK * 8 + local_rank))
             export LOCAL_RANK=$local_rank

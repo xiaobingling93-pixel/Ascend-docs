@@ -40,7 +40,7 @@ torch_npu.npu_fusion_attention(query, key, value, head_num, input_layout, pse=No
 
 ![](./figures/FlashAttentionScore_fig_01.png)
 
-参数说明、输出说明和约束说明具体请参考《API参考》中的“[torch_npu.npu_fusion_attention](https://gitcode.com/Ascend/op-plugin/blob/7.3.0/docs/context/torch_npu-npu_fusion_attention.md)”章节。
+参数说明、输出说明和约束说明具体请参考《API参考》中的“[torch_npu.npu_fusion_attention](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/docs/zh/custom_APIs/torch_npu/torch_npu-npu_fusion_attention.md)”章节。
 
 ## 模型中替换代码
 
