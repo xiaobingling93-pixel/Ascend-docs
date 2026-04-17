@@ -159,6 +159,9 @@
     },
     "Ascend/triton-ascend": {
       "extendConfig": "base"
+    },
+    "Ascend/AscendNPU-IR": {
+      "extendConfig": "base"
     }
   }
 }
