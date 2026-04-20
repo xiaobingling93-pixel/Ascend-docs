@@ -40,7 +40,7 @@
     - [checkpoint比对](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/checkpoint_compare_instruct.md)
     - [整网首个溢出节点分析](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/overflow_check/overflow_check_instruct.md)
     - [趋势可视化](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/accuracy_compare/trend_visualization_instruct.md)
-  - [MindStudio训练场景]()
+  - [MindSpore训练场景]()
     - [训练前配置检查](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/config_check_instruct.md)
     - [数据采集](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/dump/mindspore_data_dump_instruct.md)
     - [精度预检](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/accuracy_checker/mindspore_accuracy_checker_instruct.md)

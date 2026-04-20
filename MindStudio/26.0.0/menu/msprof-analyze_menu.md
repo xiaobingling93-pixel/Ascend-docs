@@ -1,8 +1,6 @@
 # 性能分析工具
 
-- [快速入门]()
-    - [PyTorch场景性能数据分析快速入门](https://gitcode.com/Ascend/mstt/blob/26.0.0/docs/zh/pytorch_mstt_quick_start.md#%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90)
-    - [MindSpore场景性能数据分析快速入门](https://gitcode.com/Ascend/mstt/blob/26.0.0/docs/zh/mindspore_mstt_quick_start.md#%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90)
+- [快速入门](msprof-analyze_quickstart.md)
 - [安装指南](https://gitcode.com/Ascend/msprof-analyze/blob/26.0.0/docs/zh/install_guide.md)
 - [功能介绍]()
     - [性能分析](https://gitcode.com/Ascend/msprof-analyze/blob/26.0.0/docs/zh/README.md)
