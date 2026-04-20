@@ -7,7 +7,7 @@
 |算子名称|RotaryMul & RotaryMulGrad|
 |-------|-------------------------|
 |torch_npu api接口|torch_npu.npu_rotary_mul(x, r1, r2)|
-|支持的torch_npu版本|2.7.1, 26.0.0|
+|支持的PyTorch版本|2.7.1, 2.10.0|
 |支持的芯片类型|<term>Atlas 训练系列产品</term>，<term>Atlas A2 训练系列产品</term>，<term>Atlas A3 训练系列产品</term>|
 |支持的数据类型|float16, bfloat16, float|
 

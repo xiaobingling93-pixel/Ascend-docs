@@ -14,7 +14,7 @@
 |npu_confusion_transpose|2.7.1/2.8.0/2.9.1/2.10.0|
 |npu_conv3d|2.7.1/2.8.0/2.9.1/2.10.0|
 |npu_deformable_conv2d|2.7.1/2.8.0/2.9.1/2.10.0|
-|npu_diou|2.1.0/2.7.1/2.8.0/2.9.1/2.10.0|
+|npu_diou|2.7.1/2.8.0/2.9.1/2.10.0|
 |npu_dropout_with_add_softmax|2.7.1/2.8.0/2.9.1/2.10.0|
 |npu_format_cast|2.7.1/2.8.0/2.9.1/2.10.0|
 |npu_fused_attention_layernorm_qkv_fwd|2.7.1/2.8.0/2.9.1/2.10.0|

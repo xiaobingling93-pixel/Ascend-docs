@@ -14,7 +14,7 @@
     ```
 
 2. 指定NPU作为训练设备。指定训练设备需修改模型训练脚本，有两种指定方式：
-    - .to\(device\)方式：定义好device后可通过**_xx_.to\(device\)**的方式将模型或数据集等加载到GPU或NPU上，如**model.to\(device\)**。该方式可以指定需要的训练资源，使用比较灵活。
+    - to\(device\)方式：定义好device后可通过**_xx_.to\(device\)**的方式将模型或数据集等加载到GPU或NPU上，如**model.to\(device\)**。该方式可以指定需要的训练资源，使用比较灵活。
 
         迁移前：
 
@@ -46,49 +46,49 @@
 
 3. 替换CUDA接口：将训练脚本中的CUDA接口替换为NPU接口，例如模型、损失函数、数据集等迁移到NPU上。常见替换接口请参见[常见PyTorch迁移替换接口](pytorch_migrate_api.md)。更多接口请参见《[Ascend Extension for PyTorch 自定义API参考](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/docs/zh/custom_APIs/menu_Pytorch_API.md)》。
 
-    a. CUDA接口替换为NPU接口。
-
-    迁移前：
-
-    ```python
-    torch.cuda.is_available()
-    ```
-
-    迁移后：
-
-    ```python
-    torch_npu.npu.is_available()
-    ```
-
-    b. 模型迁移。
-
-    迁移前：
-
-    ```python
-    model.cuda(local_rank)
-    ```
-
-    迁移后：
-
-    ```python
-    model.npu(local_rank)
-    ```
-
-    c. 数据集迁移。
+    1. CUDA接口替换为NPU接口。
 
         迁移前：
 
-    ```python
-    images = images.cuda(local_rank, non_blocking=True)
-    target = target.cuda(local_rank, non_blocking=True)
-    ```
+        ```python
+        torch.cuda.is_available()
+        ```
 
-    迁移后：
+        迁移后：
 
-    ```python
-    images = images.npu(local_rank, non_blocking=True)
-    target = target.npu(local_rank, non_blocking=True)
-    ```
+        ```python
+        torch_npu.npu.is_available()
+        ```
+
+    2. 模型迁移。
+
+        迁移前：
+
+        ```python
+        model.cuda(local_rank)
+        ```
+
+        迁移后：
+
+        ```python
+        model.npu(local_rank)
+        ```
+
+    3. 数据集迁移。
+
+        迁移前：
+
+        ```python
+        images = images.cuda(local_rank, non_blocking=True)
+        target = target.cuda(local_rank, non_blocking=True)
+        ```
+
+        迁移后：
+
+        ```python
+        images = images.npu(local_rank, non_blocking=True)
+        target = target.npu(local_rank, non_blocking=True)
+        ```
 
 ## 多卡迁移（分布式训练迁移）
 

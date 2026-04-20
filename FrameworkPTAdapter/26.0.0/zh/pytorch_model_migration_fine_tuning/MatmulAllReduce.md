@@ -7,7 +7,7 @@
 |算子名称|MatmulAllReduce|
 |------|----------------|
 |torch_npu api接口|torch_npu.npu_mm_all_reduce_base|
-|支持的torch_npu版本|2.6.0,2.8.0|
+|支持的PyTorch版本|2.6.0,2.8.0|
 |支持的芯片类型|<term>Atlas A2 训练系列产品</term>|
 |支持的数据类型|支持的输入和输出数据类型有差异，详细请参考《API参考》中的“[torch_npu.npu_mm_all_reduce_base](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/docs/zh/custom_APIs/torch_npu/torch_npu-npu_mm_all_reduce_base.md)”章节的“参数说明”|
 

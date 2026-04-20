@@ -616,7 +616,7 @@ if __name__ == "__main__":
         torchrun --nnodes 2 --nproc_per_node 8 --node_rank 1 --master_addr xxxx --master_port 12345 train_16p_torchrun.py
         ```
 
-## 拉起双机16卡训练（torch\_npu\_run方式）<a id="suctom-anchor"></a>
+## 拉起双机16卡训练（torch\_npu\_run方式）<a id="suctom-anchor11"></a>
 
 1. 修改模型脚本，脚本名称为`train_16p_torch_npu_run.py`，`train_16p_torch_npu_run.py`仅为示例。
     1. 修改get\_train\_args\(\)函数。

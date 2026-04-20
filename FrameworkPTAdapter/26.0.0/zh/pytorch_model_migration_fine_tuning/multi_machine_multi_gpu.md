@@ -38,86 +38,86 @@
 
 2. 配置device IP。
 
-    a. 在AI Server0上配置device IP，以下IP为示例。
+    1. 在AI Server0上配置device IP，以下IP为示例。
 
-    ```shell
-    hccn_tool -i 0 -ip -s address 10.***.***.2 netmask 255.255.255.0
-    hccn_tool -i 1 -ip -s address 10.***.***.3 netmask 255.255.255.0
-    hccn_tool -i 2 -ip -s address 10.***.***.4 netmask 255.255.255.0
-    hccn_tool -i 3 -ip -s address 10.***.***.5 netmask 255.255.255.0
-    hccn_tool -i 4 -ip -s address 10.***.***.6 netmask 255.255.255.0
-    hccn_tool -i 5 -ip -s address 10.***.***.7 netmask 255.255.255.0
-    hccn_tool -i 6 -ip -s address 10.***.***.8 netmask 255.255.255.0
-    hccn_tool -i 7 -ip -s address 10.***.***.9 netmask 255.255.255.0
-    ```
+        ```shell
+        hccn_tool -i 0 -ip -s address 10.***.***.2 netmask 255.255.255.0
+        hccn_tool -i 1 -ip -s address 10.***.***.3 netmask 255.255.255.0
+        hccn_tool -i 2 -ip -s address 10.***.***.4 netmask 255.255.255.0
+        hccn_tool -i 3 -ip -s address 10.***.***.5 netmask 255.255.255.0
+        hccn_tool -i 4 -ip -s address 10.***.***.6 netmask 255.255.255.0
+        hccn_tool -i 5 -ip -s address 10.***.***.7 netmask 255.255.255.0
+        hccn_tool -i 6 -ip -s address 10.***.***.8 netmask 255.255.255.0
+        hccn_tool -i 7 -ip -s address 10.***.***.9 netmask 255.255.255.0
+        ```
 
-    b.  在AI Server1上配置device IP，以下IP为示例。
+    2. 在AI Server1上配置device IP，以下IP为示例。
 
-    ```shell
-    hccn_tool -i 0 -ip -s address 10.***.***.2 netmask 255.255.255.0
-    hccn_tool -i 1 -ip -s address 10.***.***.3 netmask 255.255.255.0
-    hccn_tool -i 2 -ip -s address 10.***.***.4 netmask 255.255.255.0
-    hccn_tool -i 3 -ip -s address 10.***.***.5 netmask 255.255.255.0
-    hccn_tool -i 4 -ip -s address 10.***.***.6 netmask 255.255.255.0
-    hccn_tool -i 5 -ip -s address 10.***.***.7 netmask 255.255.255.0
-    hccn_tool -i 6 -ip -s address 10.***.***.8 netmask 255.255.255.0
-    hccn_tool -i 7 -ip -s address 10.***.***.9 netmask 255.255.255.0
-    ```
+        ```shell
+        hccn_tool -i 0 -ip -s address 10.***.***.2 netmask 255.255.255.0
+        hccn_tool -i 1 -ip -s address 10.***.***.3 netmask 255.255.255.0
+        hccn_tool -i 2 -ip -s address 10.***.***.4 netmask 255.255.255.0
+        hccn_tool -i 3 -ip -s address 10.***.***.5 netmask 255.255.255.0
+        hccn_tool -i 4 -ip -s address 10.***.***.6 netmask 255.255.255.0
+        hccn_tool -i 5 -ip -s address 10.***.***.7 netmask 255.255.255.0
+        hccn_tool -i 6 -ip -s address 10.***.***.8 netmask 255.255.255.0
+        hccn_tool -i 7 -ip -s address 10.***.***.9 netmask 255.255.255.0
+        ```
 
-    > [!NOTE]
-    >
-    > 配置device IP需遵守以下规则：<br>
-    > a.  针对<term>Atlas 训练系列产品</term>，AI Server中的第0/4、1/5、2/6、3/7号device需处于同一网段，第0/1/2/3号device在不同网段，第4/5/6/7号device在不同网段；对于集群场景，各AI Server对应的位置的device需处于同一网段，AI Server0和AI Server1的0号网卡需处于同一网段、1号网卡需要在同一网段。<br>
-    > b.  针对<term>Atlas A2 训练系列产品</term>/<term>Atlas A3 训练系列产品</term>，多台节点的NPU在同一网段即可。<br>
-    > c.  每个IP都不能冲突，相同网段下的IP需在最后8位做区分。
+        > [!NOTE]
+        >
+        > 配置device IP需遵守以下规则：
+        > 1. 针对<term>Atlas 训练系列产品</term>，AI Server中的第0/4、1/5、2/6、3/7号device需处于同一网段，第0/1/2/3号device在不同网段，第4/5/6/7号device在不同网段；对于集群场景，各AI Server对应的位置的device需处于同一网段，AI Server0和AI Server1的0号网卡需处于同一网段、1号网卡需要在同一网段。
+        > 2. 针对<term>Atlas A2 训练系列产品</term>/<term>Atlas A3 训练系列产品</term>，多台节点的NPU在同一网段即可。
+        > 3. 每个IP都不能冲突，相同网段下的IP需在最后8位做区分。
 
-    c.  使用hccn\_tool配置网络检测对象IP，从device0 - device7配置8次。
+    3. 使用hccn\_tool配置网络检测对象IP，从device0 - device7配置8次。
 
-    ```shell
-    hccn_tool -i 0 -netdetect -s address xx.xx.xx.xx
-    ```
+        ```shell
+        hccn_tool -i 0 -netdetect -s address xx.xx.xx.xx
+        ```
 
-    **表 1：** 参数说明
+        **表 1** 参数说明
 
-    |参数|说明|
-    |--|--|
-    |-i|设备ID，取值范围：0~7。|
-    |-s address|NPU网络检测对象IP，主要用于检测NPU网口网络连接状态。该IP需确保能和NPU网口IP地址互通，通常将检测对象IP配置为与NPU网口IP地址相同网段的网关地址，训练节点会定时检测NPU网口和网关地址通信是否正常。|
+        |参数|说明|
+        |--|--|
+        |-i|设备ID，取值范围：0~7。|
+        |-s address|NPU网络检测对象IP，主要用于检测NPU网口网络连接状态。该IP需确保能和NPU网口IP地址互通，通常将检测对象IP配置为与NPU网口IP地址相同网段的网关地址，训练节点会定时检测NPU网口和网关地址通信是否正常。|
 
-    d.  执行如下命令查看网络健康状态，确保两台机器间所有卡都连通。
+    4. 执行如下命令查看网络健康状态，确保两台机器间所有卡都连通。
 
-    ```shell
-    for  i  in  {0..7}; do  hccn_tool -i $i -net_health -g; done 
-    ```
+        ```shell
+        for  i  in  {0..7}; do  hccn_tool -i $i -net_health -g; done 
+        ```
 
-    回显如下所示：
+        回显如下所示：
 
-    ```shell
-    net health status: Success
-    ```
+        ```shell
+        net health status: Success
+        ```
 
-    **表 2：** 回显说明
+        **表 2** 回显说明
 
-    |字段|说明|
-    |--|--|
-    |net health status|网络健康状态。状态信息：0：Success；1：Socket fail；2：Receive timeout；3：Unreachable；4：Time exceeded；5：Fault；6：Init；7：Thread error；8：Detect ip set；其它：Unknown。|
+        |字段|说明|
+        |--|--|
+        |net health status|网络健康状态。状态信息：0：Success；1：Socket fail；2：Receive timeout；3：Unreachable；4：Time exceeded；5：Fault；6：Init；7：Thread error；8：Detect ip set；其它：Unknown。|
 
-    e.  使用hccn\_tool工具验证device IP是否配置正确。
+    5. 使用hccn\_tool工具验证device IP是否配置正确。
         
-    查询每个device的ip：
+        1. 查询每个device的ip：
 
-    ```shell
-    hccn_tool -i 0 -ip -g
-    ```
+            ```shell
+            hccn_tool -i 0 -ip -g
+            ```
 
-    打印查询结果：
+        2. 打印查询结果：
 
-    ```shell
-    ipaddr:10.***.***.2
-    netmask:255.255.***.0
-    ```
+            ```shell
+            ipaddr:10.***.***.2
+            netmask:255.255.***.0
+            ```
 
-    返回上述打印则表示已经连通。
+            返回上述打印则表示已经连通。
 
 3. 关闭防火墙。
     - Debian系列防火墙关闭命令。
@@ -168,24 +168,25 @@
 
 本节以[适配样例（DDP单NPU单进程场景）](ddp_single_npu_single_process_example.md)章节的代码为样例，为用户介绍将单卡训练脚本修改为多卡训练脚本的核心步骤。
 
-1. 在主函数中添加如下代码。<br>
-    a.  添加分布式逻辑，即在环境变量中获取local\_rank参数。
+1. 在主函数中添加如下代码。
 
-    ```python
-    local_rank = int(os.environ.get("LOCAL_RANK", 0)) 
-    ```
+    1. 添加分布式逻辑，即在环境变量中获取local\_rank参数。
 
-    b.  用local\_rank自动获取device号。
+        ```python
+        local_rank = int(os.environ.get("LOCAL_RANK", 0)) 
+        ```
 
-    ```python
-    device = torch.device(f'npu:{local_rank}')
-    ```
+    2. 用local\_rank自动获取device号。
 
-    c.  初始化，将通信方式设置为HCCL。
+        ```python
+        device = torch.device(f'npu:{local_rank}')
+        ```
 
-    ```python
-    torch.distributed.init_process_group(backend="hccl",rank=(args.node_rank)*(args.nproc_per_node) + local_rank)
-    ```
+    3. 初始化，将通信方式设置为HCCL。
+
+        ```python
+        torch.distributed.init_process_group(backend="hccl",rank=(args.node_rank)*(args.nproc_per_node) + local_rank)
+        ```
 
 2. 定义模型后，开启DDP模式。
 
@@ -209,11 +210,11 @@
 
 有5种脚本启动方式可拉起多卡训练：
 
-- [shell脚本方式](launch_multi_gpu_train_demo.md#suctom-anchor01)
-- [mp.spawn方式](launch_multi_gpu_train_demo.md#suctom-anchor02)
-- [torch.distributed.launch方式](launch_multi_gpu_train_demo.md#suctom-anchor03)
-- [torchrun方式](launch_multi_gpu_train_demo.md#suctom-anchor04)
-- [torch\_npu\_run方式](launch_multi_gpu_train_demo.md#suctom-anchor05)**（集群场景推荐）**：此方式是torchrun在大集群场景的改进版，提升集群建链性能。
+- [shell脚本方式](launch_multi_gpu_train_demo.md#suctom-anchor06)
+- [mp.spawn方式](launch_multi_gpu_train_demo.md#suctom-anchor07)
+- [torch.distributed.launch方式](launch_multi_gpu_train_demo.md#suctom-anchor08)
+- [torchrun方式](launch_multi_gpu_train_demo.md#suctom-anchor09)
+- [torch\_npu\_run方式](launch_multi_gpu_train_demo.md#suctom-anchor11)**（集群场景推荐）**：此方式是torchrun在大集群场景的改进版，提升集群建链性能。
 
 附录[拉起多卡训练脚本示例](launch_multi_gpu_train_demo.md)中，以一个简单模型脚本为样例，展示了每种拉起方式脚本代码的修改方法以及各种拉起方式的适配方法，用户可以参考学习。
 
@@ -358,16 +359,16 @@
         main()
     ```
 
-2. 启动脚本的配置样例，通过bash启动即可拉起训练，需要依次在每个节点执行：<br>
-    a.  新建启动脚本文件，例如“train\_16p\_torchrun.py”，将[1](#li209299264310)的示例代码放置其中。
-    b.  在主节点的bash执行如下指令启动，其中--master\_addr为指定主节点IP地址：
+2. 启动脚本的配置样例，通过bash启动即可拉起训练，需要依次在每个节点执行：
+    1. 新建启动脚本文件，例如“train\_16p\_torchrun.py”，将[1](#li209299264310)的示例代码放置其中。
+    2. 在主节点的bash执行如下指令启动，其中--master\_addr为指定主节点IP地址：
 
-    ```shell
-    torchrun --nnodes 2 --node_rank 0 --nproc_per_node 8 --master_addr xxxx --master_port 12345 train_16p_torchrun.py
-    ```
+        ```shell
+        torchrun --nnodes 2 --node_rank 0 --nproc_per_node 8 --master_addr xxxx --master_port 12345 train_16p_torchrun.py
+        ```
 
-    c.  在从节点的bash执行如下指令启动，其中--master\_addr为指定主节点IP地址：
+    3. 在从节点的bash执行如下指令启动，其中--master\_addr为指定主节点IP地址：
 
-    ```shell
-    torchrun --nnodes 2 --node_rank 1 --nproc_per_node 8 --master_addr xxxx --master_port 12345 train_16p_torchrun.py
-    ```
+        ```shell
+        torchrun --nnodes 2 --node_rank 1 --nproc_per_node 8 --master_addr xxxx --master_port 12345 train_16p_torchrun.py
+        ```
