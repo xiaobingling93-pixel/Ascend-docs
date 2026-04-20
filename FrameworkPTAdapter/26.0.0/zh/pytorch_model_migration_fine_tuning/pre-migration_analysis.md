@@ -26,13 +26,15 @@
     **表 2**  分析模式介绍
 
     <table>
-      <tbody align="left">
+      <thead align="left">
         <tr>
           <th>分析模式</th>
           <th>分析脚本</th>
           <th>分析结果</th>
           <th>调优建议</th>
         </tr>
+      </thead>
+      <tbody>
         <tr>
           <td>三方库套件分析模式</td>
           <td>需用户提供待分析的三方库套件源码。</td>

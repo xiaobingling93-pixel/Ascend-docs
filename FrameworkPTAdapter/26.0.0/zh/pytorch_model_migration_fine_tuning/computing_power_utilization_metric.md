@@ -10,7 +10,7 @@
 
 下面的计算公式，**B**代表batch size，**s**代表sequence length，**I**是Transformer层的数量，**h**是hidden size，**V**是vocabulary size。
 
-一个​![](./figures/computing_power_utilization_metric_fig_01.png)的矩阵乘法需要**2mnk**个浮点运算（乘加运算算两次）。Transformer层由一个注意力模块（attention）和一个2层前馈网络（FFN）组成。对于注意力模块，主要的贡献者是键（key）、查询（query）和值（value）的转换（6Bsh<sup>2</sup>次运算），注意力矩阵计算（2Bs<sup>2</sup>h次运算），对值进行注意力计算（2Bs<sup>2</sup>h次运算）和注意力后的线性投影（2Bsh<sup>2</sup>次运算）。前馈网络将隐藏大小增加到**4h**，再将其缩小回**h**。这需要16Bsh<sup>2</sup>个浮点运算。
+一个$A_{mk} × X_{kn}$的矩阵乘法需要**2mnk**个浮点运算（乘加运算算两次）。Transformer层由一个注意力模块（attention）和一个2层前馈网络（FFN）组成。对于注意力模块，主要的贡献者是键（key）、查询（query）和值（value）的转换（6Bsh<sup>2</sup>次运算），注意力矩阵计算（2Bs<sup>2</sup>h次运算），对值进行注意力计算（2Bs<sup>2</sup>h次运算）和注意力后的线性投影（2Bsh<sup>2</sup>次运算）。前馈网络将隐藏大小增加到**4h**，再将其缩小回**h**。这需要16Bsh<sup>2</sup>个浮点运算。
 
 将上面的这些加起来，每个Transformer层的正向传递结果为24Bsh<sup>2</sup>  + 4Bs<sup>2</sup>h个FLOPs。反向传递需要两倍于此的FLOPs，因为我们需要计算相对于输入和权重张量的梯度。
 

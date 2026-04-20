@@ -59,9 +59,9 @@ SDXL模型，从单机切换到6机上运行后，线性度大幅度下降。
     从accelerate框架中找到dispatch\_batch参数。通过将dispatch\_batch参数设置为False，实现每张卡加载数据时性能的显著提升。后续6机出现内存问题，主要表现为内存明显增加以及内存在训练过程中持续增长。
 
 3. **解决思路**<br>
-    a.  简化代码，通过排除法可以发现是数据集加载出现问题，因此去掉模型前反向逻辑。<br>
-    b.  通过代码梳理，从DataLoader开始，到collate\_fn再到dataset，先后排查了算子cat和内存池溢出等，均正常。<br>
-    c.  最后，发现dataset使用的是IterableDataset，dataset需要按行读取数据，而数据集是gzip格式。gzip在被IterableDataset的生成器（generator）打开后，每次只读一行，在读完前无法释放gzip。
+    1. 简化代码，通过排除法可以发现是数据集加载出现问题，因此去掉模型前反向逻辑。<br>
+    2. 通过代码梳理，从DataLoader开始，到collate\_fn再到dataset，先后排查了算子cat和内存池溢出等，均正常。<br>
+    3. 最后，发现dataset使用的是IterableDataset，dataset需要按行读取数据，而数据集是gzip格式。gzip在被IterableDataset的生成器（generator）打开后，每次只读一行，在读完前无法释放gzip。
 
 4. **解决方法**
 

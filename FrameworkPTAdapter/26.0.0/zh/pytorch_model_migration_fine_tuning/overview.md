@@ -39,12 +39,14 @@ PyTorch作为当前深度学习领域中广泛采用的框架之一，经过Asce
 **表 1**  模型迁移指导
 
 <table>
-  <tbody align="left">
+  <thead align="left">
     <tr>
       <th colspan="2">类别</th>
       <th>组件名称</th>
       <th>迁移指导</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
       <td rowspan="2">传统模型</td>
       <td>已适配传统模型</td>

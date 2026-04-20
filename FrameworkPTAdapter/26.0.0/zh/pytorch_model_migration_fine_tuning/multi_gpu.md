@@ -34,23 +34,23 @@
 
 1. 在主函数中添加如下代码。
 
-    a.  添加分布式逻辑，即在环境变量中获取local\_rank参数。
+    1. 添加分布式逻辑，即在环境变量中获取local\_rank参数。
 
-    ```python
-    local_rank = int(os.environ.get("LOCAL_RANK", 0)) 
-    ```
+        ```python
+        local_rank = int(os.environ.get("LOCAL_RANK", 0)) 
+        ```
 
-    b.  用local\_rank自动获取device号。
+    2. 用local\_rank自动获取device号。
 
-    ```python
-    device = torch.device(f'npu:{local_rank}')
-    ```
+        ```python
+        device = torch.device(f'npu:{local_rank}')
+        ```
 
-    c.  初始化，将通信方式设置为HCCL。
+    3. 初始化，将通信方式设置为HCCL。
 
-    ```python
-    torch.distributed.init_process_group(backend="hccl",rank=(args.node_rank)*(args.nproc_per_node) + local_rank)
-    ```
+        ```python
+        torch.distributed.init_process_group(backend="hccl",rank=(args.node_rank)*(args.nproc_per_node) + local_rank)
+        ```
 
 2. 定义模型后，开启DDP模式。
 
