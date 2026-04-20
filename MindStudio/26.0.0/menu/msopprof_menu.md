@@ -1,7 +1,7 @@
 # MindStudio Ops Profiler工具
 
--   [安装指南](https://gitcode.com/Ascend/msopprof/blob/26.0.0/docs/zh/install_guide/msopprof_install_guide.md)
 -   [快速入门](https://gitcode.com/Ascend/msopprof/blob/26.0.0/docs/zh/quick_start/msopprof_quick_start.md)
+-   [安装指南](https://gitcode.com/Ascend/msopprof/blob/26.0.0/docs/zh/install_guide/msopprof_install_guide.md)
 -   [用户指南]()
     -   [msopprof模式用户指南](https://gitcode.com/Ascend/msopprof/blob/26.0.0/docs/zh/user_guide/msopprof_user_guide.md)
     -   [msopprof simulator模式用户指南](https://gitcode.com/Ascend/msopprof/blob/26.0.0/docs/zh/user_guide/msopprof_simulator_user_guide.md)
