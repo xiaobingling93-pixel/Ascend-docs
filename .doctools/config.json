@@ -162,6 +162,9 @@
     },
     "Ascend/AscendNPU-IR": {
       "extendConfig": "base"
+    },
+    "Ascend/MindSpeed-MM": {
+      "extendConfig": "base"
     }
   }
 }
