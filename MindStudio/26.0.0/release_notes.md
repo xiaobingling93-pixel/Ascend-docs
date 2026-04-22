@@ -10,7 +10,7 @@ MindStudio各个子工具版本说明的获取链接如下表所示。
 | msSanitizer | [版本说明](https://gitcode.com/Ascend/mssanitizer/releases)               |
 | msOpProf| [版本说明](https://gitcode.com/Ascend/msopprof/releases)               |
 | msKL | [版本说明](https://gitcode.com/Ascend/mskl/releases)              |
-| mstx | [版本说明](https://gitcode.com/Ascend/mstx/releases)  |
+| msTX | [版本说明](https://gitcode.com/Ascend/mstx/releases)  |
 | msProf | [版本说明](https://gitcode.com/Ascend/msprof/releases)                   |
 | msProbe | [版本说明](https://gitcode.com/Ascend/msprobe/releases)                   |
 | msMonitor | [版本说明](https://gitcode.com/Ascend/monitor/releases)                   |
@@ -19,6 +19,4 @@ MindStudio各个子工具版本说明的获取链接如下表所示。
 | msServiceProfiler | [版本说明](https://gitcode.com/Ascend/msserviceprofiler/releases)                |
 | msInsight | [版本说明](https://gitcode.com/Ascend/msinsight/releases)                   |
 | msprof-analyze | [版本说明](https://gitcode.com/Ascend/msprof-analyze/releases)                  |
-| 预检工具 | [版本说明](https://gitcode.com/Ascend/msit/releases)                |
-| 分析迁移 | [版本说明](https://gitcode.com/Ascend/mstt/releases)  |
 | msModelSlim | [版本说明](https://gitcode.com/Ascend/msmodelslim/releases)  |
