@@ -23,10 +23,12 @@
       "extendConfig": "base"
     },
     "Ascend/mstt": {
-      "extendConfig": "base"
+      "extendConfig": "base",
+      "docPath": "^(?!.*(menu|/debug/|/plugins/)).*$"
     },
     "Ascend/msit": {
-      "extendConfig": "base"
+      "extendConfig": "base",
+      "docPath": "^(?!.*(menu|/msmodelslim/|/components/)).*$"
     },
     "Ascend/msot": {
       "extendConfig": "base"
@@ -74,7 +76,8 @@
       "extendConfig": "base"
     },
     "Ascend/msdebug": {
-      "extendConfig": "base"
+      "extendConfig": "base",
+      "docPath": "^(?!.*(menu|/bolt/)).*$"
     },
     "Ascend/msopprof": {
       "extendConfig": "base"
