@@ -46,3 +46,5 @@
 -   [附录]()
     -   [算子工具开发环境安装指导](https://gitcode.com/Ascend/msot/blob/26.0.0/docs/zh/common/dev_env_setup.md)
     -   [昇腾CANN容器环境安装指南](https://gitcode.com/Ascend/msot/blob/26.0.0/docs/zh/quick_start/cann_container_setup.md)
+    -   [昇腾 AI 算子开发工具链学习环境安装指南](https://gitcode.com/Ascend/msot/blob/26.0.0/docs/zh/quick_start/installation_guide.md)
+    -   [昇腾芯片 SoC 型号获取方法](https://gitcode.com/Ascend/msot/blob/26.0.0/docs/zh/quick_start/get_chip_soc_type.md)
