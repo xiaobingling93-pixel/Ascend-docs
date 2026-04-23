@@ -114,7 +114,7 @@ export CPU_AFFINITY_CONF=<mode>,npu<value1>:<value2>-<value3>
 
 Python编译优化以及torch、torch_npu的编译优化均需预先安装毕昇编译器。
 
-1. 请从鲲鹏社区官网获取该编译器的安装包。以4.1.0版本为例，单击[获取链接](<https://kunpeng-repo.obs.cn-north-4.myhuaweicloud.com/BiSheng> Enterprise/BiSheng Enterprise 203.0.0/BiShengCompiler-4.1.0-aarch64-linux.tar.gz)下载。
+1. 请从鲲鹏社区官网获取该编译器的安装包。以4.1.0版本为例，单击[获取链接](https://kunpeng-repo.obs.cn-north-4.myhuaweicloud.com/BiShengEnterprise/BiSheng Enterprise 203.0.0/BiShengCompiler-4.1.0-aarch64-linux.tar.gz)下载。
 
 2. 下载后执行以下安装及配置命令。
 
@@ -312,7 +312,7 @@ bash ci/build.sh --python=3.8 --enable_lto --enable_pgo=2
 
 当前，下发异常是导致快慢卡问题的常见原因之一，典型表现如下。
 
-- 单张计算卡的特定算子执行耗时显著增加（可通过MindStudio Insight的[时间线（Timeline）观测](performance_tool_usage.md #时间线（Timeline）观测)）。
+- 单张计算卡的特定算子执行耗时显著增加（可通过MindStudio Insight的[时间线（Timeline）](performance_tool_usage.md#performance_tool_usage09)观测）。
 
   **图1** 单函数耗时异常增加
 
@@ -342,7 +342,7 @@ bash ci/build.sh --python=3.8 --enable_lto --enable_pgo=2
 
   具体操作：使用**taskset**命令，或设置环境变量export CPU_AFFINITY_CONF=1、export CPU_AFFINITY_CONF=2。
 
-  > [!NOTE] 说明
+  > [!NOTE]
   >
   > 环境变量CPU_AFFINITY_CONF的详细说明请参考《[PyTorch 训练模型迁移调优指南](https://www.hiascend.com/document/detail/zh/Pytorch/730/ptmoddevg/trainingmigrguide/PT_LMTMOG_0002.html)》的“性能调优 > 性能调优方法 > 调度优化 > [绑核优化](https://www.hiascend.com/document/detail/zh/Pytorch/730/ptmoddevg/trainingmigrguide/performance_tuning_0060.html)”章节。
 

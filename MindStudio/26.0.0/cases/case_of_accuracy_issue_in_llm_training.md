@@ -47,9 +47,9 @@ __训练精度场景__
 
 本章主要针对迁移场景介绍精度问题定位的具体步骤，旨在帮助用户更快理解工具使用的原理、方法，并应用到其他需要定位精度问题的场景。
 
-> [!NOTE] 说明
+> [!NOTE]
 >
-> 本文介绍的场景主要使用MindStudio精度调试工具（MindStudio Probe）进行精度问题排查，详细介绍请参见《[msprobe使用手册](https://gitcode.com/Ascend/mstt/tree/br_release_MindStudio_8.3.0_20261231/debug/accuracy_tools/msprobe)》，后续内容不进行该工具参数等介绍。
+> 本文介绍的场景主要使用msProbe精度调试工具进行精度问题排查，详细介绍请参见《[msProbe精度调试工具](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/quick_start/pytorch_quick_start.md)》，后续内容不进行该工具参数等介绍。
 
 训练精度问题整体定位流程如图所示。
 
@@ -350,7 +350,7 @@ __定位方法：__
 
 #### 首step loss不一致（或同权重推理不一致）
 
-> [!NOTE] 说明
+> [!NOTE]
 >
 > 在进行工具定位前，请优先排除[环境检查](#环境检查)中的配置项问题和[问题复现](#问题复现)中的随机性问题。
 

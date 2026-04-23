@@ -21,9 +21,9 @@ MindIE推理性能可以从纯模型和服务化两个角度进行优化。
 
 因此出现性能问题后，可以优先对环境变量、涉及性能的开关进行检查，大概率问题在此处（例如没有绑核、内核版本低、日志等级等问题）。
 
-纯模型性能测试可使用[AISBench工具的benchmark-mindie评测插件](https://gitee.com/aisbench/benchmark-mindie/blob/master/README.md#纯模型性能测评)评估。
+纯模型性能测试可参考[ATB Models纯模型使用](https://www.hiascend.com/document/detail/zh/mindie/22RC1/mindiellm/llmdev/mindie_llm0009.html)进行评估。
 
-如果纯模型测试结果已经出现性能劣化现象，可以进行详细的Profiling性能分析 ，分析方法见[模型调优深入分析（MindStudio Insight）](performance_tool_usage.md#模型调优深入分析（MindStudio Insight）)。
+如果纯模型测试结果已经出现性能劣化现象，可以进行详细的Profiling性能分析 ，分析方法见[模型调优深入分析（MindStudio Insight）](performance_tool_usage.md#performance_tool_usage02)。
 
 ### 纯模型初步测试
 
@@ -60,7 +60,7 @@ MindIE推理性能可以从纯模型和服务化两个角度进行优化。
 
 - 高吞吐场景：离线批量处理（如文档生成），关注Tokens/秒（Decode阶段优化）。
 
-  > [!NOTE] 说明
+  > [!NOTE]
   >
   > 有时性能目标和实际差异较大，可以根据纯模型性能简单评估性能上限，判断时延或吞吐的极限，从而判断目标是否有可能达成。
 
@@ -130,7 +130,7 @@ MindIE推理性能可以从纯模型和服务化两个角度进行优化。
 
 **工具调优**
 
-手动调优需要一定的服务化基础。想要更便捷的调优，可以使用**服务化调优工具**（**msServiceProfiler**）的专家建议功能，请参见[服务化专家建议工具](https://gitcode.com/Ascend/msserviceprofiler/blob/master/docs/zh/service_profiling_advisor_instruct.md)。 使用专家建议工具需要先使用MindIE Benchmark进行服务化性能测试，专家建议工具会基于MindIE Benchmark测试结果落盘文件给出调优建议。
+手动调优需要一定的服务化基础。想要更便捷的调优，可以使用**服务化调优工具**（**msServiceProfiler**）的专家建议功能，请参见[服务化专家建议工具](https://gitcode.com/Ascend/msserviceprofiler/blob/26.0.0/docs/zh/service_profiling_advisor_instruct.md)。 使用专家建议工具需要先使用MindIE Benchmark进行服务化性能测试，专家建议工具会基于MindIE Benchmark测试结果落盘文件给出调优建议。
 
 **疑难问题**
 

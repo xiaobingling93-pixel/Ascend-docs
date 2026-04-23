@@ -2,7 +2,7 @@
 
 ## 集群性能劣化分析思路
 
-整体上，集群性能问题分析思路可以参考[排查思路介绍](./performance_tool_usage.md #排查思路介绍)。
+整体上，集群性能问题分析思路可以参考[排查思路介绍](./positioning_process_for_performance_issues.md#排查思路介绍)。
 
 对于一般的长稳性能问题，即在正常训练过程中出现的性能波动，需要首先考虑近期变更，并进行硬件问题初步排查，再通过Profiling找到具体问题点进行详细定位。
 
@@ -30,9 +30,9 @@
    - 版本排查：收集当前使用版本，至少包括HDK、OS、CANN、框架，通过兼容性列表，确认是否版本上存在兼容性问题，同时确认是否存在版本已知性能相关问题。
    - 变更排查：明确近期是否进行过变更，包括但不限于版本升级、集群重划分等。
    - 环境排查：查看是否存在硬件告警、查看存储（io等）、网络（丢包等）等KPI是否正常。
-   - 配置排查：分别参考[训练预检工具指南](https://gitee.com/ascend/mstt/blob/poc-precheck/profiler/msprof_analyze/precheck/README.md)和[推理预检工具指南](https://gitee.com/ascend/msit/tree/master/msprechecker)中典型检查项是否配置正确。
+   - 配置排查：参考[预检工具指南](https://gitcode.com/Ascend/msit/blob/26.0.0/msprechecker/README.md)中典型检查项是否配置正确。
 
-   > [!NOTE] 说明
+   > [!NOTE]
    >
    > 粗定位的检查项来源于历史问题定位经验，可覆盖大多数常见性能波动问题。若存在粗定位无法处理的问题，则需要通过细定位详细排查。
    >
@@ -40,7 +40,7 @@
 
 2. **细定位**
 
-   细定位的过程，请参考[详细排查](performance_tool_usage.md #详细排查)，使用模型调优工具进一步定位异常点，详细分析。
+   细定位的过程，请参考[详细排查](positioning_process_for_performance_issues.md#详细排查)，使用模型调优工具进一步定位异常点，详细分析。
 
 将粗、细定位过程的结论相互印证，得到最终问题根因及解决方案。
 

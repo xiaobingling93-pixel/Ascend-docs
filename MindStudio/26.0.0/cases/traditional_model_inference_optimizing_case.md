@@ -85,7 +85,7 @@
 
         相关参数说明可参见[命令行入参说明](https://gitcode.com/Ascend/msit/blob/master/msit/docs/debug/compare/README.md#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%85%A5%E5%8F%82%E8%AF%B4%E6%98%8E)。
 
-        > [!NOTE] 说明
+        > [!NOTE]
         > 
         > 如果已经有真实场景的输入数据，推荐优先指定输入数据进行调测。示例如下：
         > 
@@ -110,7 +110,7 @@
         |RootMeanSquareError|均方根误差。|<1.0|
         |MeanRelativeError|平均相对误差。|<1.0|
 
-        > [!NOTE] 说明
+        > [!NOTE]
         > 
         > - 可以优先查看CosineSimilarity和RelativeEuclideanDistance指标，快速感知结果。CosineSimilarity代表两个高维张量的方向是否一致，RelativeEuclideanDistance代表两个向量的距离远近。
         > - 模型精度是否达标，首要的是看整网的输出结果是否精度达标，如果输出精度达标，即使中间节点精度存在异常（包括算子溢出），也无需处理，否则需要逐个排查问题节点。更多指标细节可参考[对比结果分析步骤](https://gitcode.com/Ascend/msit/blob/master/msit/examples/cli/debug/compare/result_analyse/README.md)。
@@ -125,7 +125,7 @@
             - 算子有多个输入和多个输出，部分输入出现NaN的情况，其他一致，但是输出不一致，该算子也可能存在精度问题，需要根据模型结构找到算子的前一个节点的输出，作为下一个节点的输入来进一步分析。
             - 算子有多个输入和多个输出，输入一致，部分输出出现NaN的情况，并且其后续算子输入不一致，说明该算子可能存在精度问题。
 
-            > [!NOTE] 说明
+            > [!NOTE]
             > 
             > 使用[netron](https://netron.app/)工具打开onnx模型，便可获得模型拓扑结构图，单击节点可以观察到其输入节点的信息，结合比对结果可以快速获取上一个节点的相关信息。
 

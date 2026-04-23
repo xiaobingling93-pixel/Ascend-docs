@@ -16,13 +16,13 @@
 
 要排查某张卡的通信时长过长是通信传输本身的问题还是快慢卡问题，可通过如下方式：
 
-- 按照[通信（Communication）](performance_tool_usage.md #通信（Communication）)介绍，进入MindStudio Insight的通信耗时分析页签，若该卡的**传输时间**占比较高，则可认为是通信传输本身存在问题；**同步时间**占比较高，则可认为是快慢卡问题。
+- 按照[通信（Communication）](performance_tool_usage.md#performance_tool_usage07)介绍，进入MindStudio Insight的通信耗时分析页签，若该卡的**传输时间**占比较高，则可认为是通信传输本身存在问题；**同步时间**占比较高，则可认为是快慢卡问题。
 
   **图3** 通信时长分析
 
   ![img](../../figures/zh-cn_image_0000002535887189.png)
 
-- 可通过[概览（Summary）](performance_tool_usage.md #概览（Summary）)页签对比多卡计算、通信、空闲时间，观察是否是快慢卡问题。以[图4](#ZH-CN_TOPIC_0000002504087092__fig1472719122113)为例，若观察到各卡的空闲时间和通信时间呈负相关（即空闲时间长的，通信时间短；空闲时间短的，通信时间长），则有较大概率可以判断，该集群存在下发性能波动导致的快慢卡问题。同理，也存在计算时间和通信时间呈负相关的计算快慢卡问题。
+- 可通过[概览（Summary）](performance_tool_usage.md#performance_tool_usage06)页签对比多卡计算、通信、空闲时间，观察是否是快慢卡问题。以[图4](#ZH-CN_TOPIC_0000002504087092__fig1472719122113)为例，若观察到各卡的空闲时间和通信时间呈负相关（即空闲时间长的，通信时间短；空闲时间短的，通信时间长），则有较大概率可以判断，该集群存在下发性能波动导致的快慢卡问题。同理，也存在计算时间和通信时间呈负相关的计算快慢卡问题。
 
   **图4** 下发快慢卡问题<a name="ZH-CN_TOPIC_0000002504087092__fig1472719122113"></a>
 
@@ -97,11 +97,11 @@
 
 至此已经定位到快慢卡的问题点，下一步就需要根据算子和代码定位快慢卡的根因。
 
-### 快慢卡定位Timeline操作案例
+### 快慢卡定位Timeline操作案例<a name="solution_to_top1-1"></a>
 
 本节介绍利用MindStudio Insight进一步定位快慢卡问题的具体操作案例。
 
-若我们通过[概览（Summary）](performance_tool_usage.md #概览（Summary）)已经初步锁定了集群中存在快慢卡不同步问题，并且通过[通信（Communication）](performance_tool_usage.md #通信（Communication）)确认，集群通信时间里，传输时间占比低，等待或同步时间占比高，则确认当前集群存在“快慢卡问题”，需查看“通信耗时分析”。通过通信算子横向平铺，确认慢卡具体慢在哪里。
+若我们通过[概览（Summary）](performance_tool_usage.md#performance_tool_usage06)已经初步锁定了集群中存在快慢卡不同步问题，并且通过[通信（Communication）](performance_tool_usage.md#performance_tool_usage07)确认，集群通信时间里，传输时间占比低，等待或同步时间占比高，则确认当前集群存在“快慢卡问题”，需查看“通信耗时分析”。通过通信算子横向平铺，确认慢卡具体慢在哪里。
 
 如[图1](#ZH-CN_TOPIC_0000002504087044__fig145361328205714)所示，其中针对绿色的hcom allGather集合通信算子，时长较短的4卡、5卡、13卡为慢卡，而时长较长的卡（例如11卡、14卡等）为相对的快卡。
 
@@ -167,13 +167,13 @@
 
 #### 对比算子差异
 
-按照[算子（Operator）](performance_tool_usage.md #算子（Operator）)中描述，可以快速锁定造成耗时差异的算子，如[图2](#ZH-CN_TOPIC_0000002503927274__fig146751313103511)所示，首先设置7、8两卡进入卡间比对模式，随后按总耗时升序排列。若快慢卡存在较大算子数量差异，说明存在计算负载任务不均衡的问题，可与模型开发人员确认，该负载不均能否规避；若某类算子数量一致，但平均耗时存在差异，可求助相关算子开发负责人，或者结合[快慢卡定点精确分析法](#快慢卡定点精确分析法)中方法，通过时间线（Timeline）进一步确认问题根因。
+按照[算子（Operator）](performance_tool_usage.md#performance_tool_usage11)中描述，可以快速锁定造成耗时差异的算子，如[图2](#ZH-CN_TOPIC_0000002503927274__fig146751313103511)所示，首先设置7、8两卡进入卡间比对模式，随后按总耗时升序排列。若快慢卡存在较大算子数量差异，说明存在计算负载任务不均衡的问题，可与模型开发人员确认，该负载不均能否规避；若某类算子数量一致，但平均耗时存在差异，可求助相关算子开发负责人，或者结合[快慢卡定点精确分析法](#快慢卡定点精确分析法)中方法，通过时间线（Timeline）进一步确认问题根因。
 
 **图2** 算子卡间比对<a name="ZH-CN_TOPIC_0000002503927274__fig146751313103511"></a>
 
 ![img](../../figures/zh-cn_image_0000002535807163.png)
 
-同理，也可使用[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md #模型调优快速分析（msprof-analyze命令行工具）)工具中的compare工具，进入KernelCompare比对页，分析算子差异。
+同理，也可使用[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md#performance_tool_usage01)工具中的compare工具，进入KernelCompare比对页，分析算子差异。
 
 **图3** compare性能拆解比对工具KernelCompare比对页
 
@@ -189,7 +189,7 @@
 
 **问题分析**
 
-首先，如[图1](#ZH-CN_TOPIC_0000002503927272__fig175962111612)所示，利用[模型调优快速分析（msprof-analyze命令行工具）](https://www.hiascend.com/document/detail/zh/mindstudio/830/practicalcases/GeneralPerformanceIssue/toolsample6_014.html)中的msprof-analyze工具进行集群分析后，发现communication time和free time卡间波动趋势呈负相关（即同一张Rank中，communication耗时长的Free耗时短，communication耗时短的Free耗时长），推测出Free Time时间最短的0卡最先结束，等待其他卡，为快卡；Free Time时间最长的1卡最后结束，为慢卡。即此案例为Host侧下发性能波动导致的快慢卡问题。
+首先，如[图1](#ZH-CN_TOPIC_0000002503927272__fig175962111612)所示，利用[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md#performance_tool_usage01)中的msprof-analyze工具进行集群分析后，发现communication time和free time卡间波动趋势呈负相关（即同一张Rank中，communication耗时长的Free耗时短，communication耗时短的Free耗时长），推测出Free Time时间最短的0卡最先结束，等待其他卡，为快卡；Free Time时间最长的1卡最后结束，为慢卡。即此案例为Host侧下发性能波动导致的快慢卡问题。
 
 **图1** cluster_step_trace_time.csv交付件<a name="ZH-CN_TOPIC_0000002503927272__fig175962111612"></a>
 
@@ -249,7 +249,7 @@
 
 **定位完成**
 
-通过快慢卡时间线（Timeline）定点比对分析，可以初步确认快慢卡差异是慢卡（214卡）的Host侧下发瓶颈导致的。进一步解决Host侧下发瓶颈，可参考[Host Bound问题定位及解决方法](solution_to_top3.md#Host Bound问题定位及解决方法)中内容。
+通过快慢卡时间线（Timeline）定点比对分析，可以初步确认快慢卡差异是慢卡（214卡）的Host侧下发瓶颈导致的。进一步解决Host侧下发瓶颈，可参考[Host Bound问题定位及解决方法](solution_to_top3.md)中内容。
 
 ## 通信重传
 
@@ -287,7 +287,7 @@ LLaMA3-70B模型从4机迁移至32机集群时，发生线性度劣化。
 
 **问题分析**
 
-如[图1](#ZH-CN_TOPIC_0000002535807041__fig1423422518177)所示，利用[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md #模型调优快速分析（msprof-analyze命令行工具）)分别对正常4机集群与异常32机集群进行分析，对比两者结果发现，耗时差异主要在通信上，32机集群整体通信耗时更长。
+如[图1](#ZH-CN_TOPIC_0000002535807041__fig1423422518177)所示，利用[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md#performance_tool_usage01)分别对正常4机集群与异常32机集群进行分析，对比两者结果发现，耗时差异主要在通信上，32机集群整体通信耗时更长。
 
 **图1** cluster_step_trace_time.csv交付件，正常4机与异常32机对比<a name="ZH-CN_TOPIC_0000002535807041__fig1423422518177"></a>
 
@@ -331,7 +331,7 @@ LLaMA3-70B模型从4机迁移至32机集群时，发生线性度劣化。
 
 **问题分析**
 
-使用[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md #模型调优快速分析（msprof-analyze命令行工具）)中的compare性能比对工具，对比基线GPU和迁移后的NPU的数据，发现通信未掩盖时间存在较大差距，如[图1](#ZH-CN_TOPIC_0000002535887091__fig18477143015137)所示。
+使用[模型调优快速分析（msprof-analyze命令行工具）](performance_tool_usage.md#performance_tool_usage01)中的compare性能比对工具，对比基线GPU和迁移后的NPU的数据，发现通信未掩盖时间存在较大差距，如[图1](#ZH-CN_TOPIC_0000002535887091__fig18477143015137)所示。
 
 **图1** compare对比GPU与NPU<a name="ZH-CN_TOPIC_0000002535887091__fig18477143015137"></a>
 

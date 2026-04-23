@@ -109,7 +109,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
         ```
 
-        > [!NOTE] 说明 
+        > [!NOTE] 
         > 
         > 其中，启动确定性计算是为了保证结果的可重现性，避免随机带来的误差。
 
@@ -162,7 +162,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
         ![PID文件夹文件列表](../figures/llm_inference_accuracy_analysis_case/pid_folder_file_list.png "PID文件夹文件列表")
 
-        > [!NOTE] 说明
+        > [!NOTE]
         > 
         > 如果使用MindIE 1.0.RC1及之后版本，ATB模型由Prefill模型和Decoder模型组成，因此ATB的logits需要分别采集Prefill的logits和Decoder的logits。例如，模型A总共有68层，其中Prefill模型输出的最后一层为LmHead_33，Decoder模型输出的最后一层为LmHead_67，因此需要采集33和67层的logits。
 
@@ -203,7 +203,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
 2. 比对完成后，会生成比对结果msit_cmp_report_{TIMESTAMP}.csv文件，文件保存在比对结果保存路径下，指标结果请参见[精度比对结果参数说明](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E7%B2%BE%E5%BA%A6%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E.md)。
 
-    > [!NOTE] 说明
+    > [!NOTE]
     > 
     > 由于不同业务场景对精度的要求并不一致，通常情况下，重点指标可以参考如下要求：
     > - KL散度：bfloat16<0.005，float16<0.0001

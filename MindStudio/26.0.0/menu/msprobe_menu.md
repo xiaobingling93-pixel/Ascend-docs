@@ -61,7 +61,6 @@
 - [附录]()
   - [MindSpore动态图精度数据采集快速入门](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/dump/mindspore_dump_quick_start.md)
   - [配置文件介绍](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/dump/config_json_introduct.md)
-  - [config.json配置样例](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/dump/config_json_examples.md)
   - [比对结果说明](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/accuracy_compare/infer_compare_result.md)
   - [使用样例]()
     - [MindSpeed&LLamaFactory数据采集和自动比对](https://gitcode.com/Ascend/msprobe/blob/26.0.0/docs/zh/examples/mindspeed_llamafactory_mapping_example.md)
