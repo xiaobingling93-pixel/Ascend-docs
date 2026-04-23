@@ -342,7 +342,7 @@ bash ci/build.sh --python=3.8 --enable_lto --enable_pgo=2
 
   具体操作：使用**taskset**命令，或设置环境变量export CPU_AFFINITY_CONF=1、export CPU_AFFINITY_CONF=2。
 
-  > [!NOTE] 说明
+  > [!NOTE]  
   >
   > 环境变量CPU_AFFINITY_CONF的详细说明请参考《[PyTorch 训练模型迁移调优指南](https://www.hiascend.com/document/detail/zh/Pytorch/730/ptmoddevg/trainingmigrguide/PT_LMTMOG_0002.html)》的“性能调优 > 性能调优方法 > 调度优化 > [绑核优化](https://www.hiascend.com/document/detail/zh/Pytorch/730/ptmoddevg/trainingmigrguide/performance_tuning_0060.html)”章节。
 

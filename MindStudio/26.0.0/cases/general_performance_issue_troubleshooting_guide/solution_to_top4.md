@@ -32,7 +32,7 @@
    - 环境排查：查看是否存在硬件告警、查看存储（io等）、网络（丢包等）等KPI是否正常。
    - 配置排查：分别参考[训练预检工具指南](https://gitee.com/ascend/mstt/blob/poc-precheck/profiler/msprof_analyze/precheck/README.md)和[推理预检工具指南](https://gitee.com/ascend/msit/tree/master/msprechecker)中典型检查项是否配置正确。
 
-   > [!NOTE] 说明
+   > [!NOTE]  
    >
    > 粗定位的检查项来源于历史问题定位经验，可覆盖大多数常见性能波动问题。若存在粗定位无法处理的问题，则需要通过细定位详细排查。
    >
