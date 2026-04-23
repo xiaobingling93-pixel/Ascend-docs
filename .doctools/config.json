@@ -30,65 +30,65 @@
       "extendConfig": "base",
       "docPath": "^(?!.*(menu|/msmodelslim/|/components/)).*$"
     },
-    "Ascend/msot": {
+    "Ascend/MindStudio-Operator-Tools": {
       "extendConfig": "base"
     },
-    "Ascend/msprobe": {
+    "Ascend/MindStudio-Probe": {
       "extendConfig": "base"
     },
-    "Ascend/msprof-analyze": {
+    "Ascend/MindStudio-Profiler-Analyze": {
       "extendConfig": "base"
     },
-    "Ascend/msmodeling": {
+    "Ascend/MindStudio-Modeling": {
       "extendConfig": "base"
     },
-    "Ascend/msserviceprofiler": {
+    "Ascend/MindStudio-Service-Profiler": {
       "extendConfig": "base"
     },
-    "Ascend/msprof": {
+    "Ascend/MindStudio-Profiler": {
       "extendConfig": "base"
     },
-    "Ascend/mspti": {
+    "Ascend/MindStudio-Profiler-Tools-Interface": {
       "extendConfig": "base"
     },
-    "Ascend/msmodelslim": {
+    "Ascend/MindStudio-ModelSlim": {
       "extendConfig": "base"
     },
-    "Ascend/msmemscope": {
+    "Ascend/MindStudio-MemScope": {
       "extendConfig": "base"
     },
-    "Ascend/msmonitor": {
+    "Ascend/MindStudio-Monitor": {
       "extendConfig": "base"
     },
-    "Ascend/msinsight": {
+    "Ascend/MindStudio-Insight": {
       "extendConfig": "base"
     },
-    "Ascend/mstx": {
+    "Ascend/MindStudio-Tools-Extension-Library": {
       "extendConfig": "base"
     },
-    "Ascend/mskpp": {
+    "Ascend/MindStudio-Kernel-Performance-Prediction": {
       "extendConfig": "base"
     },
-    "Ascend/msopgen": {
+    "Ascend/MindStudio-Ops-Generator": {
       "extendConfig": "base"
     },
-    "Ascend/mssanitizer": {
+    "Ascend/MindStudio-Sanitizer": {
       "extendConfig": "base"
     },
-    "Ascend/msdebug": {
+    "Ascend/MindStudio-Debugger": {
       "extendConfig": "base",
       "docPath": "^(?!.*(menu|/bolt/)).*$"
     },
-    "Ascend/msopprof": {
+    "Ascend/MindStudio-Ops-Profiler": {
       "extendConfig": "base"
     },
-    "Ascend/mskl": {
+    "Ascend/MindStudio-Kernel-Launcher": {
       "extendConfig": "base"
     },
-    "Ascend/msopcom": {
+    "Ascend/MindStudio-Ops-Common": {
       "extendConfig": "base"
     },
-    "Ascend/msoptuner": {
+    "Ascend/MindStudio-Ops-Tuner": {
       "extendConfig": "base"
     },
     "Ascend/MindIE-Motor": {
