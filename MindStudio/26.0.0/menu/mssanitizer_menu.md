@@ -6,3 +6,5 @@
 -   [API参考](https://gitcode.com/Ascend/mssanitizer/blob/26.0.0/docs/zh/api_reference/mssanitizer_api_reference.md)
 -   [常见问题](https://gitcode.com/Ascend/mssanitizer/blob/26.0.0/docs/zh/support/faq.md)
 -   [基础案例](https://gitcode.com/Ascend/mssanitizer/blob/26.0.0/docs/zh/best_practices/basic_cases.md)
+-   [附录]()
+    -   [开启全量检测](https://gitcode.com/Ascend/mssanitizer/blob/26.0.0/docs/zh/user_guide/compile_option_config.md)
