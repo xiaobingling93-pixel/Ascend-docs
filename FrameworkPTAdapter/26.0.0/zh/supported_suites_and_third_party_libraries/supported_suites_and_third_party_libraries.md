@@ -59,8 +59,8 @@
 
 |名称|介绍|版本要求|适配说明|
 |--|--|--|--|
-|TorchAir|TorchAir是为torch_npu提供图模式能力的扩展库，支持用户使用PyTorch和torch_npu在昇腾设备上进行图模式的训练和推理。TorchAir对外提供昇腾设备的图模式编译后端，对接PyTorch的dynamo特性，将PyTorch的FX计算图转换为昇腾的GE计算图，并提供在昇腾设备上启动GE计算图编译和执行的能力。|PyTorch版本为2.6.0及以上。<br>Ascend Extension for PyTorch插件版本为26.0.0。|具体使用方法请参考《PyTorch 图模式使用指南(TorchAir)》。|
-|OpPlugin|OpPlugin插件提供了将PyTorch算子映射到昇腾AI处理器的功能，为使用PyTorch框架的开发者提供了便捷的NPU算子库调用能力。|OpPlugin的版本为26.0.0。|请参考[LINK](https://gitcode.com/Ascend/op-plugin/tree/26.0.0)安装该库，基于OpPlugin插件进行自定义算子的适配开发流程和使用样例具体可参考《PyTorch 框架特性指南》中的“基于OpPlugin算子适配开发”章节。<br>PyTorch官方提供了C++ extensions的方式供用户编写并调用自定义算子，用户可选择使用C++ extensions进行自定义算子开发适配，具体可参考《PyTorch 框架特性指南》中的“基于C++ extensions算子适配开发”章节。|
+|TorchAir|TorchAir是为torch_npu提供图模式能力的扩展库，支持用户使用PyTorch和torch_npu在昇腾设备上进行图模式的训练和推理。TorchAir对外提供昇腾设备的图模式编译后端，对接PyTorch的dynamo特性，将PyTorch的FX计算图转换为昇腾的GE计算图，并提供在昇腾设备上启动GE计算图编译和执行的能力。|PyTorch版本为2.6.0及以上。<br>Ascend Extension for PyTorch插件版本为26.0.0。|具体使用方法请参考《[PyTorch 图模式使用指南(TorchAir)](https://gitcode.com/Ascend/torchair/blob/26.0.0/docs/zh/_menu_torchair.md)》。|
+|OpPlugin|OpPlugin插件提供了将PyTorch算子映射到昇腾AI处理器的功能，为使用PyTorch框架的开发者提供了便捷的NPU算子库调用能力。|OpPlugin的版本为26.0.0。|请参考[LINK](https://gitcode.com/Ascend/op-plugin/tree/26.0.0)安装该库，基于OpPlugin插件进行自定义算子的适配开发流程和使用样例具体可参考《PyTorch 框架特性指南》中的“[基于OpPlugin算子适配开发](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/framework_feature_guide_pytorch/adaptation_overview_opplugin.md)”章节。<br>PyTorch官方提供了C++ extensions的方式供用户编写并调用自定义算子，用户可选择使用C++ extensions进行自定义算子开发适配，具体可参考《PyTorch 框架特性指南》中的“[基于C++ extensions算子适配开发](https://gitcode.com/Ascend/op-plugin/blob/26.0.0/examples/README.md)”章节。|
 |Torchvision Adapter|Torchvision Adapter插件用于昇腾适配Torchvision框架。目前该框架增加了对Torchvision所提供的常用算子的支持，基于cv2和昇腾NPU的图像处理加速后端提供图像处理加速能力。|Torchvision版本为0.21.0，PyTorch版本为2.6.0；<br>Torchvision版本为0.22.1，PyTorch版本为2.7.1。|请参考[LINK](https://gitcode.com/ascend/vision)安装该库的昇腾适配版本和了解其适配情况。|
 |Apex Patch|Apex Patch以代码patch的形式发布，用户通过对原始Apex进行patch，可以在华为昇腾AI处理器上，使用Apex的自动混合精度训练功能进行模型训练，提升AI模型的训练效率，同时保持模型的精度和稳定性。此外，Apex Patch额外提供了如梯度融合、融合优化器等，以提升部分场景下模型在昇腾NPU上的训练效率，供用户选择使用。|-|请参考[LINK](https://gitcode.com/ascend/apex)安装该库的昇腾适配版本和了解其适配情况。|
 

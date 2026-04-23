@@ -334,8 +334,8 @@
     
             for i, (inputs, labels) in enumerate(train_dataloader):
                 inputs, labels = data_process(inputs, labels)
-               # 将数据转移到对应NPU卡上
-               inputs, labels = inputs.to(device_id), labels.to(device_id)
+                # 将数据转移到对应NPU卡上
+                inputs, labels = inputs.to(device_id), labels.to(device_id)
     
                 outputs = model(inputs)
                 loss = criterion(outputs, labels)
@@ -360,7 +360,7 @@
     ```
 
 2. 启动脚本的配置样例，通过bash启动即可拉起训练，需要依次在每个节点执行：
-    1. 新建启动脚本文件，例如“train\_16p\_torchrun.py”，将[1](#li209299264310)的示例代码放置其中。
+    1. 新建启动脚本文件，例如`train_16p_torchrun.py`，将[1](#li209299264310)的示例代码放置其中。
     2. 在主节点的bash执行如下指令启动，其中--master\_addr为指定主节点IP地址：
 
         ```shell

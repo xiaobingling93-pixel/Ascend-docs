@@ -14,7 +14,7 @@
     ```
 
 2. 指定NPU作为训练设备。指定训练设备需修改模型训练脚本，有两种指定方式：
-    - to\(device\)方式：定义好device后可通过**_xx_.to\(device\)**的方式将模型或数据集等加载到GPU或NPU上，如**model.to\(device\)**。该方式可以指定需要的训练资源，使用比较灵活。
+    - to\(device\)方式：定义好device后可通过xx_.to\(device\)的方式将模型或数据集等加载到GPU或NPU上，如model.to\(device\)。该方式可以指定需要的训练资源，使用比较灵活。
 
         迁移前：
 
@@ -30,7 +30,7 @@
         model.to(device)
         ```
 
-    - set\_device方式：调用set\_device接口，指定训练设备。需注意该方式不会自动使用NPU，用户需要手动在想使用NPU的地方，添加**_xx_.npu\(\)**代码**，**将模型数据集等加载到NPU上，如**model.npu\(\)**。
+    - set\_device方式：调用set\_device接口，指定训练设备。需注意该方式不会自动使用NPU，用户需要手动在想使用NPU的地方，添加xx_.npu\(\)代码，将模型数据集等加载到NPU上，如model.npu\(\)。
 
         迁移前：
 

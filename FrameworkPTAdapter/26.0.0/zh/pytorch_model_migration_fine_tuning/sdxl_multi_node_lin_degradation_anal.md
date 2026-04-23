@@ -48,19 +48,19 @@ SDXL模型，从单机切换到6机上运行后，线性度大幅度下降。
 
 ## 优化方案
 
-1. **前期排查思路**<br>
-    a.  发现数据在HDD盘上，非NVMe盘，因此排查磁盘问题，发现没有收益。<br>
-    b.  检查机器频率和NUMA，均正常。<br>
-    c.  通过profiling和代码进行查看，模型通过accelerate代码进行broadcast，具体从主卡0卡开始，向其他所有机器的所有卡进行broadcast。<br>
-    d.  通过profiling以及对NPU硬件特性的了解，怀疑是这种数据加载方式导致的性能劣化。<br>
+1. **前期排查思路**
+    1. 发现数据在HDD盘上，非NVMe盘，因此排查磁盘问题，发现没有收益。
+    2. 检查机器频率和NUMA，均正常。
+    3. 通过profiling和代码进行查看，模型通过accelerate代码进行broadcast，具体从主卡0卡开始，向其他所有机器的所有卡进行broadcast。
+    4. 通过profiling以及对NPU硬件特性的了解，怀疑是这种数据加载方式导致的性能劣化。
 
 2. **优化数据加载以及后续遇到的问题**
 
     从accelerate框架中找到dispatch\_batch参数。通过将dispatch\_batch参数设置为False，实现每张卡加载数据时性能的显著提升。后续6机出现内存问题，主要表现为内存明显增加以及内存在训练过程中持续增长。
 
-3. **解决思路**<br>
-    1. 简化代码，通过排除法可以发现是数据集加载出现问题，因此去掉模型前反向逻辑。<br>
-    2. 通过代码梳理，从DataLoader开始，到collate\_fn再到dataset，先后排查了算子cat和内存池溢出等，均正常。<br>
+3. **解决思路**
+    1. 简化代码，通过排除法可以发现是数据集加载出现问题，因此去掉模型前反向逻辑。
+    2. 通过代码梳理，从DataLoader开始，到collate\_fn再到dataset，先后排查了算子cat和内存池溢出等，均正常。
     3. 最后，发现dataset使用的是IterableDataset，dataset需要按行读取数据，而数据集是gzip格式。gzip在被IterableDataset的生成器（generator）打开后，每次只读一行，在读完前无法释放gzip。
 
 4. **解决方法**

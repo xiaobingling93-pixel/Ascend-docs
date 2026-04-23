@@ -106,7 +106,7 @@ scaled\_dot\_product\_attention：
 - flash\_attn\_func
     - 接口参数对应表格：
 
-        **表 3：** 接口参数替换
+        **表 3** 接口参数替换
 
         |gpu参数名称|npu参数名称|说明|
         |----|----|----|
@@ -173,7 +173,7 @@ scaled\_dot\_product\_attention：
         |max_seqlen_q|-|npu无需配置该参数；gpu接口中表示query序列的最大长度，npu在接口内部计算。|
         |max_seqlen_k|-|npu无需配置该参数；gpu接口中表示key、value序列的最大长度，npu在接口内部计算。|
         |-|head_num|npu接口新增参数，表示query的头数。|
-        |-|layout|npu接口新增参数，表示qkv的layout，gpu接口默认layout为" BSND"。|
+        |-|layout|npu接口新增参数，表示qkv的layout，gpu接口默认layout为"BSND"。|
         |-|sparse_mode|npu接口新增参数，表示稀疏计算模式。sparse_mode=2表示leftUp causal，sparse_mode=3表示rightDown causal；gpu接口在FA2.0版本及之前，causal场景默认是leftUp，在2.0版本之后，默认是rightDown。|
 
     - 接口参数替换实例：
@@ -334,7 +334,7 @@ def forward(q, k, v, drop_mask, atten_mask, pse, scale, keep_prob):
 
 **表 5** case列表
 
-|id|query|key|value|head_num|layout|atten_mask|pre_token|next_token|actual_seq_qlen|actual_seq_kvlen|sparse_mode|
+|id|query|key|value|head_num|input_layout|atten_mask|pre_tockens|next_tockens|actual_seq_qlen|actual_seq_kvlen|sparse_mode|
 |--|--|--|--|--|--|--|--|--|--|--|--|
 |1|[6144,1,2048]|[6144,1,256]|[6144,1,256]|16|SBH|[2048,2048]|2048|0|None|None|4|
 |2|[1,8192,1536]|[1,8192,1536]|[1,8192,1536]|12|BSH|[1,1,8192,8192]|2147483647|0|None|None|0|

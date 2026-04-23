@@ -64,7 +64,7 @@ tcmalloc（即Thread-Caching Malloc）是一个通用的内存分配器，通过
     如果发现动态库中包含libtcmalloc的动态库路径，则说明配置已生效，以Python为例，可以看到当前Python命令均使用了libtcmalloc动态库，后续执行Python脚本时，底层均使用了tcmalloc进行内存分配。
 
     ```shell
-    ldd which python
+    ldd `which python`
     ```
 
     ![](./figures/hi_perf_mem_pool_sub_fig_02.png)

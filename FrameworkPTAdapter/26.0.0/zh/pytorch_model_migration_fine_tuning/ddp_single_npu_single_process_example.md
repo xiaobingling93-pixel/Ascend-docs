@@ -1,6 +1,6 @@
 # 适配样例（DDP单NPU单进程场景）
 
-原生PyTorch框架的AMP（Automatic Mixed Precision，自动混合精度）支持3种多卡训练场景，NPU上适配的AMP（Automatic Mixed Precision，自动混合精度）当前仅支持DDP单NPU单进程多卡训练场景。除了对样例代码添加AMP相关的改动外，还需要对样例代码进行必要的使能多卡场景改动。以下示例以一个简单的自定义模型为例，适配NPU需要注意和修改的内容已在示例中标注。
+原生PyTorch框架的AMP（Automatic Mixed Precision，自动混合精度）支持3种多卡训练场景，NPU上适配的AMP（Automatic Mixed Precision，自动混合精度）当前仅支持DDP单NPU单进程多卡训练场景。除了对样例代码添加AMP相关的改动外，还需要对样例代码进行必要的使能多卡场景改动。以下示例以一个简单的自定义模型为例介绍如何适配NPU。
 
 ## 导入AMP模块
 

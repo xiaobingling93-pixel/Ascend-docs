@@ -14,7 +14,7 @@
 使用命令行方式进行工具迁移的核心步骤如下：
 
 1. 环境准备。
-    1. 安装开发套件Ascend-cann-toolkit。具体操作请参考《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（商用版）或《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（社区版）。
+    1. 安装开发套件Ascend-cann-toolkit。具体操作请参考《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/canncommercial/900/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（商用版）或《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（社区版）。
     2. 须安装如下依赖（以root用户安装为例，非root用户需加--user参数）。
 
         ```shell
@@ -62,7 +62,7 @@
 
 ## 注意事项
 
-如果迁移时启用了“distributed“参数，想将GPU单卡脚本迁移为NPU多卡脚本，需进行如下操作获取结果文件：
+如果迁移时启用了“distributed”参数，想将GPU单卡脚本迁移为NPU多卡脚本，需进行如下操作获取结果文件：
 
 > [!NOTE]
 >
@@ -70,9 +70,9 @@
 
 1. 训练脚本语句替换。
 
-    将执行迁移命令后生成的`run_distributed_npu.sh`文件中的`please input your shell script here`语句替换成模型原来的训练shell脚本。例如将`please input your shell script here`替换为模型训练命令`bash  _model_train_script.sh _--data_path  _data_path_`。
+    将执行迁移命令后生成的`run_distributed_npu.sh`文件中的`please input your shell script here`语句替换成模型原来的训练shell脚本。例如将`please input your shell script here`替换为模型训练命令`bash model_train_script.sh --data_path data_path`。
 
-    `run\_distributed\_npu.sh`文件如下所示：
+    `run_distributed_npu.sh`文件如下所示：
 
     ```shell
     export MASTER_ADDR=127.0.0.1 

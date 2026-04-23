@@ -182,7 +182,7 @@ if __name__ == "__main__":
             train(local_rank, world_size, args)  # 修改  
         ```
 
-2. 新建shell训练脚本，脚本名称为`_start_train_8p_.sh`，`_start_train_8p_.sh`仅为示例。
+2. 新建shell训练脚本，脚本名称为`start_train_8p.sh`，`start_train_8p.sh`仅为示例。
 
     ```shell
     #!/bin/bash
@@ -309,7 +309,7 @@ if __name__ == "__main__":
 
 ## 拉起单机八卡训练（torch\_npu\_run方式）<a id="suctom-anchor05"></a>
 
-1. 修改模型脚本，脚本名称为train\_8p\_torch\_npu\_run.py，train\_8p\_torch\_npu\_run.py仅为示例。
+1. 修改模型脚本，脚本名称为`train_8p_torch_npu_run.py`，`train_8p_torch_npu_run.py`仅为示例。
     1. 修改get\_train\_args\(\)函数。
 
         ```python
@@ -362,7 +362,7 @@ if __name__ == "__main__":
             ```
 
 2. 新建shell训练脚本。
-    1. 主节点训练脚本，脚本名称为`_start_train_16p_master_node_.sh`，`_start_train_16p_master_node_.sh`仅为示例。
+    1. 主节点训练脚本，脚本名称为`start_train_16p_master_node.sh`，`start_train_16p_master_node.sh`仅为示例。
 
         ```shell
         #!/bin/bash
@@ -385,7 +385,7 @@ if __name__ == "__main__":
         wait
         ```
 
-    2. 从节点训练脚本，脚本名称为`_start_train_16p_slave_node_.sh`，`_start_train_16p_slave_node_.sh`仅为示例。
+    2. 从节点训练脚本，脚本名称为`start_train_16p_slave_node.sh`，`start_train_16p_slave_node.sh`仅为示例。
 
         ```shell
         #!/bin/bash

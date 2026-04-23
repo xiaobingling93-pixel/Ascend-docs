@@ -2,7 +2,7 @@
 
 ## 开启大页内存池
 
-在Linux操作系统上运行内存需求量较大的应用程序时，由于其采用的默认页面大小为4KB，因而将会产生较多TLB Miss和缺页中断，从而大大影响应用程序的性能。当操作系统使用大页内存时，将会大大减少TLB Miss和缺页中断的数量，显著提高应用程序的性能。大页内存分为两种，一种是标准大页，标准大页适合那些需要高性能和细粒度控制的应用程序，适用于对内存管理和性能有严格要求的场景。另一种是透明大页，透明大页适合那些希望简化配置并自动优化内存使用的应用程序，尤其适用于大多数通用场景，可根据需要来选择开启哪种大页。
+在Linux操作系统上运行内存需求量较大的应用程序时，由于操作系统采用的默认页面大小为4KB，因而将会产生较多TLB Miss和缺页中断，从而大大影响应用程序的性能。当操作系统使用大页内存时，将会大大减少TLB Miss和缺页中断的数量，显著提高应用程序的性能。大页内存分为两种，一种是标准大页，标准大页适合那些需要高性能和细粒度控制的应用程序，适用于对内存管理和性能有严格要求的场景。另一种是透明大页，透明大页适合那些希望简化配置并自动优化内存使用的应用程序，尤其适用于大多数通用场景，可根据需要来选择开启哪种大页。
 
 > [!NOTICE]
 > 
@@ -26,7 +26,7 @@
 
 > [!CAUTION]
 >
-> 开启透明大页前使用“getconf PAGESIZE“检查当前Linux操作系统页大小，若显示“4096“则表明当前操作系统默认使用的4K页内存，建议开启透明大页；若显示“65536“则表明当前操作系统使用的是64K页内存，此时透明大页2MB仅能覆盖32个基础页，无法有效缩小页延迟或者减少TLB miss，建议关闭透明大页。
+> 开启透明大页前使用“getconf PAGESIZE”检查当前Linux操作系统页大小，若显示“4096”则表明当前操作系统默认使用的4K页内存，建议开启透明大页；若显示“65536”则表明当前操作系统使用的是64K页内存，此时透明大页2MB仅能覆盖32个基础页，无法有效缩小页延迟或者减少TLB miss，建议关闭透明大页。
 
 1. 确认透明大页是否开启：
 
@@ -116,7 +116,7 @@
 
         > [!NOTE]
         >- 申请一定大小的大页内存，相应的OS可用内存大小也会等量减少，建议选取合适的大小，一般设置5000个2M大页即可（申请大页内存大小为各种size的大页内存 \* 大页内存数量之和，以上述例子为例，hugepagesz=2M仅设置了一种size的大页，且hugepages=5000，因此系统会预分配5000 \* 2M = 9.7G）。
-        >- 若大页内存数量过小，而开启相关优化手段后，程序可能引起大页内存池内存不够导致进程coredump，可以通过dmesg | tail检查系统日志是否有`PID xxx killed due to inadequate hugepage pool。
+        >- 若大页内存数量过小，而开启相关优化手段后，程序可能引起大页内存池内存不够导致进程coredump，可以通过`dmesg | tail`检查系统日志是否有`PID xxx killed due to inadequate hugepage pool`。
         > ![](./figures/hp_opt_fig_05.png)
         >- 上述大页内存配置方法仅支持在物理机上，不适用于虚拟机配置标准大页。
         >- 设置完启动项参数之后，必须重启系统才能生效。
@@ -145,12 +145,12 @@ glibc可以通过Tunables参数来设置malloc使用大页，注意该特性对g
 
 |glibc版本|启用方式|
 |--|--|
-|2.28到2.34之间（不包括2.34）|1. 首先需要额外安装libhugetlbfs库。<br>2. 安装完成后通过命令find /usr -name "libhugetlbfs.so*寻找对应动态库路径。一般在/usr/lib64/libhugetlbfs.so路径下，然后执行以下命令：<br>export HUGETLB_MORECORE=yes<br>export LD_PRELOAD=/usr/lib64/libhugetlbfs.so<br>glibc版本低于2.34（不包括2.34）只能通过libhugetlbfs库的能力使用标准大页。|
-|大于等于2.34|&#8226; 导入环境变量export GLIBC_TUNABLES=glibc.malloc.hugetlb=1，其中1表示glibc的malloc函数会使用透明大页。<br>&#8226; export GLIBC_TUNABLES=glibc.malloc.hugetlb=2，2表示glibc的malloc函数会使用标准大页。|
+|2.28到2.34之间（不包括2.34）|1. 首先需要额外安装libhugetlbfs库。<br>2. 安装完成后通过命令`find /usr -name "libhugetlbfs.so*"`寻找对应动态库路径。一般在`/usr/lib64/libhugetlbfs.so`路径下，然后执行以下命令：<br>`export HUGETLB_MORECORE=yes`<br>`export LD_PRELOAD=/usr/lib64/libhugetlbfs.so`<br>glibc版本低于2.34（不包括2.34）只能通过libhugetlbfs库的能力使用标准大页。|
+|大于等于2.34|&#8226; 导入环境变量`export GLIBC_TUNABLES=glibc.malloc.hugetlb=1`，其中1表示glibc的malloc函数会使用透明大页。<br>&#8226; `export GLIBC_TUNABLES=glibc.malloc.hugetlb=2`，2表示glibc的malloc函数会使用标准大页。|
 
 > [!NOTE]
 >
-> - 如果训练模型场景下，使用标准大页出现报错：Bus error. It is possible that dataloader's workers are out of shared memory. Please try to raise your shared memory limit.，可以尝试使用透明大页规避这个问题。
+> - 如果训练模型场景下，使用标准大页出现报错：`Bus error. It is possible that dataloader's workers are out of shared memory. Please try to raise your shared memory limit.`，可以尝试使用透明大页规避这个问题。
 > - 若在容器中使用，请先确保容器环境有权限申请大页内存池；低版本glibc（glibc版本低于2.34）采用libhugetlbfs申请大页的方式。
 
 ## tmpfs使用大页
@@ -202,7 +202,7 @@ tmpfs大页（也称为临时文件系统大页）是指在临时文件系统（
 
     |操作系统名称|软件版本要求|
     |--|--|
-    |OpenEuler|操作系统版本：openEuler-22.03-LTS-SP1、openEuler-22.03-LTS-SP3、openEuler-22.03-LTS-SP4<br>上述OS版本对应软件版本要求均为，glibc版本和glibc-devel版本大于等于2.34-h157 。|
+    |OpenEuler|操作系统版本：openEuler-22.03-LTS-SP1、openEuler-22.03-LTS-SP3、openEuler-22.03-LTS-SP4<br>上述OS版本对应软件版本要求均为，glibc版本和glibc-devel版本大于等于2.34-h157。|
     |EulerOS|操作系统版本：eulerosv2r10、eulerosv2r11、eulerosv2r12、eulerosv2r13<br>&#8226; eulerosv2r10对应glibc和glibc-devel的版本号为大于等于2.28-63.h52。<br>&#8226; eulerosv2r11对应glibc和glibc-devel的版本号为大于等于2.34-70.h8。<br>&#8226; eulerosv2r12对应glibc和glibc-devel的版本号为大于等于2.34-105.h1。<br>&#8226; eulerosv2r13对应glibc和glibc-devel的版本号为大于等于2.34-143.h3。|
 
 > [!CAUTION]

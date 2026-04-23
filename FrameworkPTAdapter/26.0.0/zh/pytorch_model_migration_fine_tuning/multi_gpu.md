@@ -219,9 +219,9 @@
         main()
     ```
 
-2. 启动脚本的配置样例，通过bash启动即可拉起训练：<br>
-    a. 新建启动脚本文件，例如`train_8p_torchrun.py`，将[1](#custom-anchor)的示例代码放置其中。<br>
-    b. 在bash执行如下指令启动：
+2. 启动脚本的配置样例，通过bash启动即可拉起训练：
+    1. 新建启动脚本文件，例如`train_8p_torchrun.py`，将[1](#custom-anchor)的示例代码放置其中。
+    2. 在bash执行如下指令启动：
 
         ```bash
         torchrun --nproc_per_node=8 --master_addr localhost --master_port 12345 train_8p_torchrun.py
