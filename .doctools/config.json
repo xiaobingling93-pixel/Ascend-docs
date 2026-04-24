@@ -164,7 +164,8 @@
       "extendConfig": "base"
     },
     "Ascend/AscendNPU-IR": {
-      "extendConfig": "base"
+      "extendConfig": "base",
+      "docPath": "^(?!.*(README|README_zh)).*$"
     },
     "Ascend/MindSpeed-MM": {
       "extendConfig": "base"
