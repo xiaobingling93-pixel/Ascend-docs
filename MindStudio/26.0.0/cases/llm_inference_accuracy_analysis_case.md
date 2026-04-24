@@ -2,7 +2,7 @@
 
 ## 问题现象
 
-大模型推理过程中精度调优的目标是为了保障模型在昇腾平台上的推理能力，通常使用数据集校准或与标杆模型的输出进行比较的方式对模型的推理能力进行评估。在精度调优过程中，常见的精度问题主要有以下几种：
+大模型推理过程中精度调优的目标是保障模型在昇腾平台上的推理能力，通常使用数据集校准或与标杆模型的输出进行比较的方式对模型的推理能力进行评估。在精度调优过程中，常见的精度问题主要有以下几种：
 
 - 模型输出无意义内容，无法正常对话。
 - 模型与标杆在回答时存在语义偏差，或确定性问题的回答存在明显差异（例如判断题的结果）。
@@ -138,7 +138,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
         ![精度指标](../figures/llm_inference_accuracy_analysis_case/accuracy_index.png "精度指标")
 
-2. 使用msit llm dump采集ATB模型logits。msit支持通过命令方式对ATB模型的数据进行dump，参数解释参考请参见[加速库模型数据dump](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-DUMP%E5%8A%A0%E9%80%9F%E5%BA%93%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)。
+2. 使用msit llm dump采集ATB模型logits。msit支持通过命令方式对ATB模型的数据进行dump，参数解释请参见[加速库模型数据dump](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-DUMP%E5%8A%A0%E9%80%9F%E5%BA%93%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)。
 
     1. 执行以下命令，获取模型网络结构信息，首次dump时需获取模型网络结构信息。
 
@@ -317,7 +317,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
     - 如果算子精度达标，表明是标杆与NPU算子输入差异导致的误差，可以通过修改模型推理计算时的数据类型，提高模型的数据精度。
 
-    - 如果算子精度不达标
+    - 如果算子精度不达标：
 
         - 检查算子输出tensor是否存在数值较小的问题（例如SelfAttentionOperation和PagedAttentionOperation），这类算子通常会使得计算出来的相对误差值偏大，导致精度比对结果不通过。这种情况推荐使用-metric指定其他指标综合判断算子精度情况。
 
