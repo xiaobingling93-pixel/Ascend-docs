@@ -24,11 +24,11 @@
     },
     "Ascend/mstt": {
       "extendConfig": "base",
-      "docPath": "^(?!.*(menu|/debug/|/plugins/)).*$"
+      "docPath": "^(?!.*(menu|debug|plugins)).*$"
     },
     "Ascend/msit": {
       "extendConfig": "base",
-      "docPath": "^(?!.*(menu|/msmodelslim/|/components/)).*$"
+      "docPath": "^(?!.*(menu|msmodelslim|components)).*$"
     },
     "Ascend/MindStudio-Operator-Tools": {
       "extendConfig": "base"
@@ -77,7 +77,7 @@
     },
     "Ascend/MindStudio-Debugger": {
       "extendConfig": "base",
-      "docPath": "^(?!.*(menu|/bolt/)).*$"
+      "docPath": "^(?!.*(menu|bolt)).*$"
     },
     "Ascend/MindStudio-Ops-Profiler": {
       "extendConfig": "base"
