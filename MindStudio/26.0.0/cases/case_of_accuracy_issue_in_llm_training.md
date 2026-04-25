@@ -106,7 +106,7 @@ __图1__ 训练精度问题整体定位流程
 - 打开确定性通信。
 
   ```shell
-  export HCCL_DETERMINISTIC=TRUE
+  export HCCL_DETERMINISTIC=true
   ```
 
 - 若仍不能复现可使用精度采集工具采集md5数据进行排查。

@@ -19,7 +19,7 @@ Profiling数据采集操作详情可参见《[msprof模型调优工具](https://
    命令示例：
 
    ```shell
-   msprof --output=$[HOME]/profiling_output $[HOME]/HIAI_PROJECTS/MyAppname/out/main
+   msprof --output=${HOME}/profiling_output ${HOME}/HIAI_PROJECTS/MyAppname/out/main
    ```
 
 3. 命令执行完成后，在--output指定的目录下生成PROF_XXX目录，目录结构如下。
@@ -281,7 +281,7 @@ aoe --framework 5 --model ./model.onnx --output model --job_type 2 --ip xx.xx.xx
 
     ```cfg
     export LD_LIBRARY_PATH=${install_path}/latest/tools/ncs/lib64/:${install_path}/latest/runtime/lib64/:$LD_LIBRARY_PATH
-    exportPATH=${install_path}/latest/tools/ncs/bin/:$PATH
+    export PATH=${install_path}/latest/tools/ncs/bin/:$PATH
     ```
 
     其中install_path请配置为CANN软件的实际安装路径。
@@ -365,7 +365,7 @@ aoe --framework 5 --model ./model.onnx --output model --job_type 2 --ip xx.xx.xx
      akt --private_key device-key.pem --public_cert device-cert.pem --ca_cert ca-cert.pem
      ```
 
-     > [1NOTE] 说明
+     > [!NOTE] 说明
      >
      > 示例命令中的私钥文件名为：host-key.pem或者device-key.pem，设备证书文件名为：host-cert.pem或者device-cert.pem，根证书文件名为：ca-cert.pem。
 

@@ -237,7 +237,7 @@ MindStudio Insight加载全部数据，进行问题定位。
 
    ![img](../figures/zh-cn_image_0000002504088272.png)
 
-### mstt advisor辅助定位
+### advisor辅助定位
 
 此案例还可以使用[advisor专家建议工具](https://gitcode.com/Ascend/msprof-analyze/blob/26.0.0/docs/zh/advisor_instruct.md)辅助定位。
 

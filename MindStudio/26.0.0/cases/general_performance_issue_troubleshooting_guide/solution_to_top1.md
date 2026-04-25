@@ -159,7 +159,7 @@
 
 #### 从概览页确定快慢卡
 
-在MindStudio Insight的概览界面查看计算/通信概览区域，可以看到，0-7卡为计算慢卡（计算时间长，通信时间短），8-15卡为计算快卡（计算时间短，通信时间长）后者通信时间长是等待前者所导致的。
+在MindStudio Insight的概览界面查看计算/通信概览区域，可以看到，0-7卡为计算慢卡（计算时间长，通信时间短），8-15卡为计算快卡（计算时间短，通信时间长），后者通信时间长是等待前者所导致的。
 
 **图1** 计算快慢卡概览页
 
@@ -369,7 +369,7 @@ ZeRO（Zero Redundancy Optimizer，零冗余优化器）模式是一种节省内
 
 **问题分析**
 
-进一步定位具体算子，发现是一个allGather算子带宽特别低，耗时300+ms，带宽只有0.1GB/，如[图2](#ZH-CN_TOPIC_0000002504087072__fig18242421111714)所示。
+进一步定位具体算子，发现是一个allGather算子带宽特别低，耗时300+ms，带宽只有0.1GB/s，如[图2](#ZH-CN_TOPIC_0000002504087072__fig18242421111714)所示。
 
 **图2** allGather算子Timeline选中详情<a name="ZH-CN_TOPIC_0000002504087072__fig18242421111714"></a>
 
@@ -379,7 +379,7 @@ ZeRO（Zero Redundancy Optimizer，零冗余优化器）模式是一种节省内
 
 **问题解决**
 
-针对DP通信域的allGather入桶做字节对齐的padding，对齐字节。当前AscendSpeed已适配针对DP通信域的allGather入桶做了字节对齐的padding，DeepSpeed和Megatron还未修改，需要去DeepSpeed源码里改nccl_start_alignment_factor，如[图3](#ZH-CN_TOPIC_0000002504087072__fig1128582301711)所示，修改后，allgather耗时从350ms变成了50ms。
+针对DP通信域的allGather入桶做字节对齐的padding，对齐字节。当前AscendSpeed已适配针对DP通信域的allGather入桶做了字节对齐的padding，DeepSpeed和Megatron还未修改，需要去DeepSpeed源码里改nccl_start_alignment_factor，如[图3](#ZH-CN_TOPIC_0000002504087072__fig1128582301711)所示，修改后，allGather耗时从350ms变成了50ms。
 
 **图3** 修改nccl_start_alignment_factor令字节对齐<a name="ZH-CN_TOPIC_0000002504087072__fig1128582301711"></a>
 
