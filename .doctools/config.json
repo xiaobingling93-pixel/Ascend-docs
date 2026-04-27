@@ -24,7 +24,7 @@
     },
     "Ascend/mstt": {
       "extendConfig": "base",
-      "docPath": "^(?!.*(menu|debug|plugins)).*$"
+      "docPath": "^(?!.*(menu|debug|plugins|profiler)).*$"
     },
     "Ascend/msit": {
       "extendConfig": "base",
@@ -70,14 +70,15 @@
       "extendConfig": "base"
     },
     "Ascend/MindStudio-Ops-Generator": {
-      "extendConfig": "base"
+      "extendConfig": "base",
+      "docPath": "^(?!.*(test)).*$"
     },
     "Ascend/MindStudio-Sanitizer": {
       "extendConfig": "base"
     },
     "Ascend/MindStudio-Debugger": {
       "extendConfig": "base",
-      "docPath": "^(?!.*(menu|bolt)).*$"
+      "docPath": "^(?!.*(menu|bolt|pstl|lld|utils|third-party|offload|mlir|llvm|lldb|libcxx|libc|flang|clang|openmp|polly|cross-project-tests|clang-tools-extra)).*$"
     },
     "Ascend/MindStudio-Ops-Profiler": {
       "extendConfig": "base"
