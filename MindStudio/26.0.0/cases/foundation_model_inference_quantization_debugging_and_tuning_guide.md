@@ -4,7 +4,7 @@
 
 ### 前提条件
 
-需熟悉msModelSlim量化压缩工具的各项功能和基本操作。
+需熟悉[msModelSlim量化压缩工具](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/README.md)的各项功能和基本操作。
 
 ### 问题与挑战
 
@@ -35,7 +35,7 @@
 
 ### 使用前准备
 
-安装 msModelSlim 工具，详情请参见《[msModelSlim工具安装指南](https://msmodelslim.readthedocs.io/zh-cn/latest/zh/getting_started/install_guide/)》。
+安装 msModelSlim 工具，详情请参见《[msModelSlim工具安装指南](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/getting_started/install_guide.md)》。
 
 ### 调优步骤详解
 
@@ -57,10 +57,10 @@
 
     |算法|算法特点|适用场景与建议|算法说明|
     |----|----|----|----|
-    |Smooth Quant|仅对norm-linear子图做平滑处理，支持对称/非对称|在Qwen、DeepSeek等热门系列模型上精度较差，不建议使用|[离群值抑制算法说明](https://msmodelslim.readthedocs.io/zh-cn/latest/zh/quantization_algorithms/outlier_suppression_algorithms/smooth_quant/)|
-    |Iterative Smooth|解决o_proj、down_proj等层因无相邻LayerNorm而无法转移scale的问题。支持对称/非对称|优先使用。运行快，精度较高。超长序列校准集时优先使用。可调整 alpha 参数优化|[离群值抑制算法说明](https://msmodelslim.readthedocs.io/zh-cn/latest/zh/quantization_algorithms/outlier_suppression_algorithms/iterative_smooth/)|
-    |Flex Smooth Quant|通过二阶段网格搜索自动寻找最优alpha和beta参数，实现更精细的平衡|当Iterative Smooth不达标、对量化时间不敏感且显存充足时尝试。运行速度较慢|[灵活平滑量化算法说明](https://msmodelslim.readthedocs.io/zh-cn/latest/zh/quantization_algorithms/outlier_suppression_algorithms/flex_smooth_quant/)|
-    |QuaRot|通过对权重和激活进行旋转变换，将离群值"分散"到多个通道，平滑分布|可与其他算法叠加使用，作为进一步提升精度的备选方案|[基于旋转的离群值抑制算法说明](https://msmodelslim.readthedocs.io/zh-cn/latest/zh/quantization_algorithms/outlier_suppression_algorithms/quarot/)|
+    |Smooth Quant|仅对norm-linear子图做平滑处理，支持对称/非对称|在Qwen、DeepSeek等热门系列模型上精度较差，不建议使用|[Smooth Quant离群值抑制算法说明](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/quantization_algorithms/outlier_suppression_algorithms/smooth_quant.md)|
+    |Iterative Smooth|解决o_proj、down_proj等层因无相邻LayerNorm而无法转移scale的问题。支持对称/非对称|优先使用。运行快，精度较高。超长序列校准集时优先使用。可调整 alpha 参数优化|[Iterative Smooth离群值抑制算法说明](https://msmodelslim.readthedocs.io/zh-cn/latest/zh/quantization_algorithms/outlier_suppression_algorithms/iterative_smooth/)|
+    |Flex Smooth Quant|通过二阶段网格搜索自动寻找最优alpha和beta参数，实现更精细的平衡|当Iterative Smooth不达标、对量化时间不敏感且显存充足时尝试。运行速度较慢|[灵活平滑量化算法说明](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/quantization_algorithms/outlier_suppression_algorithms/flex_smooth_quant.md)|
+    |QuaRot|通过对权重和激活进行旋转变换，将离群值“分散”到多个通道，平滑分布|可与其他算法叠加使用，作为进一步提升精度的备选方案|[基于旋转的离群值抑制算法说明](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/quantization_algorithms/outlier_suppression_algorithms/quarot.md)|
 
     **总结建议**
 
@@ -70,7 +70,7 @@
     - 进阶方案：若调整后精度仍无法满足需求，可进一步尝试启用Flex Smooth Quant算法，或通过叠加QuaRot算法实现协同优化。
 
 3. 量化算法选择  
-根据量化对象（权重/激活）和比特数选择合适算法。量化算法选择包括[表4 权重量化方法对比](#权重量化方法对比)选择和[表5 激活量化方法对比](#激活量化方法对比)选择两部分。
+根据量化对象（权重/激活）和比特数选择合适算法。量化算法选择包括[表4 权重量化方法对比](#权重量化方法对比)和[表5 激活量化方法对比](#激活量化方法对比)两部分。
 
     **表4** 权重量化方法对比<a id="权重量化方法对比"></a>
 
@@ -86,13 +86,12 @@
 
     ```text
     - type: "linear_quant"
-    qconfig:
+      qconfig:
         weight:
-        scope: "per_channel"  ## 量化粒度：per_channel
-        dtype: "int8"         ## 量化数据类型：int8 或 int4
-        symmetric: true       ## 是否对称量化：权重量化通常使用对称量化
-        method: "minmax"      ## 量化方法：minmax、ssz 或 autoround
-
+          scope: "per_channel"  # 量化粒度：per_channel
+          dtype: "int8"         # 量化数据类型：int8 或 int4
+          symmetric: true       # 是否使用对称量化：权重量化通常使用对称量化
+          method: "minmax"      # 量化方法：minmax、ssz 或 autoround
     ```
 
     **总结建议**
@@ -126,17 +125,17 @@
 
     ```text
     - type: "linear_quant"
-    qconfig:
+      qconfig:
         act:
-        scope: "per_tensor"   ## 量化粒度：per_tensor、per_token 或 pd_mix
-        dtype: "int8"         ## 量化数据类型：int8 或 int4
-        symmetric: false      ## 是否对称量化：激活值量化通常使用非对称量化
-        method: "minmax"      ## 量化方法：minmax
+          scope: "per_tensor"   # 量化粒度：per_tensor、per_token 或 pd_mix
+          dtype: "int8"         # 量化数据类型：int8 或 int4
+          symmetric: false      # 是否使用对称量化：激活值量化通常使用非对称量化
+          method: "minmax"      # 量化方法：minmax
         weight:
-        scope: "per_channel"
-        dtype: "int8"
-        symmetric: true
-        method: "minmax"
+          scope: "per_channel"
+          dtype: "int8"
+          symmetric: true
+          method: "minmax"
     ```
 
     **总结建议**
@@ -177,30 +176,30 @@
         - 某些特定层对量化极度敏感，需要保持高精度
     - 操作流程
         1. 敏感层分析  
-        使用msModelSlim提供的敏感层分析工具识别量化敏感层。详细使用方法请参考《[量化敏感层分析使用指南](https://msmodelslim.readthedocs.io/zh-cn/latest/zh/feature_guide/sensitive_layer_analysis/analyze_api_usage/)》。  
+        使用msModelSlim提供的敏感层分析工具识别量化敏感层。详细使用方法请参考《[量化敏感层分析使用指南](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/feature_guide/sensitive_layer_analysis/analyze_api_usage.md)》。  
         功能说明  
             - 自动评估：工具会自动评估模型中线性层对量化操作的敏感程度，并为每个可分析对象生成量化敏感度评分。
             - 决策依据：用户可根据生成的敏感度评分，判断哪些高敏感层需要进行回退处理。
         2. 配置回退  
-        根据第一步敏感层分析的分析结果，在量化策略的YAML配置文件中，通过exclude字段排除需要回退的高敏感层。
+        根据第一步敏感层分析的结果，在量化策略的YAML配置文件中，通过exclude字段排除需要回退的高敏感层。
 
     - 配置示例
 
         ```text
-        - type: "linear_quant"
+      - type: "linear_quant"
         qconfig:
-            act:
+          act:
             scope: "per_tensor"
             dtype: "int8"
             symmetric: false
             method: "minmax"
-            weight:
+          weight:
             scope: "per_channel"
             dtype: "int8"
             symmetric: true
             method: "minmax"
         include: ["*"]
-        exclude: ["*model.layers.*.mlp.down_proj*"] ## 回退所有mlp.down_proj层
+        exclude: ["*model.layers.*.mlp.down_proj*"] # 回退所有mlp.down_proj层
         ```
 
     - 总结建议
@@ -217,7 +216,7 @@
 
 ### 环境准备
 
-安装 msModelSlim 工具，详情请参见《[msModelSlim工具安装指南](https://msmodelslim.readthedocs.io/zh-cn/latest/zh/getting_started/install_guide/)》。
+安装 msModelSlim 工具，详情请参见《[msModelSlim工具安装指南](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/getting_started/install_guide.md)》。
 
 ### 调优步骤
 
@@ -237,7 +236,7 @@
     |--|--|--|--|
     |Smooth Quant|对话乱码|326|初始配置，精度下降明显|
     |Iterative Smooth（对称/alpha:0.5）|53.33|324|相比Smooth Quant有改善，但精度仍不足|
-    |Iterative Smooth（非对称/alpha:0.5）||63.33|305|非对称方案精度提升10%，符合预期|
+    |Iterative Smooth（非对称/alpha:0.5）|63.33|305|非对称方案精度提升10%，符合预期|
     |Iterative Smooth（对称/alpha:0.9）|66.67|319|调整alpha参数后精度进一步提升|
     |Flex Smooth Quant|63.33|1380|精度与Iterative Smooth（非对称/alpha:0.5）相当，但所需时间更长|
 
@@ -317,7 +316,7 @@
         ```
 
     2. 格式转换
-        - JSONL格式：参考 msmodelslim/lab_calib/mix_calib.jsonl，详情请见Link。
+        - JSONL格式：参考 msmodelslim/lab_calib/mix_calib.jsonl，详情请见[mix_calib.jsonl](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/lab_calib/mix_calib.jsonl)。
         将文本放在"inputs_pretokenized"字段后，格式如下。
 
         ```jsonl
@@ -327,7 +326,7 @@
         }
         ```
 
-        - JSON格式：参考 msmodelslim/lab_calib/qwen3_cot_w4a4.json，详情请见[链接](https://gitcode.com/Ascend/msmodelslim/blob/master/lab_calib/qwen3_cot_w4a4.json)。直接将文本加入字符串列表中即可。
+        - JSON格式：参考 msmodelslim/lab_calib/qwen3_cot_w4a4.json，详情请见[qwen3_cot_w4a4.json](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/lab_calib/qwen3_cot_w4a4.json)。直接将文本加入字符串列表中即可。
 
     3. 重新量化  
     将调整后的校准集用于量化，重新生成量化权重。
@@ -350,7 +349,7 @@
 
     **调优过程**  
     1. 敏感层分析  
-    使用msModelSlim提供的敏感层分析工具识别量化敏感层。详细使用方法请参考《[量化敏感层分析使用指南](https://msmodelslim.readthedocs.io/zh-cn/latest/zh/feature_guide/sensitive_layer_analysis/analyze_api_usage/)》。  
+    使用msModelSlim提供的敏感层分析工具识别量化敏感层。详细使用方法请参考《[量化敏感层分析使用指南](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/feature_guide/sensitive_layer_analysis/analyze_api_usage.md)》。  
     执行分析命令：
 
         ```shell
@@ -390,33 +389,33 @@
         ```yaml
         apiversion: modelslim_v1
         spec:
-        process:
+          process:
             - type: "iter_smooth"
-            alpha: 0.9
-            scale_min: 1e-5
-            symmetric: True
-            enable_subgraph_type:
+              alpha: 0.9
+              scale_min: 1e-5
+              symmetric: True
+              enable_subgraph_type:
                 - 'norm-linear'
                 - 'linear-linear'
                 - 'ov'
                 - 'up-down'
-            include:
+              include:
                 - "*"
             - type: "linear_quant"
-            qconfig:
+              qconfig:
                 act:
-                scope: "per_tensor"
-                dtype: "int8"
-                symmetric: false
-                method: "minmax"
+                  scope: "per_tensor"
+                  dtype: "int8"
+                  symmetric: false
+                  method: "minmax"
                 weight:
-                scope: "per_channel"
-                dtype: "int8"
-                symmetric: true
-                method: "minmax"
-            include: 
+                  scope: "per_channel"
+                  dtype: "int8"
+                  symmetric: true
+                  method: "minmax"
+              include: 
                 - "*"
-            exclude:
+              exclude:
                 - 'model.layers.3.mlp.down_proj'
                 - 'model.layers.63.mlp.down_proj'
                 - 'model.layers.2.mlp.down_proj'
@@ -426,9 +425,9 @@
                 - 'model.layers.7.mlp.down_proj'
                 - 'model.layers.5.mlp.down_proj'
                 - 'model.layers.0.mlp.down_proj'
-        save:
+          save:
             - type: "ascendv1_saver"
-            part_file_size: 4
+              part_file_size: 4
         ```
 
     3. 重新生成量化权重  
@@ -449,7 +448,7 @@
     |步骤|关键操作|AIME25 精度（%）|精度提升|备注|
     |--|--|--|--|--|
     |初始状态|Smooth Quant + minmax + 静态量化|乱码|-|初始配置，无法正常使用|
-    |步骤2|Iterative Smooth（对称/alpha:0.9）|66.67%|+66.67%|离群值抑制算法优化，解决乱码问题|
+    |步骤2|Iterative Smooth（对称/alpha:0.9）|66.67%|从乱码提升至66.67%|离群值抑制算法优化，解决乱码问题|
     |步骤3|minmax + per-token（动态量化）|80.00%|+13.33%|激活量化粒度优化，达到精度要求|
 
     > [!NOTE]  
@@ -462,7 +461,7 @@
     **量化配置：**
 
     - 权重量化：minmax 方法，per_channel 粒度，int8 数据类型，对称量化。
-    - 激活量化：minmax 方法，per_token 粒度（动态量化），int8 数据类型，对称量化。
+    - 激活量化：minmax 方法，per_token 粒度（动态量化），int8 数据类型，非对称量化。
 
 - 调优经验总结
     1. 离群值抑制算法的优化对精度提升具有关键作用  
