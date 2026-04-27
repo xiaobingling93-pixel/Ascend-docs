@@ -49,20 +49,20 @@
 
 #### 工具简介
 
-如果模型配置和环境配置正确，模型依旧存在精度问题，则可以使用[大模型推理精度工具（Large Language Model Debug Tool）](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/README.md)进行精准定位与根因分析，有效提升开发效率，如[表1 大模型推理精度工具](#大模型推理精度工具)所示。
+如果模型配置和环境配置正确，模型依旧存在精度问题，则可以使用《[大模型推理精度工具（Large Language Model Debug Tool）](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/README.md)》进行精准定位与根因分析，有效提升开发效率，如[表1 大模型推理精度工具](#大模型推理精度工具)所示。
 
 表1 大模型推理精度工具<a id="大模型推理精度工具"></a>
 
 | 工具名称 | 说明 |
 | ----- | ----- |
-|Bad Case分析工具（msit Bad Case）|提供脚本和命令行两种交互方式来进行自动bad case分析，使用户能够快速定位。使用说明请参见[msit Bad Case 分析工具](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%B2%BE%E5%BA%A6%E5%AE%9A%E4%BD%8D%E4%B9%8BBadCase%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7.md)。|
-|数据dump工具（msit llm dump）|提供加速库模型推理过程中产生的中间数据的dump能力，落盘的数据用于进行后续的精度比对。<br> - ATB场景的dump功能使用说明请参见[加速库模型数据 dump](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-DUMP%E5%8A%A0%E9%80%9F%E5%BA%93%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)。<br> - PyTorch场景的dump功能使用说明请参见[PyTorch 场景的精度数据采集](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-Pytorch%E5%9C%BA%E6%99%AF%E6%95%B0%E6%8D%AEdump.md)。|
-|大模型精度比对工具（msit llm compare）|提供一键式精度比对功能，支持快速实现推理场景的整网精度比对。使用说明请参见[大模型精度比对](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%B2%BE%E5%BA%A6%E6%AF%94%E5%AF%B9.md)。|
-|精度预检工具（msit llm opcheck）|提供加速库内置算子的单算子精度预检能力，检测加速库算子精度是否达标。使用说明请参见[opcheck单算子精度预检功能使用指南](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E7%B2%BE%E5%BA%A6%E9%A2%84%E6%A3%80%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)。|
+|Bad Case分析工具（msit Bad Case）|提供脚本和命令行两种交互方式来进行自动bad case分析，使用户能够快速定位。使用说明请参见《[msit Bad Case 分析工具](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%B2%BE%E5%BA%A6%E5%AE%9A%E4%BD%8D%E4%B9%8BBadCase%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7.md)》。|
+|数据dump工具（msit llm dump）|提供加速库模型推理过程中产生的中间数据的dump能力，落盘的数据用于进行后续的精度比对。<br> - ATB场景的dump功能使用说明请参见《[加速库模型数据 dump](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-DUMP%E5%8A%A0%E9%80%9F%E5%BA%93%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)》。<br> - PyTorch场景的dump功能使用说明请参见《[PyTorch 场景的精度数据采集](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-Pytorch%E5%9C%BA%E6%99%AF%E6%95%B0%E6%8D%AEdump.md)》。|
+|大模型精度比对工具（msit llm compare）|提供一键式精度比对功能，支持快速实现推理场景的整网精度比对。使用说明请参见《[大模型精度比对](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%B2%BE%E5%BA%A6%E6%AF%94%E5%AF%B9.md)》。|
+|精度预检工具（msit llm opcheck）|提供加速库内置算子的单算子精度预检能力，检测加速库算子精度是否达标。使用说明请参见《[opcheck单算子精度预检功能使用指南](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E7%B2%BE%E5%BA%A6%E9%A2%84%E6%A3%80%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)》。|
 
 #### 选择Bad Case
 
-Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。Bad Case是我们进行大模型精度问题分析和定位的前提，可参见[发现bad case](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%A6%82%E4%BD%95%E8%AF%86%E5%88%AB%20Bad%20Case.md)发现和选择合适的Bad Case。
+Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。Bad Case是我们进行大模型精度问题分析和定位的前提，可参见《[发现bad case](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%A6%82%E4%BD%95%E8%AF%86%E5%88%AB%20Bad%20Case.md)》发现和选择合适的Bad Case。
 
 例如，在模型A上，输入一个生成代码相关的问题，在外部设备上可以正常回复，但在昇腾平台上却经常回复null，那么这个输入的问题就是一个Bad Case。我们可以将这个问题作为模型推理的输入进一步定位。
 
@@ -78,7 +78,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
 **logits采集**
 
-1. 使用msit llm dump工具采集标杆模型logits。通过在PyTorch执行脚本中加入dump的逻辑代码实现标杆模型logits的采集，参数解释请参见[PyTorch场景的精度数据采集](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-Pytorch%E5%9C%BA%E6%99%AF%E6%95%B0%E6%8D%AEdump.md)。msit llm dump工具的使用请参见[加速库模型数据 dump](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-DUMP%E5%8A%A0%E9%80%9F%E5%BA%93%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)。
+1. 使用msit llm dump工具采集标杆模型logits。通过在PyTorch执行脚本中加入dump的逻辑代码实现标杆模型logits的采集，参数解释请参见《[PyTorch场景的精度数据采集](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-Pytorch%E5%9C%BA%E6%99%AF%E6%95%B0%E6%8D%AEdump.md)》。msit llm dump工具的使用请参见《[加速库模型数据 dump](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-DUMP%E5%8A%A0%E9%80%9F%E5%BA%93%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)》。
 
     1. 在模型A推理脚本中增加dump相关的配置代码，示例如下：
 
@@ -126,7 +126,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
                         ├── output.pth         # 输出Tensor
         ```
 
-    3. （可选）建议dump两次logits数据，并执行以下命令，比对两次dump相同token的logits（此处比对token 0，即文件夹0下的output.pth数据）。可使用msit llm compare工具进行比对，具体使用方法请参见[大模型精度比对](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%B2%BE%E5%BA%A6%E6%AF%94%E5%AF%B9.md)。
+    3. （可选）建议dump两次logits数据，并执行以下命令，比对两次dump相同token的logits（此处比对token 0，即文件夹0下的output.pth数据）。可使用msit llm compare工具进行比对，具体使用方法请参见《[大模型精度比对](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%B2%BE%E5%BA%A6%E6%AF%94%E5%AF%B9.md)》。
 
         ```bash
         msit llm compare -gp {GOLDEN_DUMP_DIR1}/msit_dump_{TIMESTAMP}/torch_tensors/cuda{device_id}_{PID}/0/{logits_Layer_Name}/output.pth -mp {GOLDEN_DUMP_DIR2}/msit_dump_{TIMESTAMP}/torch_tensors/cuda{device_id}_{PID}/0/{logits_Layer_Name}/output.pth
@@ -138,7 +138,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
         ![精度指标](../figures/llm_inference_accuracy_analysis_case/accuracy_index.png "精度指标")
 
-2. 使用msit llm dump采集ATB模型logits。msit支持通过命令方式对ATB模型的数据进行dump，参数解释请参见[加速库模型数据dump](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-DUMP%E5%8A%A0%E9%80%9F%E5%BA%93%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)。
+2. 使用msit llm dump采集ATB模型logits。msit支持通过命令方式对ATB模型的数据进行dump，参数解释请参见《[加速库模型数据dump](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-DUMP%E5%8A%A0%E9%80%9F%E5%BA%93%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)》。
 
     1. 执行以下命令，获取模型网络结构信息，首次dump时需获取模型网络结构信息。
 
@@ -195,15 +195,15 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
 1. 通过msit llm compare工具比对标杆模型logits与ATB模型的logits。
 
-    在采集完标杆模型和ATB模型的logits数据后，即可通过msit llm compare工具实现logits的自动比对，具体使用方法和参数解释请参见[大模型精度比对](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%B2%BE%E5%BA%A6%E6%AF%94%E5%AF%B9.md)。比对命令示例如下，其中COMPARE_PATH是比对结果保存路径。
+    在采集完标杆模型和ATB模型的logits数据后，即可通过msit llm compare工具实现logits的自动比对，具体使用方法和参数解释请参见《[大模型精度比对](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%B2%BE%E5%BA%A6%E6%AF%94%E5%AF%B9.md)》。比对命令示例如下，其中COMPARE_PATH是比对结果保存路径。
 
     ```bash
     msit llm compare -gp {GOLDEN_DUMP_DIR1}/msit_dump_{TIMESTAMP}/torch_tensors/cuda{device_id}_{PID}/ -mp {ATB_DUMP_DIR1}/msit_dump_{TIMESTAMP}/tensors/{device_id}_{PID}  -o {COMPARE_PATH}
     ```
 
-2. 比对完成后，会生成比对结果msit_cmp_report_{TIMESTAMP}.csv文件，文件保存在比对结果保存路径下，指标结果请参见[精度比对结果参数说明](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E7%B2%BE%E5%BA%A6%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E.md)。
+2. 比对完成后，会生成比对结果msit_cmp_report_{TIMESTAMP}.csv文件，文件保存在比对结果保存路径下，指标结果请参见《[精度比对参数说明](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E7%B2%BE%E5%BA%A6%E6%AF%94%E5%AF%B9%E7%BB%93%E6%9E%9C%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E.md)》。
 
-    > [!NOTE]
+    > [!NOTE]  
     > 
     > 由于不同业务场景对精度的要求并不一致，通常情况下，重点指标可以参考如下要求：
     > - KL散度：bfloat16<0.005，float16<0.0001
@@ -289,7 +289,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
 #### 算子精度预检
 
-当定位到可能存在精度问题的算子后，可以使用msit llm opcheck工具对算子的精度进行预检，判断加速库算子精度是否达标。msit llm opcheck工具的使用方法和可选参数内容请参见[opcheck单算子精度预检功能使用指南](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E7%B2%BE%E5%BA%A6%E9%A2%84%E6%A3%80%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)。
+当定位到可能存在精度问题的算子后，可以使用msit llm opcheck工具对算子的精度进行预检，判断加速库算子精度是否达标。msit llm opcheck工具的使用方法和可选参数内容请参见《[opcheck单算子精度预检功能使用指南](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E7%B2%BE%E5%BA%A6%E9%A2%84%E6%A3%80%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md)》。
 
 1. 对LinearOperation算子做精度预检。<a id="步骤1"></a>
 
@@ -313,7 +313,7 @@ Bad Case是模型与标杆模型推理结果存在差异的输入（Prompt）。
 
     ![预检结果数据](../figures/llm_inference_accuracy_analysis_case/precheck_result.png "预检结果数据")
 
-3. 确认算子精度是否达标，算子精度标准请参见[精度标准](https://gitcode.com/Ascend/msit/blob/master/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E7%B2%BE%E5%BA%A6%E9%A2%84%E6%A3%80%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md#33-%E7%B2%BE%E5%BA%A6%E6%A0%87%E5%87%86)。
+3. 确认算子精度是否达标，算子精度标准请参见[精度标准](https://gitcode.com/Ascend/msit/blob/26.0.0/msit/docs/llm/%E5%B7%A5%E5%85%B7-%E7%B2%BE%E5%BA%A6%E9%A2%84%E6%A3%80%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.md#33-%E7%B2%BE%E5%BA%A6%E6%A0%87%E5%87%86)。
 
     - 如果算子精度达标，表明是标杆与NPU算子输入差异导致的误差，可以通过修改模型推理计算时的数据类型，提高模型的数据精度。
 

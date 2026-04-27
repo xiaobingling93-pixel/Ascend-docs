@@ -1,7 +1,7 @@
 # MindStudio ModelSlim
 
-- [安装指南](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/getting_started/install_guide.md)
 - [快速入门](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/getting_started/quantization_quick_start.md)
+- [安装指南](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/getting_started/install_guide.md)
 - [模型支持列表]()
   - [大模型支持矩阵](https://gitcode.com/Ascend/msmodelslim/blob/26.0.0/docs/zh/model_support/foundation_model_support_matrix.md)
 - [算法介绍]()
