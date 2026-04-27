@@ -32,7 +32,7 @@ NPU与主流AI处理器之间的计算差异主要为浮点舍入模式差异和
 小的计算差异会引起AI处理器（主流/NPU）训练的模型参数位于不同的loss landscape位置。因为loss landscape的复杂性，主流AI处理器/NPU的某一方可能处于地形图中非常陡峭的位置，从而在对比中比较不利。特别是当超参不合理时（如大学习率），这种对比的不确定性就更强。LLaMA2-13B模型在1e-3基础学习率下，主流AI处理器运行两次训练得到的loss曲线，如图1所示。图1中可见主流AI处理器运行两次训练得到的loss也很难对齐，尖刺发生的位置有很大不确定性。期望在训练不稳定情况下完全对齐，在主流AI处理器上也是不可能完成的任务。因此，精度调试特别是精度对齐的前提条件是要能稳定训练。
 
 **图 1** LLaMA2-13B模型上主流AI处理器的loss曲线图  
-![](./figures/req_readme_precision_fig_01.png)
+<img src="./figures/req_readme_precision_fig_01.png" height="505.001000000000003" width="497.42">
 
 ## 计算差异对训练结果的影响<a id="custom-anchor02"></a>
 
@@ -49,7 +49,7 @@ NPU与主流AI处理器之间的计算差异主要为浮点舍入模式差异和
         2. 在基准实验设置基础上，对ParallelTransformerLayer的每层输出，每步都加入正负1%的无偏误差（实际的计算误差远小于1%），训练1000步的loss差异大约在1.5%，如果注入正负0.48%的无偏误差，训练1000步的误差小于1% ，如图2所示。
 
             **图 2**  实验一中NPU的loss曲线对比图  
-            ![](./figures/req_readme_precision_fig_02.png)
+            <img src="./figures/req_readme_precision_fig_02.png" height="232.883" width="441.56">
 
         3. 对比正常训练时和注入误差训练时，迭代1000步的最终模型参数，发现两者的余弦相似度几乎为1。注入误差训练的模型只是在优化路径上落后于正常训练的模型。
         4. 以上实验证明，即便人为注入一个很大的无偏误差，对训练结果的影响仍然在可接受范围内，并且对训练稳定性不会造成影响，即loss尖刺跟计算误差无关。对反向过程中的激活值梯度与权重梯度注入误差，也会有非常类似的结果。
@@ -81,23 +81,22 @@ NPU与主流AI处理器之间的计算差异主要为浮点舍入模式差异和
             训练8000步，loss平均收敛差异小于0.6%，最终收敛差异小于0.1%。训练到2000步时主流AI处理器和NPU模型参数的余弦相似度在0.998，到8000步时的余弦相似度在0.965。此实验可以证明在主流AI处理器和NPU上训练LLM，不仅两者在loss上很接近，而且收敛的位置也非常接近，如图3所示。
 
             **图 3**  实验二中主流AI处理器和NPU的loss曲线对比图  
-            ![](./figures/req_readme_precision_fig_03.png)
-
+            <img src="./figures/req_readme_precision_fig_03.png" height="477.7227" width="441.56">
+            
 ## 用户使用案例
 
 - NPU在用户使用的过程中，其训练结果优于主流AI处理器的情况也很常见。用户的Qwen-1.8B模型在小学习率下进行训练，NPU的loss表现比主流AI处理器更好。更高的蓝线为主流AI处理器的loss，更低的红线为NPU的loss，如图4所示。
 
     **图 4**  Qwen-1.8B模型上NPU与主流AI处理器的loss曲线对比图  
-    ![](./figures/req_readme_precision_fig_04.png)
+    <img src="./figures/req_readme_precision_fig_04.png" height="505.001" width="497.42">
 
 - 用户在昇腾千卡平台上训练LLaMA2-7B模型，已经做到了loss完全一致（训练不稳定状态的前1万步除外），如图5所示，并且每3万步MMLU评估精度，得分波动在4%以内，如图6所示。
 
     **图 5** LLaMA2-7B模型上NPU与主流AI处理器的loss曲线图  
-    
-    ![](./figures/req_readme_precision_fig_05.png)
+    <img src="./figures/req_readme_precision_fig_05.png" height="290.871" width="497.42">
 
     **图 6**  MMLU评分对比图  
-    ![](./figures/req_readme_precision_fig_06.png)
+    <img src="./figures/req_readme_precision_fig_06.png" height="263.9784" width="486.780">
 
 ## 精度调试过程案例<a id="custom-anchor03"></a>
 

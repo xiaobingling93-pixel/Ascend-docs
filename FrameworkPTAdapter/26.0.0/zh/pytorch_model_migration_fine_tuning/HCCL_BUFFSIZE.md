@@ -15,7 +15,7 @@
 此环境变量一般用于以下场景：
 
 - 动态shape网络场景。
-- 开发人员调用集合通信库HCCL的C语言接口进行框架对接的场景，HCCL库的C语言接口可参见《[HCCL集合通信库接口参考](https://www.hiascend.com/document/detail/zh/canncommercial/850/API/hcclapiref/hcclapi_07_0001.html)》。
+- 开发人员调用集合通信库HCCL的C语言接口进行框架对接的场景，HCCL库的C语言接口可参见《HCCL集合通信库指南》中的“[API](https://www.hiascend.com/document/detail/zh/canncommercial/900/API/hcclug/hcclcpp_07_0001.html)”章节。
 
 >[!NOTE]
 >

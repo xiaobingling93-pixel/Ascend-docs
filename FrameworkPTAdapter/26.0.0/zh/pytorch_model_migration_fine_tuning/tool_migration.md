@@ -14,7 +14,7 @@
 使用命令行方式进行工具迁移的核心步骤如下：
 
 1. 环境准备。
-    1. 安装开发套件Ascend-cann-toolkit。具体操作请参考《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/canncommercial/900/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（商用版）或《[CANN 软件安装指南](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/850/softwareinst/instg/instg_0000.html?Mode=PmIns&InstallType=netconda&OS=openEuler&Software=cannToolKit)》（社区版）。
+    1. 安装开发套件Ascend-cann-toolkit。请参见《[CANN 快速安装](https://www.hiascend.com/cann/download)》。
     2. 须安装如下依赖（以root用户安装为例，非root用户需加--user参数）。
 
         ```shell
@@ -125,4 +125,4 @@
     │   ├── run_distributed_npu.sh       // 多卡启动shell脚本
     ```
 
-更多命令行方式工具迁移内容，请参见《[CANN 分析迁移工具用户指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/devaids/migrationtools/atlasfmkt_16_0001.html)》。
+更多命令行方式工具迁移内容，请参见《[CANN 分析迁移工具用户指南](https://www.hiascend.com/document/detail/zh/canncommercial/900/devaids/migrationtools/atlasfmkt_16_0001.html)》。

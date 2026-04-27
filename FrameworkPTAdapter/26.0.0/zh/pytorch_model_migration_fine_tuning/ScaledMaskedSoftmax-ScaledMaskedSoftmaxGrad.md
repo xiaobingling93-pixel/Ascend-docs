@@ -67,7 +67,7 @@ y = torch.softmax((x * scale).masked_fill(mask, -inf), dim=-1)
 
 ## 算子替换的模型中小算子
 
-![](./figures/ScaledMaskedSoftmax-ScaledMaskedSoftmaxGrad_fig_02.png)
+<img src="./figures/ScaledMaskedSoftmax-ScaledMaskedSoftmaxGrad_fig_02.png" height="79.8" width="523.6875">
 
 ## 使用限制
 

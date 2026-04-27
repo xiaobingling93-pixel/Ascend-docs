@@ -128,7 +128,7 @@ torch.rsqrt(x.pow(2).mean(-1, keepdim=True) + self.eps)
 
 ## 算子替换的模型中小算子
 
-![](./figures/RmsNorm-RmsNormGrad_fig_02.png)
+<img src="./figures/RmsNorm-RmsNormGrad_fig_02.png" height="91.5572" width="525.35">
 
 ## 使用限制
 

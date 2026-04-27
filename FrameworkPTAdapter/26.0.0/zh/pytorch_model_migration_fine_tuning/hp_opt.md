@@ -32,7 +32,7 @@
 
     执行命令cat /sys/kernel/mm/transparent_hugepage/enabled确认透明大页是否启动，若回显结果为[always]则表明已开启透明大页。一般透明大页是默认开启的。
 
-    ![](./figures/hp_opt_fig_01.png)
+    <img src="./figures/hp_opt_fig_01.png" height="33.5559" width="492.1">
 
 2. 执行以下命令，开启透明大页：
 
@@ -60,7 +60,7 @@
     ls /sys/devices/system/node/ | grep node
     ```
 
-    ![](./figures/hp_opt_fig_02.png)
+    <img src="./figures/hp_opt_fig_02.png" height="47.0288" width="492.1">
 
     每个NUMA节点都写入对应数量的值，这个值表示各个节点待分配的2M标准大页的数量，建议每个节点分配内存为：待申请2M标准大页内存池总数量/node数量。
 
@@ -79,7 +79,7 @@
     cat /proc/meminfo | grep Huge 
     ```
 
-    ![](./figures/hp_opt_fig_03.png)
+     <img src="./figures/hp_opt_fig_03.png" height="179.5367" width="492.1">
 
 - 永久启用标准大页内存池。
 
@@ -95,7 +95,7 @@
 
         kernel对应的值就是当前系统启动项内核名称，也就是我们需要设置大页内存的内核。
 
-        ![](./figures/hp_opt_fig_04.png)
+        <img src="./figures/hp_opt_fig_04.png" height="64.6114" width="465.5">
 
     - 更新系统启动项参数。
 
@@ -135,7 +135,7 @@
 
     重启系统之后，可以通过命令cat /proc/cmdline确认当前系统启动时是否带有大页相关参数。也可使用cat /proc/meminfo | grep Huge来查看当前系统可用的大页内存大小。其中HugePages_Total表示总共可用大页数量，HugePages_Free表示当前系统可用大页数量。若HugePages_Total为你所设置的数量，则表明大页内存启用成功；若这个数量为0，则表明未启用大页内存。
 
-    ![](./figures/hp_opt_fig_06.png)
+    <img src="./figures/hp_opt_fig_06.png" height="133.6251" width="492.1">
 
 ## malloc使用大页
 
@@ -218,7 +218,7 @@ rpm -qa glibc
 rpm -qa glibc-devel 
 ```
 
-![](./figures/hp_opt_fig_07.png)
+<img src="./figures/hp_opt_fig_07.png" height="74.2406" width="492.1">
 
 若glibc-devel未安装，可以使用下面命令安装：
 
@@ -254,7 +254,7 @@ yum upgrade glibc glibc-devel
 
         可以通过readelf -l xxx.so来判断当前动态库LOAD段是否超过2M，下面以libtorch_npu.so为例：
 
-        ![](./figures/hp_opt_fig_08.png)
+        <img src="./figures/hp_opt_fig_08.png" height="287.546" width="465.5">
 
         上面图中，LOAD段对应VirtAddr和MemSiz分别为0x0000000000000000和0x0000000001bc47e4，段大小即MemSize为十六进制的0x0000000001bc47e4，转换为十进制之后为29116388字节，进一步计算为27M，超过了2M，因此libtorch_npu.so使用动态库大页可生效。
 

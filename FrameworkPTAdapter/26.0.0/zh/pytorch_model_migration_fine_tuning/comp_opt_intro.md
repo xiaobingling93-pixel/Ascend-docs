@@ -9,7 +9,7 @@
 LTO是成熟的编译优化技术，业界已经广泛使用。可以通过跨文件函数内联，减小调用开销，通过跨文件函数特化、常量传播，消除冗余代码，也可以实现跨语言优化。由此带来较为可观的性能收益，从top-down分析角度来说，对前后端瓶颈均有一定的效果。LTO优化技术分为FullLTO和ThinLTO两种，ThinLTO是一种更新的链接时优化技术，ThinLTO在运行时比FullLTO具有更好的性能表现，极大地缩短了链接时优化的耗时和内存占用。
 
 **图 1**  LTO优化原理图  
-![](./figures/comp_opt_intro_fig_01.png)
+<img src="./figures/comp_opt_intro_fig_01.png" height="465.5" width="399.8911">
 
 ## 编译技术：PGO反馈优化
 

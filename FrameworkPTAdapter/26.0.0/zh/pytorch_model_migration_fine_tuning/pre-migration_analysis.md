@@ -12,7 +12,7 @@
 
     |场景/组件|支持状态|适配说明|替代方案|
     |--|--|--|--|
-    |DP（Data Parallel，数据并行）模型|暂不支持|不兼容torch.nn.parallel.DataParallel接口|需手动修改为torch.nn.parallel.DistributedDataParallel接口，以执行多卡训练原脚本需要在GPU环境下基于Python3.8及以上跑通|
+    |DP（Data Parallel，数据并行）模型|暂不支持|不兼容torch.nn.parallel.DataParallel接口|需手动修改为torch.nn.parallel.DistributedDataParallel接口，以执行多卡训练<br>原脚本需要在GPU环境下基于Python3.8及以上跑通|
     |APEX库中的FusedAdam融合优化器|部分支持|不支持自动迁移或PyTorch GPU2Ascend工具迁移|需手工进行迁移，具体修改方法可单击[LINK](https://gitcode.com/Ascend/apex#apexoptimizers)|
     |bitsandbytes|部分支持|已支持在昇腾上进行安装，具体可单击[Supported Backends](https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/docs/source/installation.mdx#supported-backendsmulti-backend-supported-backends)进行参考|仅支持NF4量化/反量化迁移，用于LLM QLoRA微调，其余功能暂不支持|
     |xFormers|暂不支持|不原生支持xFormers|xFormers中的FlashAttentionScore融合算子的迁移可参考[FlashAttentionScore](FlashAttentionScore.md)章节进行替换|
@@ -21,7 +21,7 @@
     |grouped_gemm第三方库|暂不支持|NPU不支持安装|暂无替代方案|
     |composer第三方库|暂不支持|NPU支持安装但未适配|暂无替代方案|
 
-3. 借助PyTorch Analyse工具，分析基于GPU平台的PyTorch训练脚本中三方库套件、API、动态shape以及亲和API分析在昇腾AI处理器上的支持情况，具体可参见表2，工具使用详细指导可参见《[CANN 分析迁移工具用户指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/devaids/migrationtools/atlasfmkt_16_0001.html)》。
+3. 借助PyTorch Analyse工具，分析基于GPU平台的PyTorch训练脚本中三方库套件、API、动态shape以及亲和API分析在昇腾AI处理器上的支持情况，具体可参见表2，工具使用详细指导可参见《[CANN 分析迁移工具用户指南](https://www.hiascend.com/document/detail/zh/canncommercial/900/devaids/migrationtools/atlasfmkt_16_0001.html)》。
 
     **表 2**  分析模式介绍
 
@@ -66,5 +66,5 @@
     在迁移可行性分析中如果存在平台未支持的算子，可参考如下方法进行算子适配：
 
     - 修改模型脚本使用等价支持的算子替换；
-    - 算子开发与适配，算子开发相关请参见《[CANN Ascend C算子开发指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/opdevg/Ascendcopdevg/atlas_ascendc_10_0001.html)》或《[CANN TBE&AI CPU算子开发指南](https://www.hiascend.com/document/detail/zh/canncommercial/850/opdevg/tbeaicpudevg/atlasopdev_10_0001.html)》，算子适配请参见《PyTorch 框架特性指南》中的“[自定义算子适配开发](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/framework_feature_guide_pytorch/adaptation_overview_opplugin.md)”章节；
+    - 算子开发与适配，算子开发相关请参见《[CANN Ascend C算子开发指南](https://www.hiascend.com/document/detail/zh/canncommercial/900/programug/Ascendcopdevg/atlas_ascendc_map_10_0001.html)》或《[CANN TBE&AI CPU算子开发指南](https://www.hiascend.com/document/detail/zh/canncommercial/900/others/tbeaicpudevg/atlasopdev_10_0001.html)》，算子适配请参见《PyTorch 框架特性指南》中的“[自定义算子适配开发](https://gitcode.com/Ascend/pytorch/blob/v2.7.1-26.0.0/docs/zh/framework_feature_guide_pytorch/adaptation_overview_opplugin.md)”章节；
     - 联系华为工程师提出开发适配诉求。

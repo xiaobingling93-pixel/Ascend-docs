@@ -5,10 +5,12 @@
 使能混合精度后，由于数值表示范围和最小间隔发生变化，可能导致极少部分网络出现精度掉点甚至无法收敛的情况。如下图所示。
 
 **图 1**  正常loss情况
-![](./figures/mixed_prec_debug_fig_01.png)
+
+<img src="./figures/mixed_prec_debug_fig_01.png" heifht="115.710" widht="522.69">
 
 **图 2**  异常loss情况
-![](./figures/mixed_prec_debug_fig_02.png)
+
+<img src="./figures/mixed_prec_debug_fig_02.png" heifht="118.37" widht="522.69">
 
 在以上样例情况中，loss值由于未正确使能混合精度，导致梯度上溢，进而loss出现异常。
 

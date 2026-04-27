@@ -10,8 +10,9 @@ SDXL模型，从单机切换到6机上运行后，线性度大幅度下降。
 
     由于是6机16卡（总共96卡）的profiling数据，因此需要使用集群分析工具（[cluster\_analyse](https://gitcode.com/ascend/mstt/tree/master/profiler/msprof_analyze/cluster_analyse)）定位问题，获取cluster\_step\_trace\_time.csv数据，如图1所示。
 
-    **图 1** 集群通信信息图
-    ![](./figures/sdxl_multi_node_lin_degradation_anal_fig_01.png)
+    **图 1** 集群通信信息图  
+
+    <img src="./figures/sdxl_multi_node_lin_degradation_anal_fig_01.png" width="526.680" height="456.8816">
 
 2. 检查各卡间的计算时间和空闲时间，比较最大和最小时间之间是否存在较大差距。
     - 计算时间：\(879703.4-878369\) / 879703.4小于1%，基本无差距。
@@ -26,25 +27,29 @@ SDXL模型，从单机切换到6机上运行后，线性度大幅度下降。
 
     观察0卡的profiling，发现只有小半时间在进行计算通信，其余时间均在数据加载，数据处理等操作，如图2所示。
 
-    **图 2**  第0卡的profiling图
-    ![](./figures/sdxl_multi_node_lin_degradation_anal_fig_02.png)
+    **图 2**  第0卡的profiling图  
+
+    <img src="./figures/sdxl_multi_node_lin_degradation_anal_fig_02.png" width="526.680" height="243.6693">
 
 5. 观察其他卡的profiling。
 
     通过观察，发现其他卡也基本上是相同现象，如图3所示。但在其他卡的profiling中，却没有DataLoader的操作，如图4所示，反而是执行了broadcast等通信较长的算子。因此，怀疑是各卡的数据预处理操作都在一个卡上执行，导致耗时长。
 
-    **图 3** 其他卡的profiling图
-    ![](./figures/sdxl_multi_node_lin_degradation_anal_fig_03.png)
+    **图 3** 其他卡的profiling图  
 
-    **图 4** DataLoader相关接口示意图
-    ![](./figures/sdxl_multi_node_lin_degradation_anal_fig_04.png)
+    <img src="./figures/sdxl_multi_node_lin_degradation_anal_fig_03.png" width="526.680" height="252.5537">
+
+    **图 4** DataLoader相关接口示意图  
+
+    <img src="./figures/sdxl_multi_node_lin_degradation_anal_fig_04.png" width="526.680" height="78.47">
 
 6. 查看不同机器数量的DataLoader耗时。
 
     根据用户测试不同机器数量所获取的DataLoader耗时数据，观察到随着机器增多，数据加载所需的时间也成比例增长，如图5所示。
 
-    **图 5** 多机实验汇总图
-    ![](./figures/sdxl_multi_node_lin_degradation_anal_fig_05.png)
+    **图 5** 多机实验汇总图  
+
+    <img src="./figures/sdxl_multi_node_lin_degradation_anal_fig_05.png" width="523.6875" height="189.525">
 
 ## 优化方案
 

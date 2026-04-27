@@ -8,7 +8,8 @@
 
 在RoCE V2协议中，该值对应IP报文头中ToS（Type of Service）域。共8个bit，其中，bit\[0,1\]固定为0，bit\[2,7\]为DSCP，因此，该值除以4即为DSCP的值。
 
-![](./figures/HCCL_RDMA_TC_fig_01.png)
+<img src="./figures/HCCL_RDMA_TC_fig_01.png" height="178.
+5525" width="401.9925">
 
 ## 配置示例
 

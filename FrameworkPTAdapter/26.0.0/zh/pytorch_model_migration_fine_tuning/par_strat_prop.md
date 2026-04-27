@@ -13,7 +13,7 @@
 
 以下通过具体案例进行说明。
 
-![](./figures/par_strat_prop_fig_01.png)
+<img src="./figures/par_strat_prop_fig_01.png" width="526.6875" height="96.808705" >
 
 上图中左图的状态是常见情况。此图表示在模型运行中，模型前向计算和模型的参数AG（AllGather）在并行，是一种常见的通信计算掩盖。
 

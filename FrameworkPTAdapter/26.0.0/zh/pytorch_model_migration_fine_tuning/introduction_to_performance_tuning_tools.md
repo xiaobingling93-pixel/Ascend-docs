@@ -6,7 +6,7 @@
 
 ## Ascend PyTorch Profiler
 
-参见《CANN 性能调优工具用户指南》中的“[Ascend PyTorch调优工具](https://www.hiascend.com/document/detail/zh/canncommercial/850/devaids/Profiling/atlasprofiling_16_0033.html)”章节，Ascend PyTorch Profiler接口可全面采集PyTorch训练场景下的性能数据，主要包括PyTorch层算子信息、CANN层算子信息、底层NPU算子信息以及算子内存占用信息等，可以全方位分析PyTorch训练时的性能状态。
+参见《CANN 性能调优工具用户指南》中的“[Ascend PyTorch调优工具](https://www.hiascend.com/document/detail/zh/canncommercial/900/devaids/Profiling/atlasprofiling_16_0033.html)”章节，Ascend PyTorch Profiler接口可全面采集PyTorch训练场景下的性能数据，主要包括PyTorch层算子信息、CANN层算子信息、底层NPU算子信息以及算子内存占用信息等，可以全方位分析PyTorch训练时的性能状态。
 
 ## 性能比对工具
 

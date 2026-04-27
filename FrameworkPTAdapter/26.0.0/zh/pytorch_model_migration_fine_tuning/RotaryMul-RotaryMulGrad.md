@@ -34,7 +34,8 @@ torch_npu.npu_rotary_mul(x, r1, r2)
     模型中替换代码截图参见图1，上方红框里的内容为模型源码，下方红框里的内容为替换的新接口。
 
     **图 1** rotary\_mul替换代码  
-    ![](./figures/RotaryMul-RotaryMulGrad_fig_01.png)
+
+    <img src="./figures/RotaryMul-RotaryMulGrad_fig_01.png" height="197.7311" width="497.42">
 
     ```python
     q_embed = (q * cos) + (rotate_half(q) * sin)
@@ -53,7 +54,8 @@ torch_npu.npu_rotary_mul(x, r1, r2)
     模型源码截图参见图2，红框里的内容为替换前的源码。
 
     **图 2** InterLM模型源码  
-    ![](./figures/RotaryMul-RotaryMulGrad_fig_02.png)
+
+    <img src="./figures/RotaryMul-RotaryMulGrad_fig_02.png" height="700.1785" width="497.42">
 
     ```python
     ## forward
@@ -94,7 +96,7 @@ output = r1 * x + r2 * x_new
 
 ## 算子替换的模型中小算子
 
-![](./figures/RotaryMul-RotaryMulGrad_fig_04.png)
+<img src="./figures/RotaryMul-RotaryMulGrad_fig_04.png" height="92.7675" width="523.6875">
 
 ## 使用限制
 

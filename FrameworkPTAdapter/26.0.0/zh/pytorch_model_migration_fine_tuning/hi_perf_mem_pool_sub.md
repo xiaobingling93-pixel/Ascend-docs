@@ -45,7 +45,7 @@ tcmalloc（即Thread-Caching Malloc）是一个通用的内存分配器，通过
 
     找到对应路径下的动态库文件，libtcmalloc.so或者libtcmalloc.so.版本号都可以使用。
 
-    ![](./figures/hi_perf_mem_pool_sub_fig_01.png)
+    <img src="./figures/hi_perf_mem_pool_sub_fig_01.png" height="34.58" width="492.1">
 
     - 设置tcmalloc为优先加载，LD\_PRELOAD环境变量的值为tcmalloc动态库文件的路径。
 
@@ -67,7 +67,7 @@ tcmalloc（即Thread-Caching Malloc）是一个通用的内存分配器，通过
     ldd `which python`
     ```
 
-    ![](./figures/hi_perf_mem_pool_sub_fig_02.png)
+    <img src="./figures/hi_perf_mem_pool_sub_fig_02.png" height="117.971" width="492.1">
 
 4. 执行需要运行的脚本程序。
 

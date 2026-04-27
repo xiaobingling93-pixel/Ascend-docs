@@ -39,18 +39,19 @@ Monitor工具的详细使用方法请参见[LINK](https://gitcode.com/Ascend/mst
 
 在大模型训练过程中，为确保训练的稳定性与有效性，需密切关注多项关键指标以评估训练状态，其中包括但不限于perplexity \(PPL\)、gradient norm \(GNorm\)、activation norm、内存占用情况以及Loss scale等参数。推荐采用TensorBoard工具进行数据可视化。
 
-**图 1** TensorBoard上的数据可视化  
-![](./figures/debug_model_conv_monitor_fig_02.png)
+**图 1** TensorBoard上的数据可视化    
+
+<img src="./figures/debug_model_conv_monitor_fig_02.png" height="287.25" width="523.6875">
 
 另外，在模型的训练中，我们可以通过PyTorch中的hook机制对容易出现问题的某些层配置hook，监控这些层的梯度信息，及时处理出现异常的step以减少对模型训练效果的影响。具体操作如下：
 
-1. 在train方法中获取模型结构后，将模型传入指定的collector中。
+1. 在train方法中获取模型结构后，将模型传入指定的collector中。  
 
-    ![](./figures/debug_model_conv_monitor_fig_03.png)
+    <img src="./figures/debug_model_conv_monitor_fig_03.png" height="82.9521" width="465.5">
 
-2. 对指定层的tensor注册tensor hook，该类型hook只返回对应tensor的梯度信息，该hook会在每份micro batch数据完成反向传播后调用，即对于每份micro batch数据均有梯度值的记录。
+2. 对指定层的tensor注册tensor hook，该类型hook只返回对应tensor的梯度信息，该hook会在每份micro batch数据完成反向传播后调用，即对于每份micro batch数据均有梯度值的记录。  
 
-    ![](./figures/debug_model_conv_monitor_fig_04.png)
+    <img src="./figures/debug_model_conv_monitor_fig_04.png" height="144.05257" width="465.5">
 
 对该梯度信息进行监控和分析，可以检查训练中的一些异常状态，收集梯度值时，建议只采集梯度的最大值、最小值、平均值等统计信息作为训练状态的监控指标。
 

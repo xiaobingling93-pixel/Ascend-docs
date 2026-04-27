@@ -9,7 +9,8 @@
 数据并行将训练数据划分为多个批次，并将每个批次分配给不同的设备进行并行处理，每张计算卡都并行处理不同批次的数据，然后将结果合并。在数据并行中，每张计算卡都拥有内存和计算资源，可以独立地处理数据，但由于每张计算卡上存在一份完整的模型权重副本，所以对显存会有更多的要求。换言之，在每个worker之上复制一份模型，这样每个worker都有一个完整模型的副本。输入数据集是分片的，一个训练的小批量数据将在多个worker之间分割；worker定期汇总它们的梯度，以确保所有worker看到一个一致的权重版本。对于无法放进单个worker的大型模型，人们可以在模型之中较小的分片上使用数据并行。
 
 **图 1**  数据并行  
-![](./figures/par_strat_intro_fig_01.png)
+
+<img src="./figures/par_strat_intro_fig_01.png" height="288.61" width="522.69">
 
 ## 张量并行（TP）
 
@@ -18,17 +19,20 @@
 在[图2](#图2)中，可以看到，左边输入的X经过f后被拆成两个张量，对于权重的QKV同样拆分，计算得到Y1和Y2，最后合并到图中最右边的Z，最终完成了一次张量并行计算。
 
 **图 2**  Attention模块的张量并行<a id="图2"></a>
-![](./figures/par_strat_intro_fig_02.png)
+
+<img src="./figures/par_strat_intro_fig_02.png" height="244.72" width="522.69">
 
 **图 3**  MLP模块的张量并行  
-![](./figures/par_strat_intro_fig_03.png)
+
+<img src="./figures/par_strat_intro_fig_03.png" height="244.72" width="522.69">
 
 ## 序列并行（SP）
 
 序列并行是一种针对输入序列进行列切分的并行计算方式，它可以在张量并行的基础上进一步提高计算效率。在序列并行中，计算过程中的权重会进行行切分，然后同其他张量并行方法一起放置在同一台计算设备上进行计算。完成计算后，会进行加法操作，从而得到最终的结果。与其他并行计算方式相比，序列并行并不会增加额外的通信量，因此在开启张量并行的同时建议也同步开启序列并行。此外，序列并行还可以与现有的数据并行、流水线并行一起使用，从而实现更高效的4D并行计算。
 
 **图 4**  LayerNorm和Dropout序列并行  
-![](./figures/par_strat_intro_fig_04.png)
+
+<img src="./figures/par_strat_intro_fig_04.png" height="158.6025" width="523.6875">
 
 ## 流水线并行（PP）
 
@@ -41,13 +45,15 @@
     当然了，可以利用重计算（即Re-Materialization，以释放前向激活值，只保留模型切段的部分激活值和种子信息）来解决GPipe模式下显存占用高的问题，但是重计算本质上是时间换空间的策略，节省空间的同时，会导致计算耗时增加。
 
     **图 5**  GPipe模式流水线并行  
-    ![](./figures/par_strat_intro_fig_05.png)
+
+    <img src="./figures/par_strat_intro_fig_05.png" height="123.4506" width="494.76">
 
 - PipeDream
 
     **图 6**  PipeDream模式流水线并行<a id="图6"></a>
-    ![](./figures/par_strat_intro_fig_06.png)
 
+    <img src="./figures/par_strat_intro_fig_06.png" height="85.12" width="497.42">
+    
     PipeDream的方案如[图6](#图6)所示，把一个迭代分成三个阶段：
 
     1. 预热前向传播阶段（Warmup forward passes）：在这里，除了最后一个stage（阶段，图中的每一个格子代表一个阶段），每个worker会做前向计算，进行不同数目的前向传播，并且向其下游发送激活，一直到最后一个stage被激发。该计划将执行中的（即in-flight）微批次数量（即未完成反向传播且需要保持激活的微批次数量）限制在流水线深度之内，而不是一个批次中的微批次数量。
@@ -59,7 +65,8 @@
 - Virtual pipeline模式
 
     **图 7**  Virtual pipeline模式流水线并行<a id="图7"></a>
-    ![](./figures/par_strat_intro_fig_07.png)
+
+    <img src="./figures/par_strat_intro_fig_07.png"  height="114.0342" width="494.76">
 
     Virtual pipeline如[图7](#图7)所示，假定当前模型网络共16层（编号0-15），4个device，前述GPipe模式和PipeDream是分成4个stage，按编号0-3层放device1，4-7层放device2，并以此类推。Virtual pipeline则是按照文中提出virtual\_pipeline\_stage概念减小切分粒度，以virtual\_pipeline\_stage=2为例，将0-1层放device1，2-3层放在device2，...，6-7层放到device4，8-9层继续放在device1，10-11层放在device2，...，14-15层放在device4。在steady的时候也是1F1B的形式，叫做1F1B-interleaving。按照这种方式，device之间的点对点通信次数或通信量变为原来的virtual\_pipeline\_stage倍，但空泡比率降低了。若定义每个device上有v个virtual stages，在device数量不变的情况下，分出更多的pipeline stage，以更多的通信量换取空泡比率降低（气泡率与PipeDream降低到1/v），进而减小了该step的端到端耗时。
 

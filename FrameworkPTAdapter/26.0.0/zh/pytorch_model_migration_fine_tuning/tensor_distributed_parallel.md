@@ -16,7 +16,7 @@
 embedding层的作用是为给定一个长度为s的输入token id序列，输出这个序列对应s个h维向量。token所在的词汇表长度一般记为v，v大约在3万到5万。h一般是一万以上。所以词嵌入层的参数量为v\*h，大约在亿量级。因为embedding层的运算是查表，它的切割比较直接明了，只需要将词汇表分成连续的段，每段的词向量存放在一个AI处理器上即可。例如token id为0\~3999的词向量存在NPU0上，4000\~7999的词向量存在NPU1上。给定token id输入序列，分别在NPU0、NPU1上查找词向量，找不到的词向量置为0。查找完毕后每个NPU设备做一次TP组的AllReduce即可在每个NPU设备上获得完整的s\*h维词embedding矩阵。如下图所示：
 
 **图 1**  词嵌入层张量并行  
-![](./figures/tensor_distributed_parallel_fig_01.png)
+<img src="./figures/tensor_distributed_parallel_fig_01.png" height="127.68" width="247.38">
 
 并行词嵌入层的前向AllReduce累加本质上是拼接，所以不会引起浮点精度问题。X是输入id序列，反向过程也不需要计算X的梯度。
 
@@ -26,13 +26,13 @@ Transformer中会将输入向量通过线性层转成QKV矩阵。线性层是一
 
 列切分后输入矩阵X分别在NPU0和NPU1上与切分后的子矩阵W1、W2相乘，得到Y1、Y2，将Y1、Y2简单合并就得到最终结果Y。列切分后的反向传播过程这里略过。列切分后的前向计算过程如下：
 
-![](./figures/tensor_distributed_parallel_fig_02.png)
+<img src="./figures/tensor_distributed_parallel_fig_02.png" height="104.883" width="465.5">
 
 列切分的前向只涉及结果的简单合并，所以不会引起精度问题。但是反向过程X的梯度，涉及W1、W2两个（实际情况下张量并行度一般是8）传播路径，需要做AllReduce通信算子计算，需要考虑精度问题。例如OLMo-7B就使用FP32进行梯度reduce，而Falcon-7B使用BF16进行梯度reduce。一般来说，参数越多，TP并行度越高，使用BF16做梯度reduce的难度越大。
 
 如果权重矩阵按行切分成W1、W2，则输入X需要按列切分成X1、X2到各NPU设备，否则维度不一致无法做矩阵乘法。各个设备矩阵乘法的结果Y1=X1\*W1和Y2=X2\*W2需要做AllReduce同步将Y1、Y2加起来才能得到X\*W的最终结果，正向过程有累加运算，需要考虑是否会引起精度误差。如下图所示：
 
-![](./figures/tensor_distributed_parallel_fig_03.png)
+<img src="./figures/tensor_distributed_parallel_fig_03.png" height="109.31" width="465.5">
 
 ## MLP层切分
 

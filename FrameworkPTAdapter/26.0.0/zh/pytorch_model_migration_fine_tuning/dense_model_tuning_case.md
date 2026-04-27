@@ -24,7 +24,8 @@
 预训练的Loss曲线、Grad norm曲线和学习率调度曲线如下：
 
 **图 1**  预训练曲线图
-![](./figures/dense_model_tuning_case_fig_01.png)
+
+<img src="./figures/dense_model_tuning_case_fig_01.png" height="286.2825" width="523.6875">
 
 从Loss收敛情况看，整个训练过程比较稳定，没有出现比较大的Loss尖刺。但在MMLU评分上，未复现出涌现能力，评分始终在25附近。因为MMLU是一个包含57个子任务的英文评测数据集，涵盖历史，法律等学科。每个问题是一个四选一的单项选择题，模型根据提示词补全回答。25分意味着模型在做盲猜，没有出现所谓的涌现能力。根据可参考资料显示，7B模型在训练完600B token的数据后，MMLU评分应该在40分以上。
 

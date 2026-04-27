@@ -28,7 +28,7 @@
 
     需注释掉下图中红框处标注的内容“append\_cxx\_flag\_if\_supported\("-Werror=cast-function-type" CMAKE\_CXX\_FLAGS\) ”，屏蔽告警错误。
 
-    ![](./figures/pytorch_comp_opt_fig_01.png)
+    <img src="./figures/pytorch_comp_opt_fig_01.png" height="148.8536" width="492.1">
 
 4. 根据需要的优化类型进行相应编译参数设置并进行编译，LTO和PGO优化可以单独使用也可以叠加一起使用。
     - LTO优化

@@ -28,7 +28,7 @@
 
         下图展示了在执行训练的循环中设置pdb并尝试打印变量loss的值的效果。
 
-        ![](./figures/model_debug_fig_01.png)
+        <img src="./figures/model_debug_fig_01.png" height="62.51" width="469.49">
 
     - 方法二：在需要设置断点的部分添加breakpoint函数，脚本运行至此处会停留。
 
@@ -36,8 +36,9 @@
         breakpoint()
         ```
 
-        下图是在执行训练的循环中设置断点的效果。<br>
-        ![](./figures/model_debug_fig_02.png)
+        下图是在执行训练的循环中设置断点的效果。
+
+        <img src="./figures/model_debug_fig_02.png" height="35.91" width="469.49">
 
 - **gdb命令行调试**：gdb调试工具的主要功能为在程序中设置断点、监视变量、单步骤运行、运行时改变变量值、跟踪路径、线程切换。此方法主要针对coredump场景，执行目录下会生成core dump文件，使用gdb调试该文件并打印堆栈，方法如下：
     1. 参考[GDB官方文档](https://sourceware.org/gdb/)安装GDB。
@@ -86,7 +87,7 @@
 
         执行命令后，gdb工具会将发生异常的代码、其所在的函数、文件名和所在文件的行数打印到屏幕，方便定位问题。样例回显如下图。
 
-        ![](./figures/model_debug_fig_03.png)
+        <img src="./figures/model_debug_fig_03.png" height="185.1094" width="469.49">
 
         gdb模式中常用的调试命令如表2。
 

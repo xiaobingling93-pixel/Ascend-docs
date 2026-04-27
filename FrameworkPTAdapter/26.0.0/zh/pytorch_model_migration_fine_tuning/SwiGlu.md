@@ -122,7 +122,8 @@ torch_npu.npu_swiglu(Tensor self, int dim=-1) -> (Tensor)
 
 ## 算子替换的模型中小算子
 
-![](./figures/SwiGlu_fig_02.png)
+<img src="./figures/SwiGlu_fig_02.png" height="65.835" width="523.
+6875">
 
 ## 使用限制
 

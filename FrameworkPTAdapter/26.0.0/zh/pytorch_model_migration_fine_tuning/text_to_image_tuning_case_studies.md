@@ -13,12 +13,14 @@
 可以确定DeepSpeed下的loss跑飞是因为反向传播用的dtype是BF16。但是BF16低精度的梯度为什么会导致loss跑飞，并且如何才能在BF16下正常收敛。
 
 **图 1**  BF16下的loss曲线  
-![](./figures/text_to_image_tuning_case_studies_fig_01.png)
+
+<img src="./figures/text_to_image_tuning_case_studies_fig_01.png" height="219.45" width="523.6875">
 
 从图中可以发现350步左右开始loss逐步上扬。所以分别采集了训练稳定的235步，loss跑飞前的350步，跑飞后的600步时各层的FP32和BF16梯度，如下图所示：
 
 **图 2**  梯度采集图  
-![](./figures/text_to_image_tuning_case_studies_fig_02.png)
+
+<img src="./figures/text_to_image_tuning_case_studies_fig_02.png" height="501.7425" width="311.3137">
 
 上图中x轴为层的编号，编号越大说明此层越靠近输入（早期层），越小越靠近loss。在235步的时候（图中第一行），早期层的梯度有轻微上扬，FP32（黑色）和BF16（蓝色）基本处于正常范围内。当在loss跑飞早期的第350步（图中第二行），BF16的早期层gnorm达到了8e-4，基本是FP32早期层gnorm最大值的两倍。而到loss跑飞的600步，BF16下的早期层gnorm相比FP32就更大了。因为反向传播梯度计算的链式法则，误差会逐层放大。所以BF16的低精度会引起早期层梯度的更大范围的波动（类似于钟摆的尾端有更大的波动幅度）。
 

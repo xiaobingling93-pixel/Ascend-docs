@@ -21,4 +21,4 @@
 
 3. 执行`clang -v`命令，验证是否安装成功，打印如下信息表示安装成功。
 
-    ![](./figures/install_bisheng_comp_fig_01.png)
+    <img src="./figures/install_bisheng_comp_fig_01.png" height="132.2818" width="492.1">
